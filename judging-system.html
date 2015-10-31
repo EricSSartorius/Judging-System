@@ -1,14 +1,8 @@
 <head>
-  <title>judging-system</title>
+  <title>Judging System</title>
 </head>
 
-<body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+<body ng-app="judging-system"
+      ng-include="'index.ng.html'"
+      ng-controller="JudgingSystemCtrl">
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
