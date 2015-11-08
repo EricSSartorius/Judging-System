@@ -1,0 +1,1 @@
+	angular.module('judging-system', ['angular-meteor', 'ui.router']); 
