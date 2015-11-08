@@ -17,13 +17,11 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 angular
-angularui:angular-ui-router
+urigo:angular-ui-router
 accounts-ui
 accounts-password
 accounts-facebook
 accounts-twitter
 stolinski:stylus-multi
 urigo:angular-blaze-template
-aldeed:collection2
-aldeed:autoform
 meteortoys:allthings
