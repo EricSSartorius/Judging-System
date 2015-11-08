@@ -1,8 +1,11 @@
 <head>
-  <title>Judging System</title>
+  <base href="/">
 </head>
-
-<body ng-app="judging-system"
-      ng-include="'index.ng.html'"
-      ng-controller="JudgingSystemCtrl">
+<body>
+	<div ng-app="judging-system">
+	  <h1>
+	    <a href="/landing">Home</a>
+	  </h1>
+	  <div ui-view></div>
+	</div>
 </body>
