@@ -3,10 +3,10 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
       $locationProvider.html5Mode(true);
 
       $stateProvider
-        .state('landing', {
-          url: '/landing',
-          templateUrl: 'client/views/landing.ng.html',
-          controller: 'LandingCtrl'
+        .state('home', {
+          url: '/home',
+          templateUrl: 'client/views/home.ng.html',
+          controller: 'HomeCtrl'
         })
         .state('judgingConsole', {
           url: '/judging-console',
@@ -14,5 +14,5 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
           controller: 'JudgingConsoleCtrl'
         });
 
-      $urlRouterProvider.otherwise("/landing");
+      $urlRouterProvider.otherwise("/home");
     });

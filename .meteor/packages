@@ -20,6 +20,8 @@ angular
 angularui:angular-ui-router
 accounts-ui
 accounts-password
+accounts-facebook
+accounts-twitter
 stolinski:stylus-multi
 urigo:angular-blaze-template
 aldeed:collection2
