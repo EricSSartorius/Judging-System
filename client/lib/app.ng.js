@@ -1,1 +1,1 @@
-	angular.module('judging-system', ['angular-meteor', 'ui.router']); 
+	angular.module('judging-system', ['angular-meteor', 'ui.router', 'ngMaterial']); 
