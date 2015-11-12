@@ -4,6 +4,12 @@ angular.module("judging-system").run(function ($rootScope, $state) {
       $state.go('home');
     }
   });
+  Accounts.onLogin(function() {
+    $state.go('createEvent');
+  });
+  Accounts.onLogout(function() {
+    $state.go('home');
+  });
 });
 
 angular.module('judging-system').config(function($urlRouterProvider, $stateProvider, $locationProvider){
