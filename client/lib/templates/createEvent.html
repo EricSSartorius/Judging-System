@@ -1,3 +1,5 @@
 <template name="createEvent">
-  <p>create event template</p>
+	<div class="new-event-container">
+		{{> quickForm collection="Events" id="insertEventForm" type="insert" class="new-event-form"}}
+	</div>
 </template>
