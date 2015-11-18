@@ -1,1 +1,18 @@
-<h1>{{judge}}</h1>
+<button ui-sref="createEvent">Go to Create Event</button><br/>
+{{player}}<br/>
+<h1>Round</h1><br/>
+{{round}}<br/>
+<md-content>
+    <h1>Score</h1>
+    <md-slider flex="" class="md-warn" md-discrete="" ng-model="score1" step="1" min="1" max="10" aria-label="score"></md-slider>
+    <md-slider flex="" class="md-primary" md-discrete="" ng-model="score2" step="1" min="1" max="10" aria-label="score"></md-slider>
+    <md-slider ng-model="disabled1" ng-disabled="true" aria-label="Disabled 1"></md-slider>
+</md-content>
+
+<h1>Time</h1><br/>
+{{time}}<br/>
+<md-button>Confirm</md-button>
+<md-radio-group ng-model="alert.alert">
+	<md-radio-button value="alert"> Alert Admin </md-radio-button>
+</md-radio-group>
+<i class="fa fa-dot-circle-o"></i>

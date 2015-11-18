@@ -26,13 +26,27 @@ EventSchema = new SimpleSchema({
 		type: String,
 		label: "Event Name"
 	},
+	timeLimitString: {
+	    type: String
+	},
 	timeLimit: {
 		type: Number,
-		label: "Time Limit"
+		label: "Time Limit",
+		autoValue: function() {
+		   var string = this.field("timeLimitString");
+		   if (string.isSet) {
+		   	   var components = string.value.split(":");
+		   	   var seconds = parseInt(components[0], 10) * 60 + parseInt(components[1], 10);
+		       return seconds;
+		    }
+		}
 	},
 	rounds: {
 		type: Number,
-		label: "Rounds"
+		label: "Rounds",
+		min: 1,
+		max: 10,
+		defaultValue: 1
 	},
 	players: {
 		type: [Player]
