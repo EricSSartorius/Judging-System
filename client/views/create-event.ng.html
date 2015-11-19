@@ -21,15 +21,16 @@
 <!-- <form><input data-schema-key="timeLimit" type="number" /></form> -->
 <br/>
 
-<form>
+<form ng-submit="createEvent()">
   <input type="text" placeholder="Event Name" ng-model="event.name">
   Time Limit
   <input type="number" placeholder="2" ng-model="event.timeLimitMin" min = "0" max = "99"/>:<input type="number"  placeholder="00" ng-model="event.timeLimitSec" min = "0" max = "59"/>
   Rounds
   <input type="number" ng-model="event.rounds" min="1" max="10" integer />
   <br/>
-  <input type="text" placeholder="Player Name" ng-model="player.name">
-  <br/>
+  <input ng-repeat="player in players" type="text" placeholder="Player Name" ng-value="player.name">
+  <br/><button ng-click="addPlayer(player.name)">+</button>
+  <button ng-click="deletePlayer(player.name)">-</button>
   <input type="text" placeholder="Judge Name" ng-model="judge.name">
   <br/>
   <button>Submit</button>

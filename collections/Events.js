@@ -26,9 +26,6 @@ EventSchema = new SimpleSchema({
 		type: String,
 		label: "Event Name"
 	},
-	timeLimitString: {
-	    type: String
-	},
 	timeLimit: {
 		type: Number,
 		label: "Time Limit",
@@ -48,10 +45,12 @@ EventSchema = new SimpleSchema({
 		max: 10,
 		defaultValue: 1
 	},
-	players: {
+	players: { 	
+		optional: true,
 		type: [Player]
 	},
 	judges: {
+		optional: true,
 		type: [Judge]
 	},
 	author: {
