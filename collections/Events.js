@@ -7,12 +7,21 @@ Events.allow({
 });
 
 Player = new SimpleSchema({
+	id: {
+		type: String
+	},
 	name: {
+		type: String
+	},
+	team: {
 		type: String
 	}
 });
 
 Judge = new SimpleSchema({
+	id: {
+		type: String
+	},
 	name: {
 		type: String
 	},
@@ -41,16 +50,11 @@ EventSchema = new SimpleSchema({
 	rounds: {
 		type: Number,
 		label: "Rounds",
-		min: 1,
-		max: 10,
-		defaultValue: 1
 	},
 	players: { 	
-		optional: true,
 		type: [Player]
 	},
 	judges: {
-		optional: true,
 		type: [Judge]
 	},
 	author: {

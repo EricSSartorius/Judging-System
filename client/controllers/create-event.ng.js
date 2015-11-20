@@ -2,27 +2,46 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	var initializeObjects = function() {
 		$scope.event = {
 			name: '',
-			timeLimitMin: '',
-			timeLimitSec: '',
+			timeLimitMin: 2,
+			timeLimitSec: 00,
 			rounds: 1
 		}; 
 		$scope.players = [{
+			id: 'player 1',
 			name: '',
 			team: ''
-		}];
-		$scope.judge = {
+		}],
+		$scope.judges = [{
+			id: 'judge 1',
 			name: '',
 			category: ''
-		};
+		}];
 	}
 	initializeObjects();
 
-	var addPlayer = function() {
-		$scope.players.push(player.name);
+	$scope.addPlayer = function() {
+	var newPlayerNo = $scope.players.length+1;
+	$scope.players.push({'id':'player'+newPlayerNo});
 	};
-	var deletePlayer = function() {
-		$scope.players.pop(player.name);
-	}
+	$scope.deletePlayer = function() {
+		var newPlayerNo = $scope.players.length-1;
+		$scope.players.pop({'id':'player'+newPlayerNo});
+	};
+	$scope.showPlayerLabel = function (player) {
+		return player.id === $scope.players[0].id;
+	};
+
+	$scope.addJudge = function() {
+		var newJudgeNo = $scope.judges.length+1;
+		$scope.judges.push({'id':'judge'+newJudgeNo});
+	};
+	$scope.deleteJudge = function() {
+		var newJudgeNo = $scope.judges.length-1;
+		$scope.judges.pop({'id':'judge'+newJudgeNo});
+	};
+	$scope.showJudgeLabel = function (judge) {
+		return judge.id === $scope.judges[0].id;
+	};
 
 	$scope.createEvent = function() {
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
@@ -30,20 +49,14 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		Events.insert($scope.event, function(err, id){
 			if (err) {
 				console.log(err);
-			} else {
+			} 
+			else {
 				$scope.$apply(function(){
 					if (id) {
 						initializeObjects();
 					}
 				});
 			}
-			
 		});
 	}
-
-	$scope.rounds = [
-	1,
-	2,
-	3,
-	];
 });
