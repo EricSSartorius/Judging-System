@@ -8,8 +8,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		}; 
 		$scope.players = [{
 			id: 'player 1',
-			name: '',
-			team: ''
+			name: ''
 		}],
 		$scope.judges = [{
 			id: 'judge 1',

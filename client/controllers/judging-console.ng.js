@@ -3,7 +3,20 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	$scope.round = 1;
 	$scope.score = '';
 	$scope.time = '5:00';
-	
-	$scope.score1 = 5;
-	$scope.disabled = 50;
+
+
+	$scope.submitScore = function() {
+		Scores.insert($scope.score, function(err, id){
+			if (err) {
+				console.log(err);
+			} 
+			else {
+				$scope.$apply(function(){
+					if (id) {
+						return $scope.score;	
+					}
+				});
+			}
+		});
+	}
 });

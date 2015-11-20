@@ -30,6 +30,16 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
         }
       }
     })
+    .state('adminConsole', {
+      url: '/admin-console',
+      templateUrl: 'client/views/admin-console.ng.html',
+      controller: 'AdminConsoleCtrl',
+      resolve: {
+        "currentUser": function($meteor){
+          return $meteor.requireUser();
+        }
+      }
+    })
     .state('createEvent', {
       url: '/create-event',
       templateUrl: 'client/views/create-event.ng.html',
