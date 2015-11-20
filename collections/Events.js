@@ -13,9 +13,6 @@ Player = new SimpleSchema({
 	name: {
 		type: String
 	},
-	team: {
-		type: String
-	}
 });
 
 Judge = new SimpleSchema({

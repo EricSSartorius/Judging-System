@@ -5,8 +5,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			timeLimitMin: 2,
 			timeLimitSec: 00,
 			rounds: 1,
-      players: [],
-      judges: []
+      		players: [],
+      		judges: []
 		}; 
 		$scope.players = [{
 			id: 'player 1',
@@ -35,8 +35,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	$scope.createEvent = function() {
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
 		$scope.event.timeLimit = timeLimit;
-    $scope.event.players = $scope.players;
-    $scope.event.judges = $scope.judges;
+	    $scope.event.players = $scope.players;
+	    $scope.event.judges = $scope.judges;
 		Events.insert($scope.event, function(err, id){
 			if (err) {
 				console.log(err);
