@@ -4,7 +4,9 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			name: '',
 			timeLimitMin: 2,
 			timeLimitSec: 00,
-			rounds: 1
+			rounds: 1,
+      players: [],
+      judges: []
 		}; 
 		$scope.players = [{
 			id: 'player 1',
@@ -33,6 +35,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	$scope.createEvent = function() {
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
 		$scope.event.timeLimit = timeLimit;
+    $scope.event.players = $scope.players;
+    $scope.event.judges = $scope.judges;
 		Events.insert($scope.event, function(err, id){
 			if (err) {
 				console.log(err);
@@ -46,4 +50,14 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			}
 		});
 	}
+
+  var formatNumbers = function(){
+    if ((this.value + '').length < 2) this.value = "0" + this.value;
+  };
+
+  $(document).ready(function(){
+    $('input[type=number]').keyup(formatNumbers);
+    $('input[type=number]').click(formatNumbers);
+    $('input[type=number]').keyup();
+  });
 });
