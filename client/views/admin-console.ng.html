@@ -1,13 +1,15 @@
 <button class="btn-primary" ui-sref="createEvent">Go to Create Event</button>
 <button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button><br/>
-{{player}}<br/>
-<h1>Round</h1><br/>
-{{round}}<br/>
-<h1>Time</h1><br/>
-{{time}}
-<h1>Judges</h1>
-{{ judge }}
-<h1>Score</h1>
-{{score}}<br/>
-<button>Start Round</button>
-<button>Next Round</button>
+<div class="console-container">
+	<h1>{{player}}</h1>
+	<h1>{{time}}</h1>
+	<h4>Round</h4>
+	<h2>{{round}}</h2>
+	<h1>{{ total }}</h1>
+	<button>Start Round</button>
+	<button>Next Round</button>
+</div>
+<div class="new-judge-container">
+	<h1>{{ judge }}</h1>
+	<h1>{{score}}</h1>
+</div>
