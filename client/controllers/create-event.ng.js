@@ -20,27 +20,15 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	initializeObjects();
 
 	$scope.addPlayer = function() {
-	var newPlayerNo = $scope.players.length+1;
-	$scope.players.push({'id':'player'+newPlayerNo});
+		var newPlayerNo = $scope.players.length+1;
+		$scope.players.push({'id':'player'+newPlayerNo});
 	};
-	$scope.deletePlayer = function() {
-		var newPlayerNo = $scope.players.length-1;
-		$scope.players.pop({'id':'player'+newPlayerNo});
-	};
-	$scope.showPlayerLabel = function (player) {
-		return player.id === $scope.players[0].id;
-	};
-
 	$scope.addJudge = function() {
 		var newJudgeNo = $scope.judges.length+1;
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
-	$scope.deleteJudge = function() {
-		var newJudgeNo = $scope.judges.length-1;
-		$scope.judges.pop({'id':'judge'+newJudgeNo});
-	};
-	$scope.showJudgeLabel = function (judge) {
-		return judge.id === $scope.judges[0].id;
+	$scope.removePerson = function(array, index){
+	    array.splice(index, 1);
 	};
 
 	$scope.createEvent = function() {

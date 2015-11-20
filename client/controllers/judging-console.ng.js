@@ -3,14 +3,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	$scope.round = 1;
 	$scope.score = '';
 	$scope.time = '5:00';
-
-	$scope.score1 = 3;
-	$scope.score2 = 2;
-
-	$scope.disabled1 = 50;
-
-	$scope.alert = {
-      alert : 'Alert Admin',
-
-    };
+	
+	$scope.score1 = 5;
+	$scope.disabled = 50;
 });

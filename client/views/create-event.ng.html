@@ -1,46 +1,29 @@
 <button ui-sref="judgingConsole">Go to Judging Console</button>
-<md-content>
 <form ng-submit="createEvent()">
-<md-input-container>
-<label>Event Name</label>
+  <label>Event Name</label>
   <input type="text" ng-model="event.name">
-  </md-input-container>
   Time Limit
   <input type="number" ng-model="event.timeLimitMin" min = "0" max = "99"/>:<input type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/>
-
   <label>Rounds</label>
-  <input type="number" ng-model="event.rounds" min="1" max="10" integer />
-
-<br/>
-    <div ng-repeat="player in players">
-      <label for="player" ng-show="showPlayerLabel(player)">Players</label>
-      <md-button type="button" ng-show="$last" ng-click="addPlayer()">+</md-button>
-      <md-button type="button" ng-show="$last" ng-click="deletePlayer()">-</md-button>
-      <md-input-container>
-      <label >Player {{ $index + 1 }}</label>
-      <input type="text" ng-model="player.name" name="" >
-      </md-input-container>
-      <md-input-container>
-      <label>Team</label>
-      <input type="text" ng-model="player.team" name="">
-      </md-input-container>
-    </div>
-    <div ng-repeat="judge in judges">
-      <label for="judge" ng-show="showJudgeLabel(judge)">Judges</label>
-      <md-button type="button" ng-show="$last" ng-click="addJudge()">+</md-button>
-      <md-button type="button" ng-show="$last" ng-click="deleteJudge()">-</md-button>
-      <md-input-container>
-      <label>Judge {{ $index + 1 }}</label>
-      <input type="text" ng-model="judge.name" name="">
-      </md-input-container>
-      <md-input-container>
-      <label>Category</label>
-      <input type="text" ng-model="judge.category" name="">
-      </md-input-container>
-    </div>
- <md-button type="submit">Submit</md-button>
+  <input type="number" ng-model="event.rounds" min="1" max="10" integer /><br/>
+  <label>Players</label>
+  <div ng-repeat="player in players">
+    <input type="text" ng-model="player.name" placeholder="Player {{ $index + 1 }}">
+    <input type="text" ng-model="player.team" placeholder="Team">
+    <button type="button" ng-show="$last" ng-click="addPlayer()">+</button>
+    <button type="button" ng-show="!$last" ng-click="removePerson(players, $index)">-</button>
+  </div>
+  <label>Judges</label>
+  <div ng-repeat="judge in judges">
+    <input type="text" ng-model="judge.name" placeholder="Judge {{ $index + 1 }}">
+    <input type="text" ng-model="judge.category" placeholder="Category">
+    <button type="button" ng-show="$last" ng-click="addJudge()">+</button>
+    <button type="button" ng-show="!$last" ng-click="removePerson(judges, $index)">-</button>
+  </div>
+  <button type="submit">Start Game</button>
 </form>
-</md-content>
+
+
 
 
 
