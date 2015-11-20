@@ -1,5 +1,5 @@
-<button ui-sref="judgingConsole">Go to Judging Console</button>
-<button ui-sref="adminConsole">Go to Admin Console</button>
+<button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button>
+<button class="btn-primary" ui-sref="adminConsole">Go to Admin Console</button>
 <form ng-submit="createEvent()">
   <label>Event Name</label>
   <input type="text" ng-model="event.name">
@@ -10,19 +10,26 @@
   <label>Players</label>
   <div ng-repeat="player in players">
     <input type="text" ng-model="player.name" placeholder="Player {{ $index + 1 }}">
-    <button type="button" ng-show="$last" ng-click="addPlayer()">+</button>
-    <button type="button" ng-show="!$last" ng-click="removePerson(players, $index)">-</button>
+    <button type="button" class="btn-invert" ng-show="$last" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
+    <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
   </div>
-  <label>Judges</label>
-  <div ng-repeat="judge in judges">
-    <input type="text" ng-model="judge.name" placeholder="Judge {{ $index + 1 }}">
+ 
+  <div ng-repeat="judge in judges" class="new-judge-container">
+    <label>Judge {{ $index + 1 }}</label>
+    <input type="text" ng-model="judge.name" placeholder="Name">
     <input type="text" ng-model="judge.category" placeholder="Category">
-    <button type="button" ng-show="$last" ng-click="addJudge()">+</button>
-    <button type="button" ng-show="!$last" ng-click="removePerson(judges, $index)">-</button>
+    <button type="button" class="btn-invert" ng-show="$last" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
+    <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
   </div>
   <button type="submit">Submit</button>
 </form>
-
+<!-- <button class="btn-primary">A</button>
+<button class="btn-deny">A</button>
+<button class="btn-cancel">A</button>
+<button class="btn-text">A</button>
+<button class="btn-text-dark">A</button>
+<button class="btn-confirmation">A</button>
+<button class="btn-invert">A</button> -->
 
 
 

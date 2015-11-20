@@ -110,3 +110,118 @@ header
 	
 p
     color #epic-grey
+    
+.main-layout
+    lost-center 90%
+    margin-top 20px 
+    +above($large)
+        lost-center 80%
+        margin-top 40px
+
+.new-judge-container
+    position relative
+    background #FFF
+    padding 20px 
+    margin-bottom 20px 
+    shadow-level(2)  
+    input
+        width 100% 
+        display block
+        margin-bottom 10px 
+    button
+        width 100%
+
+.judge-console-container
+    position relative
+    background #FFF
+    padding 20px 
+    margin-bottom 20px 
+    shadow-level(2)
+
+.btn, button
+    display inline-block
+    cursor pointer
+    background blue
+    color #FFF
+    text-decoration none
+    text-transform uppercase
+    padding 5px 15px
+    border solid 3px blue
+    border-radius 2px
+    font-weight 800
+    shadow-level(1)
+    &:hover
+        background @background - 20
+        border-color @background
+        shadow-level(2)
+    &.btn-primary
+        background bright-blue
+        border-color bright-blue
+        color #FFF
+        &:hover
+            background @background - 40
+            border-color @background
+    &.btn-deny
+        background epic-red
+        border solid 3px @background
+        &:hover
+            background @background - 20
+            border-color @background
+    &.btn-text
+        color blue
+        background transparent
+        border solid 2px blue
+        shadow-level(0)
+        &:hover
+            background bright-blue
+            border-color @background
+            shadow-level(1)
+    &.btn-invert
+        color blue
+        background transparent
+        border none
+        shadow-level(0)
+        &:hover
+            background none
+            color bright-blue
+    &.btn-text-dark
+        color #FFF
+        background transparent
+        border solid 2px #FFF
+        shadow-level(0)
+        &:hover
+            background #FFF
+            color bright-blue
+            border-color @background
+            shadow-level(1)
+    &.btn-confirmation
+        color black
+        background green
+        border solid 2px @background
+        &:hover
+            background @background - 20
+            border-color @background
+    &.btn-cancel
+        color #FFF
+        background transparent
+        border solid 2px #FFF 
+        opacity 0.4
+        shadow-level(-1)
+        &:hover
+            background epic-red
+            color #FFF
+            opacity 1
+            shadow-level(2)
+            border-color @background
+            
+input, select, textarea
+    color epic-grey
+    background #FFF
+    border solid 2px light-grey
+    border-radius 2px
+    font-weight 800
+    padding 6px 10px
+    margin-bottom 10px  
+    &.static-input
+        border none
+        background transparent
