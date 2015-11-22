@@ -20,26 +20,30 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
     		scope.startButton = "START ROUND";
     		var theTimer;
 			scope.handleButtonClick= function() {
-		        if(scope.roundTime !== MY_EVENTS.roundLength) {
-		        	if (scope.startButton === "NEXT ROUND") {
-						scope.roundTime = MY_EVENTS.roundLength;
+	        	switch (scope.startButton) {
+	        		case "START ROUND":
+	        			scope.startButton = "END ROUND";
+						scope.startTimer();
+						break;
+				    case "NEXT ROUND":
+				        scope.roundTime = MY_EVENTS.roundLength;
 						scope.startButton = "START ROUND";
-					}
-					else if (scope.startButton === "NEXT PLAYER") {
-						//GO TO NEXT PLAYER IN DATABASE
-    					//RESET EVERYTHING
-    					console.log("Go to the next player");
-					}
-					else {
-		        		$interval.cancel(theTimer);
-		        		scope.roundTime = 0;
-		        		scope.determineRound();
-		        	}
+				        break;
+				    case "NEXT PLAYER": 
+				        //GO TO NEXT PLAYER IN DATABASE
+						//RESET EVERYTHING
+						console.log("Go to the next player");
+				        break;
+				    case "END GAME":
+				         // //GO TO RESULT SCREEN
+						console.log("Game Over");
+				        break;
+				    default:
+				        $interval.cancel(theTimer);
+					    scope.roundTime = 0;
+					    scope.determineRound();
+				        break;
 				}
-		        else {
-			        scope.startButton = "END ROUND";
-					scope.startTimer();
-		        }
 			};
     		scope.determineRound = function() {
     			scope.roundCounter++;
@@ -48,7 +52,6 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
     				scope.roundCounter = 0;
     				// if (NO MORE PLAYERS) {
     				// scope.startButton = "END GAME";
-    				// //GO TO RESULT SCREEN
     				// }
     				// else {
     					scope.startButton = "NEXT PLAYER";
@@ -69,8 +72,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 				        scope.determineRound();
 				    }
 			    },1000,0);  
-    		};
-		    
+    		}; 
     	}
     }
  }]);
