@@ -10,7 +10,7 @@ angular.module('judging-system').filter('timeFilter', function() {
 
 angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval", function(MY_EVENTS, $interval) {
     return {
-        template: '<div><h1>{{ roundTime | timeFilter | date:"mm:ss"}}</h1><button ng-click="handleButtonClick()">{{startButton}}</button></div>',
+        templateUrl: 'client/lib/templates/my-button.ng.html',
         restrict: 'E',
         replace: true,
         scope: { },

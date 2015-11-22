@@ -1,4 +1,6 @@
 angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $meteor) {
+	$scope.noOfJudges = 7;
+	$scope.noOfPlayers = 100;
 	var initializeObjects = function() {
 		$scope.event = {
 			name: '',
@@ -9,15 +11,15 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
       		judges: []
 		}; 
 		$scope.players = [{
-			id: 'player 1',
+			id: 'player1',
 			name: ''
 		}],
 		$scope.judges = [{
-			id: 'judge 1',
+			id: 'judge1',
 			name: '',
 			category: ''
 		}];
-	}
+	};
 	initializeObjects();
 
 	$scope.addPlayer = function() {
@@ -49,15 +51,14 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 				});
 			}
 		});
-	}
+	};
 
-  var formatNumbers = function(){
-    if ((this.value + '').length < 2) this.value = "0" + this.value;
-  };
-
-  $(document).ready(function(){
-    $('input[type=number]').keyup(formatNumbers);
-    $('input[type=number]').click(formatNumbers);
-    $('input[type=number]').keyup();
-  });
+	var formatNumbers = function(){
+		if ((this.value + '').length < 2) this.value = "0" + this.value;
+	};
+	$(document).ready(function(){
+		$('input[type=number]').keyup(formatNumbers);
+		$('input[type=number]').click(formatNumbers);
+		$('input[type=number]').keyup();
+	});
 });
