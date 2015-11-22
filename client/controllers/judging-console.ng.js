@@ -1,6 +1,5 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.player = "Player Name";
-	$scope.round = 1;
 	$scope.score = 0;
 	$scope.time = 700;
 

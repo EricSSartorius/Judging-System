@@ -16,7 +16,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
         scope: { },
         link: function(scope, element, attributes) {
         	scope.roundTime = MY_EVENTS.roundLength;
-        	scope.roundCounter = 0;
+        	scope.roundCounter = 1;
     		scope.startButton = "START ROUND";
     		var theTimer;
 			scope.handleButtonClick= function() {
@@ -27,6 +27,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 						break;
 				    case "NEXT ROUND":
 				        scope.roundTime = MY_EVENTS.roundLength;
+				        scope.roundCounter++;
 						scope.startButton = "START ROUND";
 				        break;
 				    case "NEXT PLAYER": 
@@ -46,10 +47,9 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 				}
 			};
     		scope.determineRound = function() {
-    			scope.roundCounter++;
     			console.log("rounds finished: " + scope.roundCounter);
     			if (scope.roundCounter === MY_EVENTS.nofOfRounds) {
-    				scope.roundCounter = 0;
+    				scope.roundCounter = 1;
     				// if (NO MORE PLAYERS) {
     				// scope.startButton = "END GAME";
     				// }
