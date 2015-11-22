@@ -1,9 +1,8 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.player = "Player Name";
 	$scope.round = 1;
-	$scope.score = '0';
-	$scope.time = '5:00';
-
+	$scope.score = 0;
+	$scope.time = 700;
 
 	$scope.submitScore = function() {
 		Scores.insert($scope.score, function(err, id){
