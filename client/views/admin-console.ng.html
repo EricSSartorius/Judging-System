@@ -1,13 +1,13 @@
 <button class="btn-primary" ui-sref="createEvent">Go to Create Event</button>
 <button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button><br/>
 <div class="console-container">
-	<h1>{{ eventName }}</h1>
-	<h1>{{ playerName }}</h1>
-	<h4>Round</h4>
+	<h1 ng-repeat="event in events">{{ event.name }}</h1>
+	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round Score</h4>
 	<h1>{{ roundScore }}</h1>
 	<h4>Total Score</h4>
 	<h1>{{ totalScore }}</h1>
+	<h4>Round</h4>
 	<my-button></my-button>
 </div>
 <div>

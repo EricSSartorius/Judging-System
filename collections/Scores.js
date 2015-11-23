@@ -11,6 +11,9 @@ ScoreSchema = new SimpleSchema({
 		type: Number,
 		label: "Judge Score"
 	},
+	eventId: {
+		type: String
+	},
 	author: {
 		type: String,
 		label: "author",
