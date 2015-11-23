@@ -1,18 +1,16 @@
 <button class="btn-primary" ui-sref="createEvent">Go to Create Event</button>
 <button class="btn-primary" ui-sref="adminConsole">Go to Admin Console</button>
 <div class="console-container">
-	<h1>{{player}}</h1>
+	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round</h4>
 	<h2>{{round}}</h2>
 	<h3>Time</h3>
-	<h1>{{time | timeFilter | date:"mm:ss"}}</h1>
+	<h1>{{ event.timeLimit | timeFilter | date:"mm:ss"}}</h1>
 	<form ng-submit="submitScore()">
 	    <h3>Score</h3>
 	    <h1 class="judges-score">{{score}}</h1>
 	    <md-slider flex="" class="md-warn"  ng-disabled="false" ng-model="score" step="1" min="0" max="10" aria-label="Score"></md-slider>
-	   	<input ng-hide="true" type="number" value="{{score}}"/>	
 		<button type="submit">Confirm</button>
-
 	</form>
 	<p>Alert Admin</p><i ng-show = "true" class="fa fa-dot-circle-o"></i><i ng-hide="true" class="fa fa-circle-o"></i>
 </div>

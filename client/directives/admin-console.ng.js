@@ -5,6 +5,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
         replace: true,
         scope: { },
         link: function(scope, element, attributes) {
+        	scope.event = Events.findOne({_id: "DcjPnjyaeGuRZvrXk"});
         	scope.roundTime = MY_EVENTS.roundLength;
         	scope.roundCounter = 1;
     		scope.startButton = "START ROUND";
@@ -12,6 +13,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 			scope.handleButtonClick= function() {
 	        	switch (scope.startButton) {
 	        		case "START ROUND":
+	        			Events.update({ inGame: true });
 	        			scope.startButton = "END ROUND";
 						scope.startTimer();
 						break;

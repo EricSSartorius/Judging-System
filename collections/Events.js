@@ -73,6 +73,14 @@ EventSchema = new SimpleSchema({
 		autoform: {
 			type: "hidden"
 		}
+	},
+	inGame: {
+		type: Boolean,
+		defaultValue: false,
+		optional: true,
+		autoform: {
+			type: "hidden"
+		}
 	}
 });
 

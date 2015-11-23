@@ -11,9 +11,9 @@
 	<my-button></my-button>
 </div>
 <div>
-<div class="new-judge-container">
-	<h1>{{ judge }}</h1>
-	<h1>{{ score }}</h1>
+<div ng-repeat="judge in event.judges" class="new-judge-container">
+	<h1 >{{ judge.name }}</h1>
+	<h1>{{ score.score }}</h1>
 </div>
 <p>Alert</p><i ng-show = "true" class="fa fa-dot-circle-o"></i><i ng-hide="true" class="fa fa-circle-o"></i>
 </div>
