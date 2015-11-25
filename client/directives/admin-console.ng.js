@@ -13,7 +13,8 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 			scope.handleButtonClick= function() {
 	        	switch (scope.startButton) {
 	        		case "START ROUND":
-	        			Events.update({ inGame: true });
+	        			Events.update(scope.event._id, {$set: {inGame: true }});
+						scope.event = Events.findOne({_id: scope.event._id});
 	        			scope.startButton = "END ROUND";
 						scope.startTimer();
 						break;
@@ -23,11 +24,15 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 						scope.startButton = "START ROUND";
 				        break;
 				    case "NEXT PLAYER": 
+				    	Events.update(scope.event._id, {$set: {inGame: false }});
+				    	scope.event = Events.findOne({_id: scope.event._id});
 				        //GO TO NEXT PLAYER IN DATABASE
 						//RESET EVERYTHING
 						console.log("Go to the next player");
 				        break;
 				    case "END GAME":
+				    	Events.update(scope.event._id, {$set: {inGame: false }});
+						scope.event = Events.findOne({_id: scope.event._id});
 				         // //GO TO RESULT SCREEN
 						console.log("Game Over");
 				        break;

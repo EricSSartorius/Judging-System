@@ -1,0 +1,12 @@
+<button class="btn-primary" ui-sref="createEvent">Go to Create Event</button>
+<button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button>
+<button class="btn-primary" ui-sref="adminConsole">Go to Admin Console</button>
+
+<div class="console-container">
+	<h1>LEADERBOARD</h1>
+	<ul>
+		<li ng-repeat="player in event.players | filter:q as results">
+			{{$index + 1}}. {{ player.name }}: SCORE HERE
+		</li>
+	</ul>
+</div>

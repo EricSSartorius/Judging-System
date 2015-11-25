@@ -40,6 +40,16 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
         }
       }
     })
+    .state('leaderboard', {
+      url: '/leaderboard',
+      templateUrl: 'client/views/leaderboard.ng.html',
+      controller: 'LeaderboardCtrl',
+      resolve: {
+        "currentUser": function($meteor){
+          return $meteor.requireUser();
+        }
+      }
+    })
     .state('createEvent', {
       url: '/create-event',
       templateUrl: 'client/views/create-event.ng.html',
