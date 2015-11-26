@@ -25,6 +25,9 @@ Judge = new SimpleSchema({
 	name: {
 		type: String
 	},
+	email: {
+		type: String
+	},
 	category: {
 		type: String
 	}
