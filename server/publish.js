@@ -1,8 +1,12 @@
 Meteor.publish('events', function(){
-	return Events.find({author: this.userId});
+	return Events.find();
 });
 
 
 Meteor.publish('scores', function(){
-	return Scores.find({author: this.userId});
+	return Scores.find();
+});
+
+Meteor.publish('users', function(){
+	return Users.find();
 });

@@ -11,7 +11,7 @@
 	    <h3>Score</h3>
 	    <h1 class="judges-score">{{score}}</h1>
 	    <md-slider flex="" class="md-warn"  ng-disabled="false" ng-model="score" step="1" min="0" max="10" aria-label="Score"></md-slider>
-		<button type="submit">Confirm</button>
+		<button type="submit" ng-disabled="false">Confirm</button>
 	</form>
 	<p>Alert Admin</p><i ng-show = "true" class="fa fa-dot-circle-o"></i><i ng-hide="true" class="fa fa-circle-o"></i>
 </div>

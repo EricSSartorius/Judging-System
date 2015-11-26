@@ -18,6 +18,7 @@
   <div ng-repeat="judge in judges | limitTo: noOfJudges" class="new-judge-container">
     <label>Judge {{ $index + 1 }}</label>
     <input type="text" ng-model="judge.name" placeholder="Name">
+    <input type="email" ng-model="judge.email" placeholder="Email">
     <input type="text" ng-model="judge.category" placeholder="Category">
     <button type="button" class="btn-invert" ng-show="$last" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
     <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>

@@ -1,4 +1,4 @@
-angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval", function(MY_EVENTS, $interval) {
+angular.module('judging-system').directive('myButton', ["$interval", function($interval) {
     return {
         templateUrl: 'client/lib/templates/my-button.ng.html',
         restrict: 'E',
@@ -6,20 +6,21 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
         scope: { },
         link: function(scope, element, attributes) {
         	scope.event = Events.findOne({_id: "DcjPnjyaeGuRZvrXk"});
-        	scope.roundTime = MY_EVENTS.roundLength;
+        	scope.roundTime = scope.event.timeLimit;
         	scope.roundCounter = 1;
     		scope.startButton = "START ROUND";
     		var theTimer;
 			scope.handleButtonClick= function() {
 	        	switch (scope.startButton) {
 	        		case "START ROUND":
+	        			console.log(scope.event.timeLimit);
 	        			Events.update(scope.event._id, {$set: {inGame: true }});
 						scope.event = Events.findOne({_id: scope.event._id});
 	        			scope.startButton = "END ROUND";
 						scope.startTimer();
 						break;
 				    case "NEXT ROUND":
-				        scope.roundTime = MY_EVENTS.roundLength;
+				        scope.roundTime = scope.event.timeLimit;
 				        scope.roundCounter++;
 						scope.startButton = "START ROUND";
 				        break;
@@ -45,7 +46,7 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
 			};
     		scope.determineRound = function() {
     			console.log("rounds finished: " + scope.roundCounter);
-    			if (scope.roundCounter === MY_EVENTS.nofOfRounds) {
+    			if (scope.roundCounter === scope.event.rounds) {
     				scope.roundCounter = 1;
     				// if (NO MORE PLAYERS) {
     				// scope.startButton = "END GAME";
@@ -73,7 +74,3 @@ angular.module('judging-system').directive('myButton', ['MY_EVENTS', "$interval"
     	}
     }
  }]);
-angular.module('judging-system').constant("MY_EVENTS", {
-	roundLength: 5,
-	nofOfRounds: 4
-});
