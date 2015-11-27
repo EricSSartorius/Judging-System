@@ -2,11 +2,12 @@
 <button class="btn-primary" ui-sref="adminConsole">Go to Admin Console</button>
 <button class="btn-primary" ui-sref="leaderboard">Go to Leaderboard</button>
 <div class="console-container">
+	<h1>{{ event.name }}</h1>
 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round</h4>
 	<h2>{{round}}</h2>
 	<h3>Time</h3>
-	<h1>{{ event.timeLimit | timeFilter | date:"mm:ss"}}</h1>
+	<h1>{{ showTime() | timeFilter | date:"mm:ss"}}</h1>
 	<form ng-submit="submitScore()">
 	    <h3>Score</h3>
 	    <h1 class="judges-score">{{score}}</h1>

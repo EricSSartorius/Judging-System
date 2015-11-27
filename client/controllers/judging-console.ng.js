@@ -13,14 +13,14 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		}
 	});
 
-	// $scope.showTime = function() {
-	// 	if ($scope.event.timeLimit === null) {
-	// 		return "00:00";
-	// 	}
-	// 	else {
-	// 		return $scope.event.timeLimit;
-	// 	}
-	// }
+	$scope.showTime = function() {
+		if ($scope.event === undefined) {
+			return 0;
+		}
+		else {
+			return $scope.event.timeLimit;
+		}
+	}
 
 	$scope.submitScore = function() {
 		Scores.insert({score: $scope.score, judgeID: $scope.score._id, eventId: $scope.event._id}, function(err, id){
