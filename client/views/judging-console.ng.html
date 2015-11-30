@@ -5,7 +5,7 @@
 	<h1>{{ event.name }}</h1>
 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round</h4>
-	<h2>{{round}}</h2>
+	<h2>{{ event.currentRound }}</h2>
 	<h3>Time</h3>
 	<h1>{{ showTime() | timeFilter | date:"mm:ss"}}</h1>
 	<form ng-submit="submitScore()">

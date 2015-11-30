@@ -1,12 +1,10 @@
 angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope, $meteor) {
-	$scope.events = Events.find().fetch();
-	$scope.event = Events.find({currentGame:true});
+	$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
+	$scope.event = $scope.events[0];
+	$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 	$scope.score = Scores.findOne({_id: "6dMF4Jy54uWsC2HkL"});
 	$scope.totalScore = "100*";
-
-	$scope.chooseEvent = function(){
-		Events.update($scope.event._id, {$set: {currentGame: true }});
-	};
+	window.scope = $scope;
 
 	$scope.getRoundTotal = function(){
 	    var total = 0;

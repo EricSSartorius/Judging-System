@@ -3,13 +3,9 @@
 <button class="btn-primary" ui-sref="leaderboard">Go to Leaderboard</button>
 <div class="console-container">
 <div>
-<form ng-submit="chooseEvent()">
 	<label for="">Choose Event</label>
- 	<select ng-model="event">
-    	<option ng-value="event.name" ng-repeat="event in events">{{event.name}}</option>
+ 	<select ng-change="chooseEvent()" ng-options="event.name for event in events track by event._id" ng-model="event">
  	</select>
- 	<button type="submit">Select</button>
-</form>
     <!-- <div layout="row">
       <md-input-container nd-change="chooseEvent()">
         <label>Choose Event</label>
@@ -18,7 +14,7 @@
         </md-select>
       </md-input-container>
     </div> -->
-    <p ng-if="event">Current Event: {{event.toLowerCase()}}</p>
+    <h1>Name: {{ event.name }}</h1>
   </div>
 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round Score</h4>

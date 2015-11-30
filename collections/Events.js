@@ -82,7 +82,17 @@ EventSchema = new SimpleSchema({
 	},
 	inGame: {
 		type: Boolean,
+		label: "In Game",
 		defaultValue: false,
+		optional: true,
+		autoform: {
+			type: "hidden"
+		}
+	},
+	currentRound: {
+		type: Number,
+		label: "Current Round",
+		defaultValue: 1,
 		optional: true,
 		autoform: {
 			type: "hidden"
@@ -90,6 +100,7 @@ EventSchema = new SimpleSchema({
 	},
 	currentGame: {
 		type: Boolean,
+		label: "Current Game",
 		defaultValue: false,
 		optional: true,
 		autoform: {

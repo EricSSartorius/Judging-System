@@ -5,9 +5,9 @@ angular.module('judging-system').directive('myButton', ["$interval", function($i
         replace: true,
         scope: { },
         link: function(scope, element, attributes) {
-        	scope.event = Events.findOne({_id: "DcjPnjyaeGuRZvrXk"});
+        	scope.event = Events.findOne({_id: "TtpatKJ5ZiHEX592B"});
         	scope.roundTime = scope.event.timeLimit;
-        	scope.roundCounter = 1;
+        	// scope.roundCounter = scope.event.currentRound;
     		scope.startButton = "START ROUND";
     		var theTimer;
 			scope.handleButtonClick= function() {
@@ -15,13 +15,13 @@ angular.module('judging-system').directive('myButton', ["$interval", function($i
 	        		case "START ROUND":
 	        			console.log(scope.event.timeLimit);
 	        			Events.update(scope.event._id, {$set: {inGame: true }});
-						scope.event = Events.findOne({_id: scope.event._id});
+						// scope.event = Events.findOne({_id: scope.event._id});
 	        			scope.startButton = "END ROUND";
 						scope.startTimer();
 						break;
 				    case "NEXT ROUND":
 				        scope.roundTime = scope.event.timeLimit;
-				        scope.roundCounter++;
+				        Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound++ }});
 						scope.startButton = "START ROUND";
 				        break;
 				    case "NEXT PLAYER": 
@@ -45,9 +45,9 @@ angular.module('judging-system').directive('myButton', ["$interval", function($i
 				}
 			};
     		scope.determineRound = function() {
-    			console.log("rounds finished: " + scope.roundCounter);
-    			if (scope.roundCounter === scope.event.rounds) {
-    				scope.roundCounter = 1;
+    			console.log("rounds finished: " + scope.event.currentRound);
+    			if (scope.event.currentRound >= scope.event.rounds) {
+    				Events.update(scope.event._id, {$set: {currentRound: 1 }});
     				// if (NO MORE PLAYERS) {
     				// scope.startButton = "END GAME";
     				// }
