@@ -2,27 +2,22 @@
 <button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button>
 <button class="btn-primary" ui-sref="leaderboard">Go to Leaderboard</button>
 <div class="console-container">
-<div>
 	<label for="">Choose Event</label>
- 	<select ng-change="chooseEvent()" ng-options="event.name for event in events track by event._id" ng-model="event">
+ 	<select ng-options="event.name for event in events track by event._id" ng-model="event">
  	</select>
-    <!-- <div layout="row">
-      <md-input-container nd-change="chooseEvent()">
-        <label>Choose Event</label>
-        <md-select ng-model="event">
-            <md-option ng-value="event.name" ng-repeat="event in events">{{event.name}}</md-option>
-        </md-select>
-      </md-input-container>
-    </div> -->
     <h1>Name: {{ event.name }}</h1>
-  </div>
+    <h1>Player: {{ currentPlayer }}</h1>
 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round Score</h4>
 	<h1>{{ getRoundTotal() }}</h1>
 	<h4>Total Score</h4>
 	<h1>{{ totalScore }}</h1>
 	<h4>Round</h4>
-	<my-button></my-button>
+	<h1>{{ event.currentRound }}</h1>
+	<h1>{{ event.timeLimit | timeFilter | date:"mm:ss" }}</h1>
+	<button>Start Next Player</button>
+	<button>End Current Player</button>
+	<button>Next Round</button>
 </div>
 <div ng-repeat="judge in event.judges">
 <div class="new-judge-container">

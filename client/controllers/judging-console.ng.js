@@ -1,5 +1,4 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
-	$scope.player = "Player Name";
 	$scope.score = 0;
 	events = Events.find({inGame:true}).fetch();
 	$scope.event = events.find(function(e){ 
@@ -12,7 +11,6 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		  	}
 		}
 	});
-
 	$scope.showTime = function() {
 		if ($scope.event === undefined) {
 			return 0;
@@ -20,10 +18,9 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		else {
 			return $scope.event.timeLimit;
 		}
-	}
-
+	};
 	$scope.submitScore = function() {
-		Scores.insert({score: $scope.score, judgeId: $scope.judge.id, eventId: $scope.event._id}, function(err, id){
+		Scores.insert({score: $scope.score, judgeId: $scope.judge.id, playerId: $scope.player.id, eventId: $scope.event._id}, function(err, id){
 			if (err) {
 				console.log(err);
 			} 

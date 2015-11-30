@@ -17,6 +17,9 @@ ScoreSchema = new SimpleSchema({
 	judgeId: {
 		type: String
 	},
+	playerId: {
+		type: String
+	},
 	author: {
 		type: String,
 		label: "author",

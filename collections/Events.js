@@ -98,9 +98,9 @@ EventSchema = new SimpleSchema({
 			type: "hidden"
 		}
 	},
-	currentGame: {
-		type: Boolean,
-		label: "Current Game",
+	currentPlayer: {
+		type: String,
+		label: "Current Player",
 		defaultValue: false,
 		optional: true,
 		autoform: {
