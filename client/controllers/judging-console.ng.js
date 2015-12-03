@@ -20,7 +20,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		}
 	};
 	$scope.submitScore = function() {
-		Scores.insert({score: $scope.score, judgeId: $scope.judge.id, playerId: $scope.player.id, eventId: $scope.event._id}, function(err, id){
+		Scores.insert({score: $scope.score, judgeId: $scope.judge.id, playerId: $scope.currentPlayerId, eventId: $scope.event._id}, function(err, id){
 			if (err) {
 				console.log(err);
 			} 

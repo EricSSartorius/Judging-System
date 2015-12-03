@@ -15,9 +15,8 @@ Player = new SimpleSchema({
 	},
 	name: {
 		type: String
-	},
+	}
 });
-
 Judge = new SimpleSchema({
 	id: {
 		type: String
@@ -98,10 +97,9 @@ EventSchema = new SimpleSchema({
 			type: "hidden"
 		}
 	},
-	currentPlayer: {
+	currentPlayerId: {
 		type: String,
 		label: "Current Player",
-		defaultValue: false,
 		optional: true,
 		autoform: {
 			type: "hidden"
