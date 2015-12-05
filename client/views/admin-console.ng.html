@@ -6,7 +6,8 @@
  	<select ng-options="event.name for event in events track by event._id" ng-model="event">
  	</select>
     <h1>Name: {{ event.name }}</h1>
-    <h1>Player ID: {{ event.currentPlayerId }}</h1>
+    <h1>Current Player ID: {{ event.currentPlayerId }}</h1>
+    <p>{{ event.players[idx].id}}</p>
 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1>
 	<h4>Round Score</h4>
 	<h1>{{ getRoundTotal() }}</h1>
@@ -17,8 +18,8 @@
 	<h1>{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
 	<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
 	<button ng-hide="startButton" ng-click="endPlayer()">End Player</button>
-	<button ng-show="nextButton" ng-click="nextPlayer()">Next Player</button>
-	<button ng-hide="nextButton" ng-click="nextRound()">Next Round</button>
+	<button ng-show="nextButton" ng-click="nextPlayer(idx)">Next Player</button>
+	<button ng-hide="!nextButton" ng-click="nextRound()">Next Round</button>
 	<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
 </div>
 <div ng-repeat="judge in event.judges">

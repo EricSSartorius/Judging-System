@@ -8,7 +8,12 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
   	$scope.startButton = true;
   	$scope.nextButton = true;
   	$scope.event.currentPlayerId = $scope.event.players[0].id;
+  	$scope.event.currentRound = 1;
+  	Events.update($scope.event._id, {$set: {inGame: false}});
+  	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
+  	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 	window.scope = $scope;
+	var index = 0;
 
 	$scope.getRoundTotal = function(){
 	    var total = 0;
@@ -28,10 +33,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	}; 
 	$scope.startPlayer = function() {
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
-			Events.update(scope.event._id, {$set: {inGame: true }});
+			Events.update(scope.event._id, {$set: {inGame: true}});
 		}
-		// Events.update(scope.event._id, {$set: {currentplayerId: scope.event.players.[0].id }});
-
 		$scope.startTimer();
 		$scope.startButton = false;
 	};
@@ -41,16 +44,20 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.startButton = true;
 	};
 	$scope.nextPlayer = function() {
-		//Player array index ++
+		index++;
+		$scope.event.currentPlayerId = $scope.event.players[index].id;
 		$scope.roundTime = $scope.event.timeLimit;
-		//set new player ID to currentPlayer ID
+		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		//if all players have played, hide next player button, show next round button
 			//if all rounds have finished too then also hide next round button
 	};
 	$scope.nextRound = function() {
-		Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound++ }});
+		$scope.event.currentRound++;
+		Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound }});
 		$scope.roundTime = $scope.event.timeLimit;
 		$scope.event.currentPlayerId = $scope.event.players[0].id;
+		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
+		index=0;
 		//hide next round button, show next player button
 			//if on last person in array and last round then hide next player button too
 	};
