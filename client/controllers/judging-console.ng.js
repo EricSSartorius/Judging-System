@@ -20,7 +20,22 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		}
 	};
 	$scope.submitScore = function() {
-		Scores.insert({score: $scope.score, judgeId: $scope.judge.id, playerId: $scope.event.currentPlayerId, eventId: $scope.event._id}, function(err, id){
+		// var tempScores = $scope.event.scores;
+		// for (score in tempScores) {
+		// 	if (score.judgeId === $scope.judge.id && score.playerId === $scope.event.currentPlayerId && score.round === $scope.event.currentRound) {
+		// 		score.score = $scope.score;
+		// 	};
+		// }
+
+		// Events.update($scope.event._id, {$set: {scores: tempScores }});
+
+		Scores.insert({
+			score: $scope.score,
+			judgeId: $scope.judge.id,
+			playerId: $scope.event.currentPlayerId,
+			eventId: $scope.event._id
+		},
+		function(err, id){
 			if (err) {
 				console.log(err);
 			} 

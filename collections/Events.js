@@ -32,6 +32,24 @@ Judge = new SimpleSchema({
 	}
 });
 
+Score = new SimpleSchema({
+	id: {
+		type: String
+	},
+	score: {
+		type: Number
+	},
+	playerId: {
+		type: String
+	},
+	judgeId: {
+		type: String
+	},
+	roundNum: {
+		type: String
+	}
+});
+
 EventSchema = new SimpleSchema({
 	name: {
 		type: String,
@@ -58,6 +76,10 @@ EventSchema = new SimpleSchema({
 	},
 	judges: {
 		type: [Judge]
+	},
+	scores: {
+		type: [Score],
+		optional: true
 	},
 	author: {
 		type: String,

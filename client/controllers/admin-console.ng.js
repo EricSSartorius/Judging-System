@@ -2,7 +2,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 	$scope.event = $scope.events[0];
 	$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
-	$scope.score = Scores.findOne({_id: "6dMF4Jy54uWsC2HkL"});
+	$scope.scores = Scores.find({eventId:$scope.event._id}).fetch();
 	$scope.totalScore = "100*";
   	$scope.roundTime = $scope.event.timeLimit;
   	$scope.startButton = true;
@@ -17,10 +17,20 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 
 	$scope.getRoundTotal = function(){
 	    var total = 0;
-	    angular.forEach($scope.event.judges, function(judges) {
-	        total += $scope.score.score;
+	    angular.forEach($scope.event.judges, function(judge) {
+	        total += $scope.getJudgeScore(judge.id);
 	    });
 	    return total;
+	};
+	$scope.getJudgeScore = function(currentJudgeId) {
+		angular.forEach($scope.scores, function(score) {
+			if(currentJudgeId === score.judgeId) {
+				if(score.score === null) {
+					return 0;
+				}
+				return score.score;
+			}
+		});
 	};
 	$scope.startTimer = function() {
         theTimer = $interval(function(){	
