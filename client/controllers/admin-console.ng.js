@@ -6,6 +6,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.totalScore = "100*";
   	$scope.roundTime = $scope.event.timeLimit;
   	$scope.startButton = true;
+  	$scope.stopButton = false;
   	$scope.nextPlayerButton = true;
   	$scope.nextRoundButton = false;
   	$scope.event.currentPlayerId = $scope.event.players[0].id;
@@ -45,11 +46,12 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		}
 		$scope.startTimer();
 		$scope.startButton = false;
+		$scope.stopButton = true;
 	};
 	$scope.endPlayer = function() {
 		$interval.cancel(theTimer);
 		$scope.roundTime = 0;
-		$scope.startButton = true;
+		$scope.stopButton = false;
 	};
 	$scope.nextPlayer = function() {
 		index++;
@@ -64,7 +66,11 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			else {
 				$scope.nextPlayerButton = false;
 				$scope.nextRoundButton = true;
+				$scope.startButton = true;
 			}
+		}
+		else {
+			$scope.startButton = true;
 		}
 	};
 	$scope.nextRound = function() {
@@ -74,11 +80,14 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.event.currentPlayerId = $scope.event.players[0].id;
 		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		index=0;
-		$scope.nextPlayerButton = true;
-		$scope.nextRoundButton = false;
 		if(index + 1 === $scope.event.players.length && $scope.event.currentRound === $scope.event.rounds) {
 			$scope.nextRoundButton = false;
 			$scope.nextPlayerButton = false;
+		}
+		else {
+			$scope.startButton = true;
+			$scope.nextPlayerButton = true;
+			$scope.nextRoundButton = false;
 		}
 	};
 	$scope.endGame = function() {

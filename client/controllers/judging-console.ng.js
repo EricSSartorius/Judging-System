@@ -1,5 +1,6 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.score = 0;
+	// $scope.disabled = true;
 	events = Events.find({inGame:true}).fetch();
 	$scope.event = events.find(function(e){ 
 		for(var i = 0; i< e.judges.length; i++){
@@ -19,16 +20,10 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return $scope.event.timeLimit;
 		}
 	};
+	// $scope.disableScoring = function() {
+	// 	$scope.disabled = ($scope.event.inGame === true) ? true : false;
+	// };
 	$scope.submitScore = function() {
-		// var tempScores = $scope.event.scores;
-		// for (score in tempScores) {
-		// 	if (score.judgeId === $scope.judge.id && score.playerId === $scope.event.currentPlayerId && score.round === $scope.event.currentRound) {
-		// 		score.score = $scope.score;
-		// 	};
-		// }
-
-		// Events.update($scope.event._id, {$set: {scores: tempScores }});
-
 		Scores.insert({
 			score: $scope.score,
 			judgeId: $scope.judge.id,

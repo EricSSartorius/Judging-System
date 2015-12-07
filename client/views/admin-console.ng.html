@@ -18,7 +18,7 @@
 	<h1>Time</h1>
 	<h1>{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
 	<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
-	<button ng-hide="startButton" ng-click="endPlayer()">End Player</button>
+	<button ng-show="stopButton" ng-click="endPlayer()">End Player</button>
 	<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
 	<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
 	<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>

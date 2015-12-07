@@ -1,7 +1,4 @@
 Events = new Mongo.Collection('events');
-Judges = new Mongo.Collection('judges');
-Players = new Mongo.Collection('players');
-
 
 Events.allow({
 	insert: function(userId, doc) {
