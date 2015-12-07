@@ -23,14 +23,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	    return total;
 	};
 	$scope.getJudgeScore = function(currentJudgeId) {
-		angular.forEach($scope.scores, function(score) {
-			if(currentJudgeId === score.judgeId) {
-				if(score.score === null) {
-					return 0;
-				}
-				return score.score;
-			}
-		});
+    var score = $scope.scores.find(function(score) { return currentJudgeId === score.judgeId; });
+    return score.score;
 	};
 	$scope.startTimer = function() {
         theTimer = $interval(function(){	
