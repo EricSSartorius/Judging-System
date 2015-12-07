@@ -3,7 +3,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 	$scope.event = $scope.events[0];
 	$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
-	$scope.scores = Scores.find({eventId:$scope.event._id}).fetch();
 	$scope.totalScore = "100*";
   	$scope.roundTime = $scope.event.timeLimit;
   	$scope.startButton = true;
@@ -11,6 +10,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
   	$scope.nextRoundButton = false;
   	$scope.event.currentPlayerId = $scope.event.players[0].id;
   	$scope.event.currentRound = 1;
+	$scope.scores = Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound}).fetch();
   	Events.update($scope.event._id, {$set: {inGame: false}});
   	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
   	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
@@ -19,13 +19,16 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.getRoundTotal = function(){
 	    var total = 0;
 	    angular.forEach($scope.event.judges, function(judge) {
-	        total += $scope.getJudgeScore(judge.id);
+		    var score = $scope.scores.find(function(score) { 
+		    	return judge.id === score.judgeId; 
+		    });
+		    if (score === undefined) return;
+	        total += score.score;
 	    });
 	    return total;
 	};
-	$scope.getJudgeScore = function(currentJudgeId) {
-    var score = $scope.scores.find(function(score) { return currentJudgeId === score.judgeId; });
-    return score.score;
+	$scope.getJudge = function(score) {
+		return $scope.event.judges.find(function(judge){return judge.id === score.judgeId;});
 	};
 	$scope.startTimer = function() {
         theTimer = $interval(function(){	

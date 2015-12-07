@@ -15,6 +15,7 @@
 	<h1>{{ totalScore }}</h1>
 	<h4>Round</h4>
 	<h1>{{ event.currentRound }}</h1>
+	<h1>Time</h1>
 	<h1>{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
 	<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
 	<button ng-hide="startButton" ng-click="endPlayer()">End Player</button>
@@ -22,10 +23,10 @@
 	<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
 	<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
 </div>
-<div ng-repeat="judge in event.judges">
+<div ng-repeat="score in scores">
 <div class="new-judge-container">
-	<h1 >{{ judge.name }}</h1>
-	<h1>{{ getJudgeScore(judge.id) }}</h1>
+	<h1 >{{ getJudge(score).name }}</h1>
+	<h1>{{ score.score }}</h1>
 </div>
 <p>Alert</p><i class="fa fa-dot-circle-o"></i>
 </div>

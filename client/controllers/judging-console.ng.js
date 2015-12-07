@@ -33,7 +33,8 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			score: $scope.score,
 			judgeId: $scope.judge.id,
 			playerId: $scope.event.currentPlayerId,
-			eventId: $scope.event._id
+			eventId: $scope.event._id,
+			round: $scope.event.currentRound
 		},
 		function(err, id){
 			if (err) {
