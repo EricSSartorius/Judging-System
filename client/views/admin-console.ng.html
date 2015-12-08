@@ -2,26 +2,39 @@
 <button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button>
 <button class="btn-primary" ui-sref="leaderboard">Go to Leaderboard</button>
 <div class="console-container">
-	<label for="">Choose Event</label>
- 	<select ng-options="event.name for event in events track by event._id" ng-model="event">
- 	</select>
-    <h1>Name: {{ event.name }}</h1>
-    <h1>Current Player Name: {{  }}</h1>
-    <h1>Current Player Id: {{ event.currentPlayerId }}</h1>
+	<div class="admin-top">
+		<label for="">Choose Event</label>
+	 	<select ng-options="event.name for event in events track by event._id" ng-model="event">
+	 	</select>
+	    <h1>Name: {{ event.name }}</h1>
+	    <h1>Current Player Name: {{  }}</h1>
+	    <h1>Current Player Id: {{ event.currentPlayerId }}</h1>
 <!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->
-	<h4>Round Score</h4>
-	<h1>{{ getRoundTotal() }}</h1>
-	<h4>Total Score</h4>
-	<h1>{{ totalScore }}</h1>
-	<h4>Round</h4>
-	<h1>{{ event.currentRound }}</h1>
-	<h1>Time</h1>
-	<h1>{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
-	<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
-	<button ng-show="stopButton" ng-click="endPlayer()">End Player</button>
-	<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
-	<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
-	<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
+	</div>
+		<div class="admin-mid">
+			<div class="admin-grid">
+			<h3>Time</h3>
+			<h1>{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
+		</div>
+		<div class="admin-grid">
+			<h4>Round</h4>
+			<h1>{{ event.currentRound }}</h1>
+			<h4>Total Score</h4>
+			<h1>{{ totalScore }}</h1>
+		</div>
+		<div class="admin-grid">
+			<h3>Round Score</h3>
+			<h1>{{ getRoundTotal() }}</h1>
+
+		</div>
+	</div>
+	<div class="admin-bot">
+		<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
+		<button ng-show="stopButton" ng-click="endPlayer()">End Player</button>
+		<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
+		<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
+		<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
+	</div>
 </div>
 <div ng-repeat="score in scores">
 <div class="new-judge-container">
