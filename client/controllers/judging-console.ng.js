@@ -91,40 +91,30 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		  	}
 		}
 
-		// Scores.update({
-		// 	judgeId: $scope.judge.id,
-		// 	playerId: $scope.event[0].currentPlayerId,
-		// 	eventId: $scope.event[0]._id,
-		// 	round: $scope.event[0].currentRound
-		// },
-		// {$set: {
-		// 	score: $scope.score,
-		// 	judgeId: $scope.judge.id,
-		// 	playerId: $scope.event[0].currentPlayerId,
-		// 	eventId: $scope.event[0]._id,
-		// 	round: $scope.event[0].currentRound
-		// }}, 
-		// {upsert:true
-  //  		});
+    var existingScore = Scores.findOne({
+        judgeId: $scope.judge.id,
+        playerId: $scope.event[0].currentPlayerId,
+        eventId: $scope.event[0]._id,
+        round: $scope.event[0].currentRound
+    });
+    if (existingScore){
+		 Scores.update({_id: existingScore._id}, {$set: {score: $scope.score}});
+    } else {
+		 Scores.insert({
+        judgeId: $scope.judge.id,
+        playerId: $scope.event[0].currentPlayerId,
+        eventId: $scope.event[0]._id,
+        round: $scope.event[0].currentRound,
+        score: $scope.score
+       });
+    }
 
-		Scores.insert({
-			score: $scope.score,
-			judgeId: $scope.judge.id,
-			playerId: $scope.event[0].currentPlayerId,
-			eventId: $scope.event[0]._id,
-			round: $scope.event[0].currentRound
-		},
-		function(err, id){
-			if (err) {
-				console.log(err);
-			} 
-			else {
-				$scope.$apply(function(){
-					if (id) {
-						return $scope.score;	
-					}
-				});
-			}
-		});
+		//Scores.insert({
+			//score: $scope.score,
+			//judgeId: $scope.judge.id,
+			//playerId: $scope.event[0].currentPlayerId,
+			//eventId: $scope.event[0]._id,
+			//round: $scope.event[0].currentRound
+		//},
 	}
 });

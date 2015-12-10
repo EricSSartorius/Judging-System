@@ -33,23 +33,57 @@ Judge = new SimpleSchema({
 	}
 });
 
-Score = new SimpleSchema({
-	id: {
-		type: String
+Scores = new Mongo.Collection('scores');
+
+Scores.allow({
+	insert: function(userId, doc) {
+		return !!userId;
 	},
+	update: function(userId, doc) {
+		return !!userId;
+	}
+});
+
+Score = new SimpleSchema({
 	score: {
+		type: Number,
+		label: "Judge Score"
+	},
+	round: {
 		type: Number
 	},
-	playerId: {
+	eventId: {
 		type: String
 	},
 	judgeId: {
 		type: String
 	},
-	roundNum: {
+	playerId: {
 		type: String
+	},
+	author: {
+		type: String,
+		label: "author",
+		autoValue: function() {
+			return this.userId
+		},
+		autoform: {
+			type: "hidden"
+		}
+	},
+	createdAt: {
+		type: Date,
+		label: "Created At",
+		autoValue: function() {
+			return new Date()
+		},
+		autoform: {
+			type: "hidden"
+		}
 	}
 });
+
+Scores.attachSchema( Score );
 
 EventSchema = new SimpleSchema({
 	name: {
