@@ -67,9 +67,6 @@ social = {
     youtube: #bb0000
 }
 
-$side-nav = 100px
-$side-nav-large = 200px
-
 html
     box-sizing: border-box
 
@@ -117,8 +114,9 @@ p
     +above($large)
         lost-center 80%
         margin-top 40px
-
+        
 .new-judge-container
+    text-align center
     position relative
     background light-grey
     padding 20px 
@@ -171,6 +169,9 @@ p
     clear both
     text-align center
     
+.admin-judge-box
+    lost-column 1/4
+    text-align center
 
 .btn, button
     display inline-block
@@ -262,3 +263,7 @@ input, select, textarea
     &.static-input
         border none
         background transparent
+
+.md-display-4
+    font-size 72px
+    line-height 72px 

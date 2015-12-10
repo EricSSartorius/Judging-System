@@ -120,6 +120,15 @@ EventSchema = new SimpleSchema({
 			type: "hidden"
 		}
 	},
+	currentTime: {
+		type: Number,
+		label: "Current Time",
+		defaultValue: 0,
+		optional: true,
+		autoform: {
+			type: "hidden"
+		}
+	},
 	currentPlayerId: {
 		type: String,
 		label: "Current Player",
