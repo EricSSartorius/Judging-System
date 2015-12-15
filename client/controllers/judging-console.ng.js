@@ -15,7 +15,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	};
 	$scope.showCurrentPlayerId = function(){
 		if ($scope.event[0] === undefined) {
-			return 0;
+			return "No Current Player";
 		}
 		else {
 			return $scope.event[0].currentPlayerId;
@@ -23,7 +23,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	};
 	$scope.showCurrentRound = function(){
 		if ($scope.event[0] === undefined) {
-			return 0;
+			return "-";
 		}
 		else {
 			return $scope.event[0].currentRound;
