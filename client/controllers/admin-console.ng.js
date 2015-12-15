@@ -11,27 +11,29 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
   	$scope.nextRoundButton = false;
   	$scope.event.currentPlayerId = $scope.event.players[0].id;
   	$scope.event.currentRound = 1;
-	$scope.updateScores();
+	$scope.scores = $scope.$meteorCollection(function(){
+	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
+	    });
   	Events.update($scope.event._id, {$set: {inGame: false}});
   	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
   	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 	window.scope = $scope;
 	
 	$scope.updateScores = function() {
-		$scope.udateTotalScore();
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
 	
-	$scope.updateTotalScore = function(){
+	$scope.getTotalScore = function(){
 		var playerScores = $scope.$meteorCollection(function(){
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
 		});
-		$scope.totalScore=0;
+		var total = 0;
 		for(var i=0; i<playerScores.length; i++){
-			$scope.totalScore+= playerScores[i].score;
+			total += playerScores[i].score;
 		}
+		return total;
 	};
 	
 	$scope.getRoundTotal = function() {
