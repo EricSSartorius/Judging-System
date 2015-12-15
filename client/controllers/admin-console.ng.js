@@ -24,6 +24,17 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
+	
+	$scope.updateTotalScore = function(){
+		var playerScores = $scope.meteorCollection(function(){
+			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
+		});
+		totalScore=0;
+		for(var i=0; i<playerScores.length; i++){
+			totalScore+= playerScores[i].score;
+		}
+	};
+	
 	$scope.getRoundTotal = function() {
 	    var total = 0;
 	    angular.forEach($scope.event.judges, function(judge) {
