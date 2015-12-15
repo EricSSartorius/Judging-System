@@ -20,18 +20,19 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	window.scope = $scope;
 	
 	$scope.updateScores = function() {
+		$scope.updateTotalScore();
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
 	
 	$scope.updateTotalScore = function(){
-		var playerScores = $scope.meteorCollection(function(){
+		var playerScores = $scope.$meteorCollection(function(){
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
 		});
-		totalScore=0;
+		$scope.totalScore=0;
 		for(var i=0; i<playerScores.length; i++){
-			totalScore+= playerScores[i].score;
+			$scope.totalScore+= playerScores[i].score;
 		}
 	};
 	
