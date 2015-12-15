@@ -18,11 +18,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	window.scope = $scope;
 	
 	$scope.updateScores = function() {
-<<<<<<< HEAD
 		$scope.udateTotalScore();
-=======
-		$scope.updateTotalScore();
->>>>>>> c8de04fc5ca0b7ec1f7b17b6b881b3acb1c3830c
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
