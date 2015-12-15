@@ -29,11 +29,10 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		var playerScores = $scope.$meteorCollection(function(){
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
 		});
-		var total = 0;
+		$scope.totalScore = 0;
 		for(var i=0; i<playerScores.length; i++){
-			total += playerScores[i].score;
+			$scope.totalScore += playerScores[i].score;
 		}
-		return total;
 	};
 	
 	$scope.getRoundTotal = function() {
@@ -64,6 +63,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			Events.update(scope.event._id, {$set: {inGame: true}});
 		}
+		$scope.getTotalScore();
 		$scope.startTimer();
 		$scope.startButton = false;
 		$scope.stopButton = true;
@@ -71,6 +71,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.endPlayer = function() {
 		$interval.cancel(theTimer);
 		$scope.roundTime = 0;
+		$scope.getTotalScore();
 		Events.update($scope.event._id, {$set: {currentTime: $scope.roundTime}});
 		$scope.stopButton = false;
 	};
@@ -78,6 +79,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		index++;
 		$scope.event.currentPlayerId = $scope.event.players[index].id;
 		$scope.roundTime = $scope.event.timeLimit;
+		$scope.getTotalScore();
 		Events.update($scope.event._id, {$set: {currentTime: $scope.roundTime}});
 		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		$scope.updateScores();
@@ -102,6 +104,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.roundTime = $scope.event.timeLimit;
 		Events.update($scope.event._id, {$set: {currentTime: $scope.roundTime}});
 		$scope.event.currentPlayerId = $scope.event.players[0].id;
+		$scope.getTotalScore();
 		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		$scope.updateScores();
 		index=0;
