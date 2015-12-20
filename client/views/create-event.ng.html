@@ -1,11 +1,8 @@
-<button class="btn-primary" ui-sref="judgingConsole">Go to Judging Console</button>
-<button class="btn-primary" ui-sref="adminConsole">Go to Admin Console</button>
-<button class="btn-primary" ui-sref="leaderboard">Go to Leaderboard</button>
 <form ng-submit="createEvent()">
   <label>Event Name</label>
   <input type="text" ng-model="event.name">
-  Time Limit
-  <input type="number" ng-model="event.timeLimitMin" min = "0" max = "99"/>:<input type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/>
+  <label>Time Limit</label>
+  Min<input type="number" ng-model="event.timeLimitMin" min = "0" max = "99"/>Sec<input type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/>
   <label>Rounds</label>
   <input type="number" ng-model="event.rounds" min="1" max="10" integer /><br/>
   <label>Players</label>
@@ -16,8 +13,8 @@
   </div>
  
 
-  <div ng-repeat="judge in judges | limitTo: noOfJudges">
-    <div class="new-judge-container">
+  <div class="new-judge new-judge-container" ng-repeat="judge in judges | limitTo: noOfJudges">
+    <div>
       <label>Judge {{ $index + 1 }}</label>
       <input type="text" ng-model="judge.name" placeholder="Name">
       <input type="email" ng-model="judge.email" placeholder="Email">
@@ -26,15 +23,24 @@
     <button type="button" class="btn-invert" ng-show="$last" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
     <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
   </div>
-  <button type="submit">Submit</button>
+  <div>  <button type="submit">Submit</button> </div>
+
 </form>
-<!-- <button class="btn-primary">A</button>
-<button class="btn-deny">A</button>
-<button class="btn-cancel">A</button>
-<button class="btn-text">A</button>
-<button class="btn-text-dark">A</button>
-<button class="btn-confirmation">A</button>
-<button class="btn-invert">A</button> -->
+
+
+
+<!-- <div ng-submit="addPlayer(newPlayer); newPlayer='';">
+  <input ng-model="player.name" type="text"
+         name="text" placeholder="New Player Name" />
+</div>
+  <ul>
+<li ng-repeat="player in players | limitTo: noOfPlayers">
+    <button  ng-click="removePerson(players, $index)">&times;</button>
+    <span class="text"> {{player.text}}
+    </span>
+  </li>
+</ul> -->
+
 
 
 

@@ -51,12 +51,12 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			}
 		});
 	};
-	var formatNumbers = function(){
-		if ((this.value + '').length < 2) this.value = "0" + this.value;
-	};
-	$(document).ready(function(){
-		$('input[type=number]').keyup(formatNumbers);
-		$('input[type=number]').click(formatNumbers);
-		$('input[type=number]').keyup();
-	});
+	// var formatNumbers = function(){
+	// 	if ((this.value + '').length < 2) this.value = "0" + this.value;
+	// };
+	// $(document).ready(function(){
+	// 	$('input[type=number]').keyup(formatNumbers);
+	// 	$('input[type=number]').click(formatNumbers);
+	// 	$('input[type=number]').keyup();
+	// });
 });

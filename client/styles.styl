@@ -67,6 +67,9 @@ social = {
     youtube: #bb0000
 }
 
+$side-nav = 100px
+$side-nav-large = 200px
+
 html
     box-sizing: border-box
 
@@ -79,7 +82,7 @@ body
     
 header
     color #FFF 
-    background: epic-grey
+    background:darken(blue, 20%)
     padding 20px 
     fixed top left
     width 100%
@@ -88,6 +91,9 @@ header
     shadow-level(2)
     clearfix()
     h1 
+        a
+            color white
+            text-decoration none
         margin 0
         font-size 1.6em 
         float left
@@ -104,16 +110,68 @@ header
 	#login-buttons
 		a
 			text-decoration none
+    
+.side-nav
+    fixed bottom left
+    height 100px
+    width 100%
+    overflow hidden 
+    background epic-grey
+    color #FFF
+    z-index: z.header
+    shadow-level(2)
+    ul
+        margin 0
+        padding 0
+        display flex
+        justify-content space-between 
+        list-style none
+    a
+        color #FFF
+        text-decoration none
+        padding 20px 20px
+        display block
+        text-align left
+        trans()
+        &:hover, &.active
+            background lighten(epic-grey, 10%)
+    i
+        display block
+        font-size 2em
+        margin-bottom 10px 
+    +above($med)
+        height 100%
+        z-index: z.mid
+        padding 120px 0
+        fixed top left
+        width $side-nav
+        ul 
+            display block
+        shadow-level(-1)
+        a
+            padding 20px 10px
+            &:hover, &.active
+                border-left 4px solid light-blue
+    +above($large)
+        width $side-nav-large
+        a
+            padding 20px 20px
+            &:hover, &.active
+                border-left 10px solid light-blue 
 	
 p
-    color #epic-grey
-    
+    color epic-grey
+          
 .main-layout
     lost-center 90%
     margin-top 20px 
+    +above($med)
+        lost-center 90%
+        padding-left $side-nav
     +above($large)
         lost-center 80%
         margin-top 40px
+        padding-left $side-nav-large
         
 .new-judge-container
     text-align center
@@ -172,6 +230,10 @@ p
 .admin-judge-box
     lost-column 1/4
     text-align center
+    
+.new-judge
+    lost-column 1/2
+
 
 .btn, button
     display inline-block
