@@ -1,5 +1,6 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.score = 0;
+	$scope.disabled = true;
 	window.scope = $scope;
 	$scope.event = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
@@ -13,6 +14,10 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return $scope.event[0].currentTime;
 		}
 	};
+	$scope.disableConsole = function() {
+		var disabled = $scope.event[0] === undefined ?  true : false;
+		return disabled;
+	}
 	$scope.showCurrentPlayerId = function(){
 		if ($scope.event[0] === undefined) {
 			return "No Current Player";

@@ -3,7 +3,7 @@
 	<form ng-submit="submitScore()">
 		<div class="judge-grid"><h3>Score</h3>
 		    <h1 class="judges-score md-display-4">{{score}}</h1>
-		    <md-slider flex="" class="md-warn"  ng-disabled="false" ng-model="score" step="1" min="0" max="10" aria-label="Score"></md-slider>
+		    <md-slider flex="" class="md-warn"  ng-disabled="disableConsole()" ng-model="score" step="1" min="0" max="10" aria-label="Score"></md-slider>
 	    </div>
 		<div class="judge-grid">
 			<h4>Round</h4>
@@ -18,7 +18,7 @@
 				<p>Alert Admin</p>
 				<i class="fa fa-dot-circle-o"></i>
 			</div>
-			<button type="submit" ng-disabled="false">Confirm</button>
+			<button class="judging-button" type="submit" ng-disabled="disableConsole()" >Confirm</button>
 		</div>
 	</form>
 </div>
