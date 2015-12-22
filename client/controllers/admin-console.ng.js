@@ -48,6 +48,9 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.getJudge = function(score) {
 		return $scope.event.judges.find(function(judge){return judge.id === score.judgeId;});
 	};
+	$scope.getPlayerName = function(player) {
+		return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).first()["name"];
+	};
 	$scope.startTimer = function() {
         theTimer = $interval(function(){	
 	        $scope.roundTime--;
