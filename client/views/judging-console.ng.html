@@ -14,10 +14,11 @@
 			<h1 class="md-display-4">{{ showTime() | timeFilter | date:"mm:ss"}}</h1>
 		</div>
 		<div class="judge-bot">
-			<div class="judge-alert">
+<!-- 			<div class="judge-alert">
 				<p>Alert Admin</p>
-				<i class="fa fa-dot-circle-o"></i>
-			</div>
+				<i ng-click="showAlert()" ng-show="alert" class="fa fa-dot-circle-o"></i>
+				<i ng-click="showAlert()" ng-hide="alert" class="fa fa-circle-o"></i>
+			</div> -->
 			<button class="judging-button" type="submit" ng-disabled="disableConsole()" >Confirm</button>
 		</div>
 	</form>

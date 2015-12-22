@@ -24,7 +24,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
-	
 	$scope.getTotalScore = function(){
 		var playerScores = $scope.$meteorCollection(function(){
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
