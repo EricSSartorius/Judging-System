@@ -50,6 +50,26 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
         }
       }
     })
+    .state('quickScoreboard', {
+      url: '/quick-scoreboard',
+      templateUrl: 'client/views/quick-scoreboard.ng.html',
+      controller: 'QuickScoreboardCtrl',
+      resolve: {
+        "currentUser": function($meteor){
+          return $meteor.requireUser();
+        }
+      }
+    })
+    .state('matchHistory', {
+      url: '/match-history',
+      templateUrl: 'client/views/match-history.ng.html',
+      controller: 'MatchHistoryCtrl',
+      resolve: {
+        "currentUser": function($meteor){
+          return $meteor.requireUser();
+        }
+      }
+    })
     .state('createEvent', {
       url: '/create-event',
       templateUrl: 'client/views/create-event.ng.html',
