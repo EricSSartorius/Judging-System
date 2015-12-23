@@ -1,4 +1,4 @@
-angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
+angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor, TimeFactory) {
 	$scope.score = 0;
 	$scope.disabled = true;
 	window.scope = $scope;
@@ -10,7 +10,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return 0;
 		}
 		else {
-			return $scope.event[0].currentTime;
+			return TimeFactory.getCurrentTime();
 		}
 	};
 	$scope.disableConsole = function() {
