@@ -3,7 +3,7 @@
 		<label for="">Choose Event</label>
 	 	<select ng-options="event.name for event in events track by event._id" ng-model="event">
 	 	</select>
-	    <h2>Current Player Id: {{ event.currentPlayerId }}</h2>
+	    <h2>Current Player Id: {{ getPlayerName() }}</h2>
 <!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->
 	</div>
 		<div class="admin-mid">

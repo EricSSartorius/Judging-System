@@ -18,7 +18,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
   	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
   	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 	window.scope = $scope;
-	
+
 	$scope.updateScores = function() {
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
@@ -48,11 +48,15 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.getJudge = function(score) {
 		return $scope.event.judges.find(function(judge){return judge.id === score.judgeId;});
 	};
+	$scope.getPlayerName = function(){
+		return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).name;
+	}
 	$scope.startTimer = function() {
         theTimer = $interval(function(){	
 	        $scope.roundTime--;
 	        Events.update($scope.event._id, {$set: {currentTime: $scope.roundTime}});
 	        if ($scope.roundTime <0) {
+	        	$scope.stopButton = false;
 		        $interval.cancel(theTimer);
 		        $scope.roundTime = 0;
 		    }

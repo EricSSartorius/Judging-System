@@ -5,7 +5,6 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	$scope.event = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
     });
-
 	$scope.showTime = function() {
 		if ($scope.event[0] === undefined) {
 			return 0;
@@ -18,12 +17,12 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		var disabled = $scope.event[0] === undefined ?  true : false;
 		return disabled;
 	}
-	$scope.showCurrentPlayerId = function(){
+	$scope.getPlayerName = function(){
 		if ($scope.event[0] === undefined) {
 			return "No Current Player";
 		}
 		else {
-			return $scope.event[0].currentPlayerId;
+			return $scope.event[0].players.find(function(player){return player.id === $scope.event[0].currentPlayerId;}).name;
 		}
 	};
 	$scope.showCurrentRound = function(){
