@@ -13,7 +13,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			    }
 		    },1000,0);  
 	};
-
 	function initializeVar() {
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.event = $scope.events[0];
@@ -45,7 +44,12 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			if($scope.roundTime===$scope.event.timeLimit){
 				$scope.startButton = true;
 		  		$scope.stopButton = false;
-		  	}else{
+		  	}
+		  	else if ($scope.roundTime <= 0) {
+		  		$scope.startButton = false;
+		  		$scope.stopButton = false;
+		  	}
+		  	else{
 		  		$scope.startButton = false;
 		  		$scope.stopButton = true;
 		  	}
@@ -64,7 +68,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			startMyTimer();
 		} 
 	}
-
+	
 	$scope.updateScores = function() {
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
@@ -79,7 +83,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.totalScore += playerScores[i].score;
 		}
 	};
-	
 	$scope.getRoundTotal = function() {
 	    var total = 0;
 	    angular.forEach($scope.event.judges, function(judge) {
