@@ -4,7 +4,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 
 	function startMyTimer(){
 		theTimer = $interval(function(){
-	        	$scope.roundTime = TimeFactory.getCurrentTime();	
+	        	$scope.roundTime = TimeFactory.getCurrentTime();
+	        	Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
 		        if ($scope.roundTime <= 0) {
 		        	$scope.stopButton = false;
 		        	TimeFactory.cancelTheTimer();
@@ -118,6 +119,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.roundTime = 0;
 		$scope.getTotalScore();
 		TimeFactory.setCurrentTime($scope.roundTime);
+		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
 		$scope.stopButton = false;
 	};
 	$scope.nextPlayer = function() {
@@ -126,7 +128,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.roundTime = $scope.event.timeLimit;
 		$scope.getTotalScore();
 		TimeFactory.setCurrentTime($scope.roundTime);
-		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
+		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
+		Events.update($scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		$scope.updateScores();
 		if(index + 1 === $scope.event.players.length) {
 			if( $scope.event.currentRound === $scope.event.rounds) {
@@ -148,6 +151,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound }});
 		$scope.roundTime = $scope.event.timeLimit;
 		TimeFactory.setCurrentTime($scope.roundTime);
+		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
 		$scope.event.currentPlayerId = $scope.event.players[0].id;
 		$scope.getTotalScore();
 		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});

@@ -1,6 +1,7 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor, TimeFactory) {
 	$scope.score = 0;
 	$scope.disabled = true;
+	
 	window.scope = $scope;
 	$scope.event = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
@@ -10,11 +11,21 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return 0;
 		}
 		else {
-			return TimeFactory.getCurrentTime();
+			return $scope.event[0].currentTime;
 		}
 	};
 	$scope.disableConsole = function() {
-		var disabled = $scope.event[0] === undefined ?  true : false;
+		var disabled = false;
+		if($scope.event[0] === undefined) {
+			disabled = true;
+		}
+		else {
+			var scoreCollection = Scores.find({eventId:$scope.event[0]._id, judgeId: $scope.judge.id, playerId: $scope.event[0].currentPlayerId, round: $scope.event[0].currentRound}).fetch();
+		    disabled = scoreCollection.length > 0;
+		    if(!disabled){
+		    	disabled = $scope.event[0].currentTime === $scope.event[0].timeLimit;
+		    }
+		}
 		return disabled;
 	}
 	$scope.getPlayerName = function(){
@@ -34,6 +45,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		}
 	};
 	$scope.submitScore = function() {
+		$scope.submitted = true;
 		for(var i = 0; i < $scope.event[0].judges.length; i++){
 			var judge = $scope.event[0].judges[i];
 			var user = Meteor.users.findOne({_id:Meteor.userId()});
