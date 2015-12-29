@@ -1,4 +1,24 @@
 <div class="console-container">
 	<h1>Match History</h1>
-	<p>Coming Soon</p>
+	<select ng-options="event.name for event in events track by event._id" ng-model="event">
+	 </select>
+	 <h3>Players</h3>
+	 <ul>
+		<li ng-repeat="player in event.players">
+			{{ player.name }}
+		</li>
+	</ul>
+
+	<h3>Judges</h3>
+	<ul>
+		<li ng-repeat="judge in event.judges">
+			{{ judge.name }}
+		</li>
+	</ul>
+
+	<h3>Rounds</h3>
+	<p>{{ event.rounds }}</p>
+
+	<h3>Time Limit</h3>
+	<p>{{ event.timeLimit | timeFilter | date:"mm:ss" }}</p>
 </div>
