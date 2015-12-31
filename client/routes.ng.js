@@ -5,7 +5,7 @@ angular.module("judging-system").run(function ($rootScope, $state) {
     }
   });
   Accounts.onLogin(function() {
-    $state.go('createEvent');
+    $state.go('adminConsole');
   });
   Accounts.onLogout(function() {
     $state.go('home');
@@ -53,12 +53,7 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
     .state('quickScoreboard', {
       url: '/quick-scoreboard',
       templateUrl: 'client/views/quick-scoreboard.ng.html',
-      controller: 'QuickScoreboardCtrl',
-      resolve: {
-        "currentUser": function($meteor){
-          return $meteor.requireUser();
-        }
-      }
+      controller: 'QuickScoreboardCtrl'
     })
     .state('matchHistory', {
       url: '/match-history',
