@@ -1,6 +1,6 @@
 <div class="console-container">
 	<div class="admin-top">
-	 	<select ng-options="event.name for event in events track by event._id" ng-model="event">
+	 	<select ng-options="event.name for event in events track by event._id" ng-change="updateEventDetails()" ng-model="event">
 	 	</select>
 	    <h2><i class="fa fa-user"></i> {{ getPlayerName() }}</h2>
 <!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->

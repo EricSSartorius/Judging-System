@@ -5,20 +5,42 @@
 	<div ng-app="judging-system">
 		<header>
 			<h1><a  ui-sref="home">U-JUDGE</a></h1>
+
 			<blaze-template name="loginButtons"></blaze-template>
 		</header>
-			<nav class="side-nav">
-		<ul>
-			<li><a ui-sref="createEvent">Create Event</a></li>
-			<li><a ui-sref="adminConsole">Admin Console</a></li>
-			<li><a ui-sref="judgingConsole">Judging Console</a></li>
-			<li><a ui-sref="leaderboard">Leaderboard</a></li>
-			<li><a ui-sref="matchHistory">Match History</a></li>
-			<li><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
-		</ul>
-	</nav>
+
+		<nav class="side-nav">
+			<ul>
+				<li><a ui-sref="createEvent">Create Event</a></li>
+				<li><a ui-sref="adminConsole">Admin Console</a></li>
+				<li><a ui-sref="judgingConsole">Judging Console</a></li>
+				<li><a ui-sref="leaderboard">Leaderboard</a></li>
+				<li><a ui-sref="matchHistory">Match History</a></li>
+				<li><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
+			</ul>
+		</nav>
+		<!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content layout-padding="" ng-controller="LeftCtrl">
+        <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+          Close Sidenav Left
+        </md-button>
+        <p hide-md="" show-gt-md="">
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav> -->
 		<main class="main-layout">
 		 	<div ui-view></div>
 		</main>
 	</div>
 </body>
+
+
+
+
+    
+    

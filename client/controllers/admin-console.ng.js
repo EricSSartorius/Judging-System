@@ -81,7 +81,10 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			startMyTimer();
 		} 
 	}
-	
+	$scope.updateEventDetails = function() {
+		Events.update($scope.event._id, {$set: {inGame: false}});
+		initializeVar();
+	};
 	$scope.updateScores = function() {
 		$scope.scores = $scope.$meteorCollection(function(){
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
@@ -111,6 +114,13 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	$scope.startPlayer = function() {
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			Events.update(scope.event._id, {$set: {inGame: true}});
+			var allEvents = Events.find({}).fetch();
+			for(var i in allEvents) {
+				if(allEvents[i]._id !== $scope.event._id){
+					Events.update(allEvents[i]._id, {$set: {inGame: false}});
+				}
+			}
+			
 		}
 		getTotalScore();
 		$scope.startTimer();
