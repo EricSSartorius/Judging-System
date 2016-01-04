@@ -7,14 +7,24 @@
       </div>
       <div class="time">
       <label>Time Limit</label>
-        <input type="number" placeholder="2" ng-model="event.timeLimitMin" min = "0" max = "99"/>Min
-        <input placeholder="0" type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/>Sec
+        <input type="number" placeholder="2" ng-model="event.timeLimitMin" min = "0" max = "99"/> Min
+        <input placeholder="0" type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/> Sec
       </div>
       <div class="rounds">
         <label>Rounds</label>
         <input type="number" ng-model="event.rounds" min="1" max="10" integer />
       </div>
     </div>
+
+    <label>Players</label>
+    <div class="create-players-wrapper">
+      <div class="create-new-player" ng-repeat="player in players | limitTo: noOfPlayers">
+        <input type="text" ng-model="player.name" placeholder="Player {{ $index + 1 }}">
+        <button type="button" class="btn-invert" ng-show="$last" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+
     <div class="create-judges-wrapper">
       <div class="create-new-judge new-judge-container" ng-repeat="judge in judges | limitTo: noOfJudges">
         <label>Judge {{ $index + 1 }}</label>
@@ -25,14 +35,7 @@
         <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
       </div>
     </div>
-    <label>Players</label>
-    <div class="create-players-wrapper">
-      <div class="create-new-player" ng-repeat="player in players | limitTo: noOfPlayers">
-        <input type="text" ng-model="player.name" placeholder="Player {{ $index + 1 }}">
-        <button type="button" class="btn-invert" ng-show="$last" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
-        <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
-      </div>
-    </div>
+    
 
     
 

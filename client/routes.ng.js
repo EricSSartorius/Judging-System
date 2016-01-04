@@ -15,10 +15,10 @@ angular.module("judging-system").run(function ($rootScope, $state) {
 angular.module('judging-system').config(function($urlRouterProvider, $stateProvider, $locationProvider){
   $locationProvider.html5Mode(true);
   $stateProvider
-    // .state('root', {
+    // .state('sidebar', {
     //   url: '',
-    //   templateUrl: 'client/views/index.ng.html',
-    //   controller: 'IndexCtrl',
+    //   templateUrl: 'client/views/sidebar.ng.html',
+    //   controller: 'SidebarCtrl'
     // })
     .state('home', {
       url: '/home',
