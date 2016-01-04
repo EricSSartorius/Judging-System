@@ -24,7 +24,7 @@
         <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
       </div>
     </div>
-
+    <label>Judges</label>
     <div class="create-judges-wrapper">
       <div class="create-new-judge new-judge-container" ng-repeat="judge in judges | limitTo: noOfJudges">
         <label>Judge {{ $index + 1 }}</label>
