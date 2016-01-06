@@ -1,8 +1,7 @@
-angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor, TimeFactory) {
+angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.score = 0;
 	$scope.disabled = true;
 	window.scope = $scope;
-	// $scope.event = Events.find({inGame:true});
 	$scope.event = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
     });

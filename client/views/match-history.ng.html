@@ -21,4 +21,11 @@
 
 	<h3>Time Limit</h3>
 	<p>{{ event.timeLimit | timeFilter | date:"mm:ss" }}</p>
+
+	<h3>Scores</h3>
+	<ul>
+		<li ng-repeat="score in scores">
+			{{ score.score }}
+		</li>
+	</ul>
 </div>

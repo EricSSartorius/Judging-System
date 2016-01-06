@@ -25,6 +25,11 @@ angular.module('judging-system').factory('TimeFactory', function($interval) {
         cancelTheTimer: function() {
         	$interval.cancel(theTimer);
         	timerStarted = false;
+        },
+        resetTheTimer: function(time) {
+            $interval.cancel(theTimer);
+            timerStarted = false;
+            currentTime = time;
         }
     };
 });
