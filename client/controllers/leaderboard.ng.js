@@ -4,12 +4,10 @@ angular.module('judging-system').controller('LeaderboardCtrl', function ($scope,
 	if ($scope.event) {
 		var playerScore = $scope.$meteorCollection(function(){
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.players.id, score: $scope.score});
+			// return Scores.aggregate([
+			// 		{$match: { eventId: $scope.event._id, playerId: $scope.event.}}
+			// 	]);
 		});
-		for(var i=0; i<playerScore.length; i++){
-			$scope.totalScore += playerScore[i].score;
-		}
 	}
-
-
 });
  

@@ -5,10 +5,16 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 	TimeFactory.setCurrentTime($scope.quickTimer);
 
 	$scope.timerUp = function() {
+			if($scope.quickTimer>=3540){
+				$scope.quickTimer = -60;
+			}
 			$scope.quickTimer+=60;
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
 	$scope.timerDown = function() {
+			if($scope.quickTimer<=0){
+				$scope.quickTimer = 3600;
+			}
 			$scope.quickTimer-=60;
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};

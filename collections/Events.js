@@ -15,6 +15,10 @@ Player = new SimpleSchema({
 	},
 	name: {
 		type: String
+	},
+	totalScore: {
+		type: Number,
+		defaultValue: 0
 	}
 });
 

@@ -9,6 +9,13 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		for(var i=0; i<playerScores.length; i++){
 			$scope.totalScore += playerScores[i].score;
 		}
+		for(var j=0; j<$scope.event.players.length; j++){
+			if($scope.event.players[j].id === $scope.event.currentPlayerId){
+				var playerTotal = "players."+j+".totalScore";
+				Events.update($scope.event._id, {$set: {playerTotal: $scope.totalScore}})			
+			}
+		}
+		
 	};
 	
 	initializeVar();
