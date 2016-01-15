@@ -2,7 +2,7 @@
 	<h1>LEADERBOARD</h1>
 	<ul>
 		<li ng-repeat="player in event.players | limitTo: 10">
-			{{$index + 1}}. {{ player.name }}: {{ totalScore }}
+			{{$index + 1}}. {{ player.name }}: {{ player.totalScore }}
 		</li>
 	</ul>
 </div>

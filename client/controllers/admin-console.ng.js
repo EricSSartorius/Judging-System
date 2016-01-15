@@ -9,13 +9,13 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		for(var i=0; i<playerScores.length; i++){
 			$scope.totalScore += playerScores[i].score;
 		}
-		for(var j=0; j<$scope.event.players.length; j++){
-			if($scope.event.players[j].id === $scope.event.currentPlayerId){
-				var playerTotal = "players."+j+".totalScore";
-				Events.update($scope.event._id, {$set: {playerTotal: $scope.totalScore}})			
+		var tempPlayers = $scope.event.players;
+		for(var i=0; i<tempPlayers.length; i++){
+			if(tempPlayers[i].id===$scope.event.currentPlayerId){
+				tempPlayers[i].totalScore = $scope.totalScore;
 			}
 		}
-		
+		Events.update($scope.event._id ,{$set:{players: tempPlayers}});
 	};
 	
 	initializeVar();
@@ -35,10 +35,15 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	function initializeVar() {
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.event = $scope.events[0];
-		$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
+		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		window.scope = $scope;
 		$scope.scores = $scope.$meteorCollection(function(){
-	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
+	        // console.log($scope.event);
+	        if($scope.event!==null){
+		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
+		    }else{
+		    	return Scores.find({eventId:"none"});
+		    }
 		});
 		if (!$scope.event.inGame) {
 			index = 0;
