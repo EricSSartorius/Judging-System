@@ -10,14 +10,14 @@
 .judge-bot
     clearfix()
     clear both
-    .judge-alert
-        text-align center
-        lost-column 1/3
-        lost-move 1/3
-        p
-            display inline-block
-        i
-            display inline-block
+    // .judge-alert
+    //     text-align center
+    //     lost-column 1/3
+    //     lost-move 1/3
+    //     p
+    //         display inline-block
+    //     i
+    //         display inline-block
     button
         float right
         
@@ -26,3 +26,14 @@
     background light-grey 
     border-color @background 
     shadow-level(1)
+
++below($med)
+    .judge-round, .judge-time
+        display none
+    .judge-score
+        lost-column 1
+        lost-offset none
+        padding 0 20% 20px 20%
+        
+
+  
