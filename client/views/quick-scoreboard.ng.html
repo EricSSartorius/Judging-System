@@ -1,15 +1,15 @@
-<div class="console-container">
-	<div class="admin-top">
-	    <h2>Event Name</h2>
+<div class="console-container quick-scoreboard">
+	<div class="admin-top quick-top">
+	    <h2>QUICK SCOREBOARD</h2>
 	</div>
-		<div class="admin-mid">
-			<div class="admin-grid">
+		<div class="admin-mid quick-mid">
+			<div class="admin-grid1 quick-grid1">
 			<h3>Player 1</h3>
 			<h1 class="md-display-4">{{leftScore}}</h1>
 			<i class="fa fa-plus" ng-click="leftScoreUp()"></i>
         	<i class="fa fa-minus" ng-click="leftScoreDown()"></i>
 		</div>
-		<div class="admin-grid">
+		<div class="admin-grid2 quick-grid2">
 <!-- 			<div class="round-icons">
 				<i  ng-hide="alert" class="fa fa-circle-o"></i>
 				<i  ng-hide="alert" class="fa fa-circle-o"></i>
@@ -20,16 +20,16 @@
 			<i class="fa fa-plus" ng-click="timerUp()"></i>
         	<i class="fa fa-minus" ng-click="timerDown()"></i>
 		</div>
-		<div class="admin-grid">
+		<div class="admin-grid3 quick-grid3">
 			<h3>Player 2</h3>
 			<h1 class="md-display-4">{{rightScore}}</h1>
 			<i class="fa fa-plus" ng-click="rightScoreUp()"></i>
         	<i class="fa fa-minus" ng-click="rightScoreDown()"></i>
 		</div>
 	</div>
-	<div class="admin-bot quick-scoreboard-bot">
-		<button ng-click="startTimer()">Start</button>
-		<button ng-click="pauseTimer()">Pause</button>
+	<div class="admin-bot quick-bot">
+		<button ng-show="start" ng-click="startTimer()">Start</button>
+		<button ng-hide="start" ng-click="pauseTimer()">Pause</button>
 		<button ng-click="stopTimer()">Stop</button>
 	</div>
 </div>

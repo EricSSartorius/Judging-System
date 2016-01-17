@@ -1,9 +1,20 @@
 @import styles
 
-.leaderboard-list
-	li
-		font-size 24px
-		padding 5px 0
-		list-style none
-		&:nth-child(1)
-			font-size 36px
+.leaderboard
+	lost-column 1
+	h1
+		text-align center	
+	.leaderboard-list
+		lost-column 1/2
+		li
+			font-size 18px
+			padding 5px 0
+			list-style none
+			&:nth-child(1)
+				font-size 24px
+			&:nth-child(2)
+				font-weight bold
+	.leaderboard-winner
+		+below($med)
+			display none
+		text-align center
