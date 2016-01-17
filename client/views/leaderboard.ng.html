@@ -1,8 +1,16 @@
-<div class="console-container">
-	<h1>LEADERBOARD</h1>
-	<ul>
-		<li ng-repeat="player in event.players | limitTo: 10">
-			{{$index + 1}}. {{ player.name }}: {{ totalScore }}
-		</li>
-	</ul>
+<div class="leaderboard">
+	<h1>{{ event.name }}</h1>
+	<div class="leaderboard-list">
+		<ul>
+			<li>Rank   Name   Points</li>
+			<li ng-repeat="player in event.players | limitTo: 10 | orderBy:'-totalScore'">
+				{{$index + 1}}. {{ player.name }}: {{ player.totalScore }}
+			</li>
+		</ul>
+	</div>
+	<div class="leaderboard-winner" ng-repeat="player in event.players | limitTo: 1 | orderBy: '-totalScore'">
+ 		<h3>1st Place</h3>
+		<h2>{{ player.name }}</h2>
+		<h1>{{ player.totalScore }}</h1>
+	</div>
 </div>

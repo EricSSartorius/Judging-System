@@ -1,6 +1,6 @@
-<div class="console-container">
 <div class="create-event">
   <form ng-submit="createEvent()">
+
     <div class="create-wrapper">
       <div class="event-name">
         <label>Event Name</label>
@@ -16,7 +16,7 @@
         <input type="number" ng-model="event.rounds" min="1" max="10" integer />
       </div>
     </div>
-
+    <hr>
     <label>Players</label>
     <div class="create-players-wrapper">
       <div class="create-new-player" ng-repeat="player in players | limitTo: noOfPlayers">
@@ -25,6 +25,7 @@
         <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
       </div>
     </div>
+    <hr>
     <label>Judges</label>
     <div class="create-judges-wrapper">
       <div class="create-new-judge new-judge-container" ng-repeat="judge in judges | limitTo: noOfJudges">
@@ -36,18 +37,12 @@
         <button type="button" class="btn-invert" ng-show="!$last" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
       </div>
     </div>
-    
-
-    
 
     <div class="submit-wrapper">
       <button type="submit">Submit</button>
     </div>
   </form>
 </div>
-</div>
-
-
 
 <!-- <div ng-submit="addPlayer(newPlayer); newPlayer='';">
   <input ng-model="player.name" type="text"
@@ -60,9 +55,3 @@
     </span>
   </li>
 </ul> -->
-
-
-
-
-
-  

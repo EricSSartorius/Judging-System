@@ -1,0 +1,20 @@
+@import styles
+
+.quick-scoreboard
+	i
+		padding 0 15px 20px 15px
+		&:hover
+			cursor pointer
+	.quick-bot
+		padding-top 20px
+	
+			
+	+below($med)
+		.quick-grid1, .quick-grid2, .quick-grid3
+			h1
+				font-size 36px
+				margin 10px 0
+	+below(430px)
+		.quick-grid1, .quick-grid2, .quick-grid3
+			lost-column 1
+	
