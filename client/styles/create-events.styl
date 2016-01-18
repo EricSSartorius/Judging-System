@@ -14,41 +14,37 @@
             padding 15px 0
         input
             margin-left 20px
-
+            +below($small)
+                margin-left 0
     .create-new-player
         display inline-block
         padding 5px
-
     .create-players-wrapper
         padding 20px 0
-        
     .create-judges-wrapper
         background transparent 
         padding 10px 0
-
     .create-new-judge
         display inline-block
-        margin 10px
-        
-    .new-judge-container
-        text-align center
-        position relative
-        background light-grey
-        padding 20px 
-        margin-bottom 20px 
-        shadow-level(0)  
-        input
-            width 100% 
-            display block
-            margin-bottom 10px 
-        button
-            width 100%
-
+        margin 10px   
     .submit-wrapper
         float right
         padding 30px 0
-
         
+.new-judge-container
+    text-align center
+    position relative
+    background light-grey
+    padding 20px 
+    margin-bottom 20px 
+    shadow-level(0)  
+    input
+        width 100% 
+        display block
+        margin-bottom 10px 
+    button
+        width 100%
+
 +below($small)
     .create-wrapper label
         display block

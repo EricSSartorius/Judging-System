@@ -2,15 +2,27 @@
 
 .admin-top
     text-align center
-
 .admin-grid1, .admin-grid2, .admin-grid3
     lost-column 1/3
-    text-align center
-    
+    text-align center  
 .admin-bot
     clear both
-    text-align center
-    
+    text-align center  
 .admin-judge-box
     lost-column 1/4
     text-align center
+    
+#admin-console
+	+below(750px)
+		h1
+			font-size 36px
+		.admin-judge-box
+			lost-column 49/100
+		.admin-bot 
+			button
+				margin 5px
+	+below(470px)
+		.admin-grid1, .admin-grid2, .admin-grid3
+			lost-column 1
+		.admin-judge-box
+			lost-column 1

@@ -1,44 +1,46 @@
-<div class="console-container">
-	<div class="admin-top">
-	 	<select ng-options="event.name for event in events track by event._id" ng-change="updateEventDetails()" ng-model="event">
-	 	</select>
-	    <h2><i class="fa fa-user"></i> {{ getPlayerName() }}</h2>
-<!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->
-	</div>
-		<div class="admin-mid">
-			<div class="admin-grid1">
-			<h3>Time</h3>
-			<h1 class="md-display-4">{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
+<div id="admin-console">
+	<div class="console-container">
+		<div class="admin-top">
+		 	<select ng-options="event.name for event in events track by event._id" ng-change="updateEventDetails()" ng-model="event">
+		 	</select>
+		    <h2><i class="fa fa-user"></i> {{ getPlayerName() }}</h2>
+	<!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->
 		</div>
-		<div class="admin-grid2">
-			<h4>Round</h4>
-			<h2>{{ event.currentRound }}</h2>
-			<h4>Total Score</h4>
-			<h2>{{ totalScore }}</h2>
-		</div>
-		<div class="admin-grid3">
-			<h3>Round Score</h3>
-			<h1 class="md-display-4">{{ getRoundTotal() }}</h1>
+			<div class="admin-mid">
+				<div class="admin-grid1">
+				<h3>Time</h3>
+				<h1 class="md-display-4">{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
+			</div>
+			<div class="admin-grid2">
+				<h4>Round</h4>
+				<h2>{{ event.currentRound }}</h2>
+				<h4>Total Score</h4>
+				<h2>{{ totalScore }}</h2>
+			</div>
+			<div class="admin-grid3">
+				<h3>Round Score</h3>
+				<h1 class="md-display-4">{{ getRoundTotal() }}</h1>
 
+			</div>
+		</div>
+		<div class="admin-bot">
+			<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
+			<button ng-show="stopButton" ng-click="endPlayer()">Force Stop</button>
+			<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
+			<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
+			<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
 		</div>
 	</div>
-	<div class="admin-bot">
-		<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
-		<button ng-show="stopButton" ng-click="endPlayer()">Force Stop</button>
-		<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
-		<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
-		<button ui-sref="leaderboard" ng-click="endGame()">End Game</button>
+	<div class="admin-judge-box" ng-repeat="score in scores">
+		<div class="new-judge-container">
+			<h1 >{{ getJudge(score).name }}</h1>
+			<h1>{{ score.score }}</h1>
+		</div>
+	<!-- 	<div class="judge-alert">
+			<i  ng-show="alert" class="fa fa-dot-circle-o"></i>
+			<i  ng-hide="alert" class="fa fa-circle-o"></i>
+		</div> -->
 	</div>
-</div>
-<div class="admin-judge-box" ng-repeat="score in scores">
-	<div class="new-judge-container">
-		<h1 >{{ getJudge(score).name }}</h1>
-		<h1>{{ score.score }}</h1>
-	</div>
-<!-- 	<div class="judge-alert">
-		<i  ng-show="alert" class="fa fa-dot-circle-o"></i>
-		<i  ng-hide="alert" class="fa fa-circle-o"></i>
-	</div> -->
 </div>
 
 
