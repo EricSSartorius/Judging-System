@@ -1,13 +1,14 @@
-angular.module('judging-system').controller('SidebarCtrl', function ($scope, $meteor, $timeout, $mdSidenav, $log) {
-    $scope.test = "Testing";
-	$scope.toggleLeft = buildDelayedToggler('left');
+angular.module('judging-system').controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.toggleRight = buildToggler('left');
+    $scope.isOpenRight = function(){
+      return $mdSidenav('left').isOpen();
+    };
     /**
      * Supplies a function that will continue to operate until the
      * time is up.
      */
     function debounce(func, wait, context) {
       var timer;
-
       return function debounced() {
         var context = $scope,
             args = Array.prototype.slice.call(arguments);
@@ -18,7 +19,6 @@ angular.module('judging-system').controller('SidebarCtrl', function ($scope, $me
         }, wait || 10);
       };
     }
-
     /**
      * Build handler to open/close a SideNav; when animation finishes
      * report completion in console
@@ -41,12 +41,13 @@ angular.module('judging-system').controller('SidebarCtrl', function ($scope, $me
           });
       }
     }
-})
-.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-	$scope.close = function () {
-	  $mdSidenav('left').close()
-	    .then(function () {
-	      $log.debug("close LEFT is done");
-	    });
-	};
+  })
+
+angular.module('judging-system').controller('LeftCtrl', function ($scope, $meteor, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close LEFT is done");
+        });
+    };
 });

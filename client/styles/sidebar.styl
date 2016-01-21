@@ -1,53 +1,56 @@
 @import styles
 
+
 .sidebar
-    .side-nav
-        fixed bottom left
-        height 100px
-        width 100%
-        overflow hidden 
-        background epic-grey
-        color #FFF
-        z-index: z.header
-        shadow-level(2)
-        ul
-            margin 0
-            padding 0
-            display flex
-            justify-content space-between 
-            list-style none
-        a
-            color #FFF
-            text-decoration none
-            padding 20px 20px
-            display block
-            text-align left
-            trans()
-            &:hover, &.active
-                background lighten(epic-grey, 10%)
-        i
-            display block
-            font-size 2em
-            margin-bottom 10px 
-        +above($med)
-            height 100%
-            z-index: z.mid
-            padding 120px 0
-            fixed top left
-            width $side-nav
-            ul 
-                display block
-            shadow-level(-1)
-            a
-                padding 20px 10px
-                &:hover, &.active
-                    border-left 4px solid bright-blue
-        +above($large)
-            width $side-nav-large
-            a
-                padding 20px 20px
-                &:hover, &.active
-                    border-left 10px solid bright-blue 
-                    
-        +below($med)
-            display none
+    background darken(blue, 20%)
+    .nav-toolbar
+        background light-grey
+        h1
+            color epic-grey
+    .sidebar-main
+        
+    // fixed bottom left
+    // height 100px
+    // width 100%
+    // overflow hidden 
+    background darken(blue, 20%)
+    color #FFF
+    z-index: z.header
+    shadow-level(2)
+    ul
+        margin 0
+        padding 0
+        display flex
+        justify-content space-between 
+        list-style none
+    a
+        color #fff
+        text-decoration none
+        padding 20px 20px
+        display block
+        text-align left
+        trans()
+        &:hover, &.active
+            background lighten(@background, 10%)
+    // +above($med)
+    //     height 100%
+    //     z-index: z.mid
+    //     padding 120px 0
+    //     fixed top left
+        // width $side-nav
+    //     ul 
+    //         display block
+    //     shadow-level(-1)
+    //     a
+    //         padding 20px 10px
+    //         &:hover, &.active
+    //             border-left 4px solid bright-blue
+    // +above($large)
+    //     // width $side-nav-large
+    //     a
+    //         padding 20px 20px
+    //         &:hover, &.active
+    //             border-left 10px solid bright-blue 
+                
+    // +below($med)
+    //     display none
