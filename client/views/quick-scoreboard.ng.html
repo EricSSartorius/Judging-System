@@ -4,8 +4,8 @@
 	</div>
 		<div class="admin-mid quick-mid">
 			<div class="admin-grid1 quick-grid1">
-			<h3>Player 1</h3>
-			<h1 class="md-display-4">{{leftScore}}</h1>
+			<h3 class="player-1">Player 1</h3>
+			<h1 ng-class="(leftScore > rightScore) ? 'player-1 md-display-4' : 'tie md-display-4'">{{leftScore}}</h1>
 			<i class="fa fa-plus" ng-click="leftScoreUp()"></i>
         	<i class="fa fa-minus" ng-click="leftScoreDown()"></i>
 		</div>
@@ -21,8 +21,8 @@
         	<i class="fa fa-minus" ng-click="timerDown()"></i>
 		</div>
 		<div class="admin-grid3 quick-grid3">
-			<h3>Player 2</h3>
-			<h1 class="md-display-4">{{rightScore}}</h1>
+			<h3 class="player-2">Player 2</h3>
+			<h1 ng-class="(leftScore < rightScore) ? 'player-2 md-display-4' : 'tie md-display-4'" >{{rightScore}}</h1>
 			<i class="fa fa-plus" ng-click="rightScoreUp()"></i>
         	<i class="fa fa-minus" ng-click="rightScoreDown()"></i>
 		</div>
