@@ -2,27 +2,42 @@
   <base href="/">
 </head>
 <body>
-	<div ng-app="judging-system">
+	<div ng-app="judging-system" ng-controller="AppCtrl">
 		<header>
 			<h1><a  ui-sref="home">U-JUDGE</a></h1>
-			<!--<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-            Toggle left
-          </md-button> -->
 			<blaze-template name="loginButtons"></blaze-template>
 		</header>
-<!-- 		<nav class="side-nav">
-			<ul>
-				<li><a ui-sref="createEvent">Create Event</a></li>
-				<li><a ui-sref="adminConsole">Admin Console</a></li>
-				<li><a ui-sref="judgingConsole">Judging Console</a></li>
-				<li><a ui-sref="leaderboard">Leaderboard</a></li>
-				<li><a ui-sref="matchHistory">Match History</a></li>
-				<li><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
-			</ul>
-		</nav>	 -->	
-		<main class="main-layout">
+		   <md-button ng-click="toggleRight()"
+            ng-hide="isOpenRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
+				<main class="main-layout">
 		 	<div ui-view></div>
 		</main>
+		<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+	      <md-toolbar class="md-theme-light">
+	        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+	      </md-toolbar>
+	      <md-content ng-controller="RightCtrl" layout-padding>
+	        	<nav class="side-nav">
+					<ul>
+						<li><a ui-sref="createEvent">Create Event</a></li>
+						<li><a ui-sref="adminConsole">Admin Console</a></li>
+						<li><a ui-sref="judgingConsole">Judging Console</a></li>
+						<li><a ui-sref="leaderboard">Leaderboard</a></li>
+						<li><a ui-sref="matchHistory">Match History</a></li>
+						<li><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
+					</ul>
+				</nav>
+
+	        <md-button ng-click="close()" class="md-primary">
+	          Close Sidenav Right
+	        </md-button>
+	      </md-content>
+	    </md-sidenav>	
+	<!-- 	<sidebar></sidebar> -->
+
 	</div>
 </body>
 
