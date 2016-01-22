@@ -5,7 +5,7 @@ angular.module("judging-system").run(function ($rootScope, $state) {
     }
   });
   Accounts.onLogin(function() {
-    $state.go('adminConsole');
+    $state.go('createEvent');
   });
   Accounts.onLogout(function() {
     $state.go('home');
