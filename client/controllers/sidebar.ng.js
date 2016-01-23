@@ -1,7 +1,7 @@
 angular.module('judging-system').controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.toggleRight = buildToggler('left');
+    $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
-      return $mdSidenav('left').isOpen();
+      return $mdSidenav('right').isOpen();
     };
     /**
      * Supplies a function that will continue to operate until the
@@ -43,11 +43,11 @@ angular.module('judging-system').controller('AppCtrl', function ($scope, $timeou
     }
   })
 
-angular.module('judging-system').controller('LeftCtrl', function ($scope, $meteor, $timeout, $mdSidenav, $log) {
+angular.module('judging-system').controller('RightCtrl', function ($scope, $meteor, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
-      $mdSidenav('left').close()
+      $mdSidenav('right').close()
         .then(function () {
-          $log.debug("close LEFT is done");
+          $log.debug("close RIGHT is done");
         });
     };
 });

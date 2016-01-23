@@ -5,7 +5,10 @@
     background darken(blue, 20%)
     .nav-toolbar
         background light-grey
+        height 100px
         h1
+            margin auto
+            font-size 1.8em
             color epic-grey
     .sidebar-main
         
@@ -18,7 +21,7 @@
     z-index: z.header
     shadow-level(2)
     ul
-        margin 0
+        margin 0 0 0 -10px
         padding 0
         display flex
         justify-content space-between 
@@ -26,12 +29,12 @@
     a
         color #fff
         text-decoration none
-        padding 20px 20px
+        padding 20px 0 20px 20px
         display block
         text-align left
-        trans()
+        // trans()
         &:hover, &.active
-            background lighten(@background, 10%)
+            background lighten(@background, 5%)
     // +above($med)
     //     height 100%
     //     z-index: z.mid

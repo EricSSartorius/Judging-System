@@ -4,7 +4,8 @@
 <body>
 	<div ng-app="judging-system" ng-controller="AppCtrl">
 		<header>
-			<h1><a  class="logo" ng-click="toggleRight()">U-JUDGE</a></h1>
+			<i  ng-click="toggleRight()" class="fa fa-bars fa-2x"></i>
+			<h1><a  class="logo">U-JUDGE</a></h1>
 			<blaze-template name="loginButtons"></blaze-template>
 		</header>
 <!-- 		   <md-button ng-click="toggleRight()"
@@ -12,14 +13,15 @@
             class="md-primary">
             Toggle left
           </md-button> -->
+          
 				<main class="main-layout">
 		 	<div ui-view></div>
 		</main>
-		<md-sidenav class="sidebar" md-component-id="left">
+		<md-sidenav class="sidebar" md-component-id="right">
 	      <md-toolbar class="nav-toolbar">
-	        <h1 class="md-toolbar-tools" ng-click="toggleRight()">U-JUDGE</h1>
+	        <h1 class="md-toolbar-tools" ng-click="toggleRight()">U-Judge</h1>
 	      </md-toolbar>
-	      <div ng-controller="LeftCtrl" class="sidebar-main">
+	      <div ng-controller="RightCtrl" class="sidebar-main">
 			<ul>
 				<li><a ui-sref="home" ng-click="toggleRight()">Home</a></li>
 				<li><a ui-sref="createEvent" ng-click="toggleRight()">Create Event</a></li>
