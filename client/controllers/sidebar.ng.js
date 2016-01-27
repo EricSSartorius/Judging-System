@@ -29,7 +29,6 @@ angular.module('judging-system').controller('AppCtrl', function ($scope, $timeou
         $mdSidenav(navID)
           .toggle()
           .then(function () {
-            // $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
             $log.debug("toggle " + navID + " is done");
           });
       }, 200);
