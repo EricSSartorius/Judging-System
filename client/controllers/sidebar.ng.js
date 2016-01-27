@@ -1,5 +1,6 @@
 angular.module('judging-system').controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleRight = buildToggler('right');
+    $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
@@ -28,12 +29,14 @@ angular.module('judging-system').controller('AppCtrl', function ($scope, $timeou
         $mdSidenav(navID)
           .toggle()
           .then(function () {
+            // $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
             $log.debug("toggle " + navID + " is done");
           });
       }, 200);
     }
     function buildToggler(navID) {
       return function() {
+        $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
         $mdSidenav(navID)
           .toggle()
           .then(function () {

@@ -18,17 +18,17 @@
 				<main class="main-layout">
 		 	<div ui-view></div>
 		</main>
-		<md-sidenav class="sidebar" md-component-id="right">
+		<md-sidenav class="sidebar md-sidenav-right" md-component-id="right">
 	      <md-toolbar class="nav-toolbar">
 	        <h1 class="md-toolbar-tools" ng-click="toggleRight()">U-Judge</h1>
 	      </md-toolbar>
 	      <div ng-controller="RightCtrl" class="sidebar-main">
 			<ul>
 				<li><a ui-sref="home" ng-click="toggleRight()">Home</a></li>
-				<li><a ui-sref="createEvent" ng-click="toggleRight()">Create Event</a></li>
-				<li><a ui-sref="adminConsole" ng-click="toggleRight()">Admin Console</a></li>
-				<li><a ui-sref="judgingConsole" ng-click="toggleRight()">Judging Console</a></li>
-				<li><a ui-sref="leaderboard" ng-click="toggleRight()">Leaderboard</a></li>
+				<li><a ui-sref="createEvent" ng-hide ="hiddenLink"  ng-click="toggleRight()">Create Event</a></li>
+				<li><a ui-sref="adminConsole" ng-hide ="hiddenLink" ng-click="toggleRight()">Admin Console</a></li>
+				<li><a ui-sref="judgingConsole" ng-hide ="hiddenLink" ng-click="toggleRight()">Judging Console</a></li>
+				<li><a ui-sref="leaderboard" ng-hide ="hiddenLink" ng-click="toggleRight()">Leaderboard</a></li>
 <!-- 				<li><a ui-sref="matchHistory" ng-click="toggleRight()">Match History</a></li> -->
 				<li><a ui-sref="quickScoreboard" ng-click="toggleRight()">Quick Scoreboard</a></li>
 			</ul>
