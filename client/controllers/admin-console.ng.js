@@ -37,6 +37,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	};
 	function initializeVar() {
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
+		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
 		$scope.event = $scope.events[0];
 		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		window.scope = $scope;
