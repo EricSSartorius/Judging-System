@@ -5,7 +5,14 @@ angular.module("judging-system").run(function ($rootScope, $state) {
     }
   });
   Accounts.onLogin(function() {
-    $state.go('createEvent');
+    // userId = users.find({})._id;
+    
+    if(Events.find({author:Accounts.userId()}).count() > 0){
+      $state.go('adminConsole');
+    }
+    else{
+      $state.go('createEvent');
+    }
   });
   Accounts.onLogout(function() {
     $state.go('home');
