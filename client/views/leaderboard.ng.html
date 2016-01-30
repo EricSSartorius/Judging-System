@@ -3,12 +3,12 @@
 	<div class="leaderboard-list">
 		<ul>
 			<li>{{title}}</li>
-			<li ng-repeat="player in event.players | limitTo: 10">
+			<li ng-repeat="player in events[0].players | limitTo: 10">
 				{{$index + 1}}. {{ player.name }}: {{ player.totalScore }}
 			</li>
 		</ul>
 	</div>
-	<div class="leaderboard-winner" ng-repeat="player in event.players | limitTo: 1">
+	<div class="leaderboard-winner" ng-repeat="player in events[0].players | limitTo: 1">
  		<h3>1st Place</h3>
 		<h2>{{ player.name }}</h2>
 		<h1>{{ player.totalScore }}</h1>
