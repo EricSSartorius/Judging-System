@@ -5,13 +5,11 @@ angular.module('judging-system').controller('LeaderboardCtrl', function ($scope,
 		$scope.title = "Rank   Name   Points";
 
 		$scope.events = $scope.$meteorCollection(function(){
-			// debugger
-			// return $scope.event.players;
 			return Events.find({inGame:true});
 		});
-	// 	var playerScore = $scope.$meteorCollection(function(){
-	// 		$scope.event.find({"players.totalScore": $scope.totalScore});
-	// 	});
+	}
+	else {
+		$scope.noEvent = "No event currently running";
 	}
 });
  
