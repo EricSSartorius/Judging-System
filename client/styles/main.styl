@@ -20,14 +20,12 @@ body
     
 .main-layout
     lost-center 90%
-    margin-top 20px 
+    margin-top 20px
     +above($med)
         lost-center 90%
-        padding-left $side-nav
     +above($large)
         lost-center 80%
         margin-top 40px
-        padding-left $side-nav-large
         
 .console-container
     position relative
@@ -45,8 +43,6 @@ header
     width 100%
     height 45px  
     z-index: z.header
-    shadow-level(2)
-    clearfix()
     h1 
         a
             color white
@@ -72,7 +68,7 @@ header
 //MISC	
 i:focus
     outline none
-    
+     
 .fa-bars
     float left
     margin -15px 15px 0 -5px
@@ -95,7 +91,9 @@ input, select, textarea
     border-radius 2px
     font-weight 800
     padding 6px 10px
-    margin-bottom 10px  
+    margin-bottom 10px 
+    &:focus
+        outline none 
     &.static-input
         border none
         background transparent
