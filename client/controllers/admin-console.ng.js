@@ -54,6 +54,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.totalScore = 0;
 		  	$scope.roundTime = $scope.event.timeLimit;
 		  	TimeFactory.setCurrentTime($scope.event.timeLimit);
+		  	$scope.endButton = true;
 		  	$scope.startButton = true;
 		  	$scope.stopButton = false;
 		  	$scope.nextPlayerButton = true;
@@ -197,6 +198,15 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		}
 	};
 	$scope.endGame = function() {
+		TimeFactory.cancelTheTimer();
+		$scope.roundTime = 0;
+		TimeFactory.setCurrentTime($scope.roundTime);
+		getTotalScore();
 		Events.update(scope.event._id, {$set: {inGame: false }});
+		$scope.nextRoundButton = false;
+		$scope.nextPlayerButton = false;
+		$scope.startButton = false;
+		$scope.stopButton = false;
+		$scope.endButton = false;
 	};
 });
