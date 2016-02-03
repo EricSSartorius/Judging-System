@@ -15,26 +15,28 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				tempPlayers[i].totalScore = $scope.totalScore;
 			}
 		}
-		tempPlayers = tempPlayers.sort(function(a,b){
-			return b.totalScore-a.totalScore;
-		});
+		// tempPlayers = tempPlayers.sort(function(a,b){
+		// 	return b.totalScore-a.totalScore;
+		// });
 		Events.update($scope.event._id ,{$set:{players: tempPlayers}});
 	};
 	
 	initializeVar();
 
 	function startMyTimer(){
-		theTimer = $interval(function(){
-	        	$scope.roundTime = TimeFactory.getCurrentTime();
-	        	Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
-		        if ($scope.roundTime <= 0) {
-		        	$scope.stopButton = false;
-		        	TimeFactory.cancelTheTimer();
-			        $interval.cancel(theTimer);
-			        $scope.roundTime = 0;
-			    }
-		    },1000,0);  
+		theTimer = $interval(timerCallback,1000,0);
+		function timerCallback() {
+			$scope.roundTime = TimeFactory.getCurrentTime();
+	    	Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
+	        if ($scope.roundTime <= 0) {
+	        	$scope.stopButton = false;
+	        	TimeFactory.cancelTheTimer();
+		        $interval.cancel(theTimer);
+		        $scope.roundTime = 0;
+		    }
+		}  
 	};
+
 	function initializeVar() {
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
