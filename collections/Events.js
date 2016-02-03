@@ -16,6 +16,10 @@ Player = new SimpleSchema({
 	name: {
 		type: String
 	},
+	team: {
+		type: String,
+		optional: true
+	},
 	totalScore: {
 		type: Number,
 		defaultValue: 0
@@ -33,7 +37,8 @@ Judge = new SimpleSchema({
 		type: String
 	},
 	category: {
-		type: String
+		type: String,
+		optional: true
 	}
 });
 

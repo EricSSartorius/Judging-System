@@ -1,38 +1,45 @@
 @import styles
 
 .create-event
-    hr
-        border 0
-        height 1px
-        background light-grey
-        margin-bottom 40px
+    h2
+        text-align center
+    // hr
+    //     border 0
+    //     height 1px
+    //     background light-grey
+    //     margin-bottom 40px
     padding 20px
     margin-bottom 30px           
     .create-wrapper
-        padding-bottom 20px
+        background light-grey
+        padding 20px
+        margin-bottom 50px
         div
             padding 15px 0
-        input
-            margin-left 20px
-            +below($small)
-                margin-left 0
     .create-new-player
-        display inline-block
-        padding 5px
+        padding 20px
+        margin 10px 0
+        background light-grey
+        input
+            margin 0
+        button
+            width 100%
     .create-players-wrapper
         padding 20px 0
     .create-judges-wrapper
+        lost-utility clearfix
         background transparent 
         padding 10px 0
+        margin-top 30px
     .create-new-judge
-        display inline-block
-        margin 10px   
+        margin 10px 0
+        input
+            margin 0   
     .submit-wrapper
         float right
         padding 30px 0
         
 .new-judge-container
-    text-align center
     position relative
     background light-grey
     padding 20px 
@@ -44,7 +51,4 @@
         margin-bottom 10px 
     button
         width 100%
-
-+below($small)
-    .create-wrapper label
-        display block
+    
