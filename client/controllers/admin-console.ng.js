@@ -39,6 +39,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
 		$scope.event = $scope.events[0];
+		$scope.endButton = true;
 		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		window.scope = $scope;
 		$scope.scores = $scope.$meteorCollection(function(){
@@ -54,7 +55,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.totalScore = 0;
 		  	$scope.roundTime = $scope.event.timeLimit;
 		  	TimeFactory.setCurrentTime($scope.event.timeLimit);
-		  	$scope.endButton = true;
 		  	$scope.startButton = true;
 		  	$scope.stopButton = false;
 		  	$scope.nextPlayerButton = true;

@@ -1,0 +1,42 @@
+// Slide up, Fade In
+@keyframes theWave
+  0%
+    opacity 0
+    transform translate3d(0, -10px, 0)
+  100%
+    opacity 1
+    transform translate3d(0, 0, 0)
+
+@keyframes theWaveOut
+  0%
+    opacity 1
+    transform translate3d(0, 0, 0)
+  100%
+    opacity 0
+    transform translate3d(0, 10px, 0)
+
+// Spin
+@keyframes spin
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(360deg)
+
+.playlistsload-enter, .loader-enter
+  animation: theWave 0.4s outquart
+
+.playlistsload-leave, .loader-leave
+  animation: theWaveOut 0.4s outquart
+
+.playlistsload-appear, .loader-appear
+  animation-duration: .4s;
+  animation-name: theWave
+
+.tutorialsload-enter
+  animation-duration: .4s;
+  animation-name: theWave
+
+
+.tutorialsload-appear
+  animation-duration: .4s;
+  animation-name: theWave

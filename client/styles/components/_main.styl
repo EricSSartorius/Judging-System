@@ -1,4 +1,4 @@
-@import styles
+@import '../_styles'
 
 html
     box-sizing: border-box
@@ -41,8 +41,11 @@ header
     padding 20px 
     fixed top left
     width 100%
-    height 45px  
+    height 45px 
     z-index: z.header
+    .logo
+        +below($small)
+            display none 
     h1 
         a
             color white

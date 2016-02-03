@@ -21,6 +21,22 @@ shadow-level(l = 1)
 trans($sec = 0.3s)
     transition: all $sec ease
     
+@import '_easings'
+outquart = cubic-bezier(0.165, 0.84, 0.44, 1)
+inquart = cubic-bezier(0.895, 0.03, 0.685, 0.22)
+
+// serif font
+serif()
+  font-weight: 500
+  font-style: italic
+  font-family: 'Libre Baskerville', serif
+
+// Checkout Step
+step()
+  background #FFF
+  color black
+  shadow-level(2)
+    
 // Grid
 $xsmall = 340px
 $small = 500px
