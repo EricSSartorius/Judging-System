@@ -2,7 +2,9 @@ angular.module('judging-system').controller('LeaderboardCtrl', function ($scope,
 	$scope.event = Events.findOne({inGame:true});
 	window.scope=$scope;
 	if ($scope.event) {
-		$scope.title = "Rank   Name   Points";
+		$scope.rank = "Rank";
+		$scope.name = "Name";
+		$scope.points = "Points";
 
 		$scope.events = $scope.$meteorCollection(function(){
 			return Events.find({inGame:true});
