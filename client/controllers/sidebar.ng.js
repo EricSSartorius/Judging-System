@@ -1,7 +1,8 @@
 angular.module('judging-system').controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleLeft = buildToggler('left');
     $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
-    $scope.isOpenLeft = function(){
+
+    $scope.isOpenLeft = function() {
       return $mdSidenav('left').isOpen();
     };
     /**

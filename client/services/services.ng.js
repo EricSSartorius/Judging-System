@@ -2,6 +2,7 @@ angular.module('judging-system').factory('TimeFactory', function($interval) {
     var currentTime = 0;
     var theTimer = 0;
     var timerStarted = false;
+
     return  {
     	getCurrentTime: function() {
     		return currentTime;
@@ -12,7 +13,7 @@ angular.module('judging-system').factory('TimeFactory', function($interval) {
         startTheTimer: function() {
         	if(!timerStarted){
 	        	timerStarted=true;
-	        	theTimer = $interval(function(){	
+	        	theTimer = $interval(function() {	
 		        	if (currentTime >= 0)
 		        		currentTime--;
 		        	else{

@@ -1,29 +1,31 @@
 angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope, $interval, $meteor, TimeFactory) {
 	var index;
 
-	function getTotalScore(){
-		var playerScores = $scope.$meteorCollection(function(){
+	function getTotalScore() {
+		var playerScores = $scope.$meteorCollection(function() {
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
 		});
 		$scope.totalScore = 0;
-		for(var i=0; i<playerScores.length; i++){
+		for(var i=0; i<playerScores.length; i++) {
 			$scope.totalScore += playerScores[i].score;
 		}
 		var tempPlayers = $scope.event.players;
-		for(var i=0; i<tempPlayers.length; i++){
+		for(var i=0; i<tempPlayers.length; i++) {
 			if(tempPlayers[i].id===$scope.event.currentPlayerId){
 				tempPlayers[i].totalScore = $scope.totalScore;
 			}
 		}
+		//Sorts the order of scores for the leaderboard. Needs changes so that it does not affect player order in the collection
 		// tempPlayers = tempPlayers.sort(function(a,b){
 		// 	return b.totalScore-a.totalScore;
 		// });
 		Events.update($scope.event._id ,{$set:{players: tempPlayers}});
 	};
 	
+	//Initialize variables in a function so that info is not reset on view change
 	initializeVar();
 
-	function startMyTimer(){
+	function startMyTimer() {
 		theTimer = $interval(timerCallback,1000,0);
 		function timerCallback() {
 			$scope.roundTime = TimeFactory.getCurrentTime();
@@ -44,11 +46,11 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.endButton = true;
 		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		window.scope = $scope;
-		$scope.scores = $scope.$meteorCollection(function(){
+		$scope.scores = $scope.$meteorCollection(function() {
 	        // console.log($scope.event);
-	        if($scope.event!==null){
+	        if($scope.event!==null) {
 		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
-		    }else{
+		    }else {
 		    	return Scores.find({eventId:"none"});
 		    }
 		});
@@ -89,7 +91,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				$scope.nextRoundButton = false;
 				$scope.nextPlayerButton = false;
 			}
-			else if((index + 1) === $scope.event.players.length){
+			else if((index + 1) === $scope.event.players.length) {
 				$scope.nextRoundButton = true;
 				$scope.nextPlayerButton=false;
 			}
@@ -99,16 +101,20 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			}
 			startMyTimer();
 		} 
-	}
+	};
+
+	//Refresh admin console when new event is seleted
 	$scope.updateEventDetails = function() {
 		Events.update($scope.event._id, {$set: {inGame: false}});
 		initializeVar();
 	};
+
 	$scope.updateScores = function() {
-		$scope.scores = $scope.$meteorCollection(function(){
+		$scope.scores = $scope.$meteorCollection(function() {
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
+
 	$scope.getRoundTotal = function() {
 	    var total = 0;
 	    angular.forEach($scope.event.judges, function(judge) {
@@ -120,22 +126,26 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	    });
 	    return total;
 	};
+
 	$scope.getJudge = function(score) {
 		return $scope.event.judges.find(function(judge){return judge.id === score.judgeId;});
 	};
-	$scope.getPlayerName = function(){
+
+	$scope.getPlayerName = function() {
 		return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).name;
 	};
+
 	$scope.startTimer = function() {
 		TimeFactory.startTheTimer();
         startMyTimer();
 	}; 
+
 	$scope.startPlayer = function() {
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			Events.update(scope.event._id, {$set: {inGame: true}});
 			var allEvents = Events.find({}).fetch();
 			for(var i in allEvents) {
-				if(allEvents[i]._id !== $scope.event._id){
+				if(allEvents[i]._id !== $scope.event._id) {
 					Events.update(allEvents[i]._id, {$set: {inGame: false}});
 				}
 			}
@@ -146,14 +156,16 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.startButton = false;
 		$scope.stopButton = true;
 	};
+
 	$scope.endPlayer = function() {
 		TimeFactory.cancelTheTimer();
 		$scope.roundTime = 0;
 		getTotalScore();
 		TimeFactory.setCurrentTime($scope.roundTime);
-		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
+		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime()}});
 		$scope.stopButton = false;
 	};
+
 	$scope.nextPlayer = function() {
 		index++;
 		$scope.event.currentPlayerId = $scope.event.players[index].id;
@@ -178,6 +190,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.startButton = true;
 		}
 	};
+
 	$scope.nextRound = function() {
 		$scope.event.currentRound++;
 		Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound }});
@@ -199,6 +212,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.nextRoundButton = false;
 		}
 	};
+	
 	$scope.endGame = function() {
 		TimeFactory.cancelTheTimer();
 		$scope.roundTime = 0;

@@ -12,6 +12,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			$scope.quickTimer+=60;
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
+
 	$scope.timerDown = function() {
 			if($scope.quickTimer<=0){
 				$scope.quickTimer = 3600;
@@ -19,6 +20,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			$scope.quickTimer-=60;
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
+
 	$scope.startTimer = function() {
 		if($scope.quickTimer !== 0){$scope.start = false;}
 		TimeFactory.startTheTimer();
@@ -31,26 +33,32 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			    }
 		    },1000,0);  
 	};
+
 	$scope.pauseTimer = function() {
 		$scope.start = true;
 		TimeFactory.cancelTheTimer();
 	};
+
 	$scope.stopTimer = function() {
 		$scope.start = true;
 		TimeFactory.resetTheTimer(0);
 	};
+
 	$scope.leftScoreUp = function() {
 		if($scope.leftScore < 100)
 			$scope.leftScore++;
 	};
+
 	$scope.leftScoreDown = function() {
 		if($scope.leftScore > 0)
 			$scope.leftScore--;
 	};
+
 	$scope.rightScoreUp = function() {
 		if($scope.rightScore < 100)
 			$scope.rightScore++;
 	};
+	
 	$scope.rightScoreDown = function() {
 		if($scope.rightScore > 0)
 			$scope.rightScore--;

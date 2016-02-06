@@ -4,24 +4,26 @@
 		 	<select ng-options="event.name for event in myEvents track by event._id" ng-change="updateEventDetails()" ng-model="event">
 		 	</select>
 		    <h2><i class="fa fa-user"></i> {{ getPlayerName() }}</h2>
-	<!-- 	<h1 ng-repeat="player in event.players">{{ player.name }}</h1> -->
 		</div>
-			<div class="admin-mid">
-				<div class="admin-grid1">
+
+		<div class="admin-mid">
+			<div class="admin-grid1">
 				<h3>Time</h3>
 				<h1 class="md-display-4">{{ roundTime | timeFilter | date:"mm:ss" }}</h1>
 			</div>
+
 			<div class="admin-grid2">
 				<h4>Round</h4>
 				<h2>{{ event.currentRound }}</h2>
 				<h4>Total Score</h4>
 				<h2>{{ totalScore }}</h2>
 			</div>
+
 			<div class="admin-grid3">
 				<h3>Round Score</h3>
 				<h1 class="md-display-4">{{ getRoundTotal() }}</h1>
-
 			</div>
+
 		</div>
 		<div class="admin-bot">
 			<button ng-show="startButton" ng-click="startPlayer()">Start Player</button>
@@ -31,8 +33,10 @@
 			<button ng-show="endButton" ng-click="endGame()">End Game</button>
 			<button ng-show="!endButton" ui-sref="matchHistory">View Results</button>
 		</div>
+
 	</div>
 	<div class="judge-area">
+
 		<div class="admin-judge-box" ng-repeat="score in scores">
 			<div class="new-judge-container">
 				<h1>{{ getJudge(score).name }}</h1>

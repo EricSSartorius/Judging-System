@@ -1,7 +1,7 @@
 angular.module('judging-system').controller('JudgingConsoleCtrl', function ($scope, $meteor) {
 	$scope.score = 0;
-	$scope.disabled = true;
-	window.scope = $scope;
+	// $scope.disabled = true;
+	// window.scope = $scope;
 	$scope.event = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
     });
@@ -16,6 +16,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		  	}
 		}
 	};
+
 	$scope.showTime = function() {
 		if ($scope.event[0] === undefined) {
 			return 0;
@@ -24,6 +25,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return $scope.event[0].currentTime;
 		}
 	};
+
 	$scope.disableConsole = function() {
 		var disabled = false;
 		if($scope.event[0] === undefined) {
@@ -47,6 +49,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return $scope.event[0].players.find(function(player){return player.id === $scope.event[0].currentPlayerId;}).name;
 		}
 	};
+
 	$scope.showCurrentRound = function(){
 		if ($scope.event[0] === undefined) {
 			return "-";
@@ -55,6 +58,7 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 			return $scope.event[0].currentRound;
 		}
 	};
+
 	$scope.submitScore = function() {
 		$scope.submitted = true;
 	    var existingScore = Scores.findOne({
@@ -75,5 +79,5 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		        score: $scope.score
 	    	});
     	}
-	}
+	};
 });

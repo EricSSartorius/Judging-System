@@ -14,12 +14,14 @@
 					{{$index + 1}}.
 				</li>
 			</ul>
+
 			<ul>
 				<li>{{name}}</li>
 				<li ng-repeat="player in events[0].players | limitTo: 10">
 					{{ player.name }}
 				</li>
 			</ul>
+			
 			<ul>
 				<li>{{points}}</li>
 				<li ng-repeat="player in events[0].players | limitTo: 10">
