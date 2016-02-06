@@ -69,6 +69,10 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
           return $meteor.requireUser();
         }
       }
+    })    
+    .state('help', {
+      url: '/help',
+      templateUrl: 'client/views/help.ng.html'
     })
     .state('createEvent', {
       url: '/create-event',
