@@ -39,16 +39,16 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		}  
 	};
 
-	function initializeVar() {
+	function initializeVar(eventId) {
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
-		$scope.event = $scope.events[0];
+		$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
 		$scope.endButton = true;
 		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		window.scope = $scope;
 		$scope.scores = $scope.$meteorCollection(function() {
 	        // console.log($scope.event);
-	        if($scope.event!==null) {
+	        if(($scope.event !== null) && ($scope.event !== undefined)) {
 		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 		    }else {
 		    	return Scores.find({eventId:"none"});
@@ -104,9 +104,9 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	};
 
 	//Refresh admin console when new event is seleted
-	$scope.updateEventDetails = function() {
-		Events.update($scope.event._id, {$set: {inGame: false}});
-		initializeVar();
+	$scope.updateEventDetails = function(myEventId) {
+		Events.update(myEventId, {$set: {inGame: false}});
+		initializeVar(myEventId);
 	};
 
 	$scope.updateScores = function() {

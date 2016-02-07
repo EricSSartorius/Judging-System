@@ -1,7 +1,7 @@
 <div id="admin-console">
 	<div class="console-container">
 		<div class="admin-top">
-		 	<select ng-options="event.name for event in myEvents track by event._id" ng-change="updateEventDetails()" ng-model="event">
+		 	<select ng-options="event.name for event in myEvents track by event._id" ng-change="updateEventDetails(event._id)" ng-model="event">
 		 	</select>
 		    <h2><i class="fa fa-user"></i> {{ getPlayerName() }}</h2>
 		</div>

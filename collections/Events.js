@@ -74,8 +74,10 @@ Score = new SimpleSchema({
 		type: String,
 		label: "author",
 		autoValue: function() {
-			return this.userId
+				return this.userId;
 		},
+		denyUpdate: true,
+		optional: true,
 		autoform: {
 			type: "hidden"
 		}
@@ -84,8 +86,10 @@ Score = new SimpleSchema({
 		type: Date,
 		label: "Created At",
 		autoValue: function() {
-			return new Date()
+			 return new Date;
 		},
+		denyUpdate: true,
+		optional: true,
 		autoform: {
 			type: "hidden"
 		}
@@ -129,8 +133,10 @@ EventSchema = new SimpleSchema({
 		type: String,
 		label: "author",
 		autoValue: function() {
-			return this.userId
+			if(this.isInsert)
+				return this.userId
 		},
+		optional: true,
 		autoform: {
 			type: "hidden"
 		}
@@ -139,8 +145,10 @@ EventSchema = new SimpleSchema({
 		type: Date,
 		label: "Created At",
 		autoValue: function() {
-			return new Date()
+			if(this.isInsert)
+				return new Date()
 		},
+		optional: true,
 		autoform: {
 			type: "hidden"
 		}
