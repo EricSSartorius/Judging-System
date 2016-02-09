@@ -1,6 +1,14 @@
 angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope, $interval, $meteor, TimeFactory) {
 	var index;
 
+	var emptyEvent = {
+		_id: "empty",
+		name: "No events created",
+		roundTime: 0,
+		currentRound: "--",
+		inGame: false
+	};
+
 	function getTotalScore() {
 		var playerScores = $scope.$meteorCollection(function() {
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
@@ -40,12 +48,15 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	};
 
 	function initializeVar(eventId) {
+		window.scope = $scope;
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
-		$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
+		if($scope.myEvents.length > 0){
+			$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
+		}
+		if($scope.event === undefined) $scope.event = emptyEvent;
 		$scope.endButton = true;
 		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
-		window.scope = $scope;
 		$scope.scores = $scope.$meteorCollection(function() {
 	        // console.log($scope.event);
 	        if(($scope.event !== null) && ($scope.event !== undefined)) {
@@ -54,7 +65,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		    	return Scores.find({eventId:"none"});
 		    }
 		});
-		if (!$scope.event.inGame) {
+		if (!$scope.event.inGame && $scope.event._id !== "empty") {
 			index = 0;
 			$scope.totalScore = 0;
 		  	$scope.roundTime = $scope.event.timeLimit;
@@ -65,11 +76,10 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		  	$scope.nextRoundButton = false;
 		  	$scope.event.currentPlayerId = $scope.event.players[0].id;
 		  	$scope.event.currentRound = 1;
-		  	Events.update($scope.event._id, {$set: {inGame: false}});
 		  	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
 		  	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 		}
-		else {
+		else if($scope.event.inGame){
 			getTotalScore();
 			for(var i in $scope.event.players){
 				if($scope.event.players[i].id === $scope.event.currentPlayerId){ index = Number(i) };
@@ -100,6 +110,9 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				$scope.nextRoundButton = false;
 			}
 			startMyTimer();
+		}
+		else{
+			$scope.roundTime = 0;
 		} 
 	};
 
@@ -132,6 +145,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	};
 
 	$scope.getPlayerName = function() {
+		if($scope.event._id === "empty" ) return $scope.event.name;
 		return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).name;
 	};
 
