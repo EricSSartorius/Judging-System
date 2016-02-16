@@ -4,40 +4,40 @@ md-backdrop
     position fixed
     
 .sidebar
+    svg
+        margin 5px auto 0 auto
     position fixed
-    background darken(blue, 20%)
+    width 200px
+    min-width 200px
+    max-width 200px
+    background light-grey
     .nav-toolbar
         background light-grey
-        height 100px
-        h1
-            margin auto
-            font-size 1.8em
-            color epic-grey
-    .sidebar-main
-        
-    // fixed bottom left
-    // height 100px
-    // width 100%
-    // overflow hidden 
-    background darken(blue, 20%)
-    color #FFF
-    z-index: z.header
+        height 50px
+        text-align center
+        font-size 1.8em
+        color epic-grey
     shadow-level(2)
     ul
-        margin 0 0 0 -10px
+        margin 0
         padding 0
-        display flex
-        justify-content space-between 
         list-style none
+        li
+            border-top 1px solid grey
+            &:first-child
+                border-top none
     a
-        color #fff
+        color dark-blue
         text-decoration none
         padding 20px 0 20px 20px
         display block
         text-align left
-        // trans()
+        trans()
         &:hover, &.active
-            background lighten(@background, 5%)
+            background darken(@background, 10%)
+            
+
+
     // +above($med)
     //     height 100%
     //     z-index: z.mid

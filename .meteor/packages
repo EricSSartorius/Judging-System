@@ -19,14 +19,15 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 angular
 urigo:angular-ui-router
 angular:angular-material
+dotansimha:accounts-ui-angular
 accounts-ui
 accounts-password
 stolinski:stylus-multi
-urigo:angular-blaze-template
 meteortoys:allthings
 fortawesome:fontawesome
 gwendall:auth-client-callbacks
 aldeed:collection2
 aldeed:autoform
 spiderable
+east5th:check-checker
 

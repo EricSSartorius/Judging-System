@@ -53,7 +53,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.viewResultsButton = false;
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
-		if($scope.myEvents.length > 0){
+		if($scope.myEvents.length > 0) {
 			$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
 		}
 		if($scope.event === undefined) {
