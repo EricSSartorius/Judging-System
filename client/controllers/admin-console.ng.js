@@ -23,10 +23,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				tempPlayers[i].totalScore = $scope.totalScore;
 			}
 		}
-		//Sorts the order of scores for the leaderboard. Needs changes so that it does not affect player order in the collection
-		// tempPlayers = tempPlayers.sort(function(a,b){
-		// 	return b.totalScore-a.totalScore;
-		// });
 		Events.update($scope.event._id ,{$set:{players: tempPlayers}});
 	};
 	
