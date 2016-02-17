@@ -2,7 +2,7 @@
 	<h1 class="title">{{ event.name }}</h1>
 	<h1 class="title">{{ noEvent }}</h1>
 	<div class="leaderboard-wrapper">
-		<div class="leaderboard-winner" ng-repeat="player in events[0].players | limitTo: 1">
+		<div class="leaderboard-winner" ng-repeat="player in events[0].players | limitTo: 1 | orderBy:'-totalScore' ">
 	 		<h2>1st Place</h2>
 			<h1 class="winner">{{ player.name }}</h1>
 			<h1 class="winner">{{ player.totalScore }}</h1>
@@ -10,21 +10,21 @@
 		<div class="leaderboard-list">
 			<ul>
 				<li>{{rank}}</li>
-				<li ng-repeat="player in events[0].players | limitTo: 10">
+				<li ng-repeat="player in events[0].players | limitTo: 10 | orderBy:'-totalScore' ">
 					{{$index + 1}}.
 				</li>
 			</ul>
 
 			<ul>
 				<li>{{name}}</li>
-				<li ng-repeat="player in events[0].players | limitTo: 10">
+				<li ng-repeat="player in events[0].players | limitTo: 10 | orderBy:'-totalScore' ">
 					{{ player.name }}
 				</li>
 			</ul>
-			
+
 			<ul>
 				<li>{{points}}</li>
-				<li ng-repeat="player in events[0].players | limitTo: 10">
+				<li ng-repeat="player in events[0].players | limitTo: 10 | orderBy:'-totalScore' ">
 					{{ player.totalScore }}
 				</li>
 			</ul>
