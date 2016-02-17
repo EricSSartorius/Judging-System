@@ -50,7 +50,16 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
 		if($scope.myEvents.length > 0) {
-			$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
+			if(Events.findOne({inGame:true})){
+				$scope.event = Events.findOne({inGame:true});
+				for(var i in $scope.myEvents){
+					if($scope.event._id === $scope.myEvents[i]._id){
+						$scope.myEvents.unshift($scope.myEvents.splice(i,1)[0]);
+					}
+				}
+			}else{
+				$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
+			}
 		}
 		if($scope.event === undefined) {
 			$scope.event = emptyEvent;
