@@ -44,6 +44,12 @@ header
     height 45px 
     z-index: z.header
     shadow-level(2)
+    .logo
+        +below($small)
+            display none
+        margin -15px 0 0 10px
+        float left
+        font-size 32px
     a
         color white
         text-decoration none
@@ -53,16 +59,6 @@ header
         &:hover
             cursor pointer
             color light-grey
-    .logo
-        +below($small)
-            display none  
-        font-weight 300
-        margin -15px 0 0 10px
-        font-size 32px
-        letter-spacing 10px
-        float left
-    .logo::first-letter
-        font-weight bold
     .login-buttons-dropdown-align-
         // margin-top -10px
         float right
@@ -79,6 +75,12 @@ header
 			text-decoration none
 
 //MISC	
+.logo
+    font-weight 300
+    letter-spacing 10px
+.logo::first-letter
+    font-weight bold
+        
 .title
     text-align center
         

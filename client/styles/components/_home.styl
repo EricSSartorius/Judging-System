@@ -1,14 +1,49 @@
 @import '../_styles'
 
 .home-wrapper
+	section, footer
+		padding 50px
 	.home-hero
-		background light-grey
+		background-image url("/img/barkingz.jpg")
+		background-size cover
+		color white
+		svg
+			lost-column 1
+		.logo
+			text-align center
+			font-size 48px
+		h3
+			float left
+		button
+			float right
+		clearfix()
 	.home-intro
+		img
+			lost-column 1/2
+		.intro-text
+			lost-column 1/2
 		background white
+		clearfix()
 	.home-123
 		background grey
+		text-align center
+		.home-create, .home-admin, .home-judge
+			lost-column 1/3
+			p
+				padding 0 20px
+		clearfix()
 	.home-quick-sb
-		background dark-blue
+		background-image url("/img/competition.jpg")
+		background-size cover
+		button
+			float right
+		clearfix()
 	.home-signup
 		background white
+		button
+			float right
+		clearfix()
+	footer
+		background dark-blue
+		color white
 			

@@ -48,16 +48,18 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.endButton = true;
 		$scope.viewResultsButton = false;
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
+		console.log(Accounts.userId());
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
 		if($scope.myEvents.length > 0) {
-			if(Events.findOne({inGame:true})){
+			if(Events.findOne({inGame:true})) {
 				$scope.event = Events.findOne({inGame:true});
-				for(var i in $scope.myEvents){
-					if($scope.event._id === $scope.myEvents[i]._id){
+				for(var i in $scope.myEvents) {
+					if($scope.event._id === $scope.myEvents[i]._id) {
 						$scope.myEvents.unshift($scope.myEvents.splice(i,1)[0]);
 					}
 				}
-			}else{
+			}
+			else {
 				$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
 			}
 		}
@@ -66,12 +68,11 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			$scope.endButton = false;
 			$scope.viewResultsButton = false;
 		}
-		//$scope.eventId = {id: $scope.event._id, name: $scope.event.name};
 		$scope.scores = $scope.$meteorCollection(function() {
-	        // console.log($scope.event);
 	        if(($scope.event !== null) && ($scope.event !== undefined)) {
 		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
-		    }else {
+		    }
+		    else {
 		    	return Scores.find({eventId:"none"});
 		    }
 		});
@@ -95,13 +96,13 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		  	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
 		  	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 		}
-		else if($scope.event.inGame){
+		else if($scope.event.inGame) {
 			getTotalScore();
-			for(var i in $scope.event.players){
+			for(var i in $scope.event.players) {
 				if($scope.event.players[i].id === $scope.event.currentPlayerId){ index = Number(i) };
 			}
 			$scope.roundTime = TimeFactory.getCurrentTime();
-			if($scope.roundTime===$scope.event.timeLimit){
+			if($scope.roundTime===$scope.event.timeLimit) {
 				$scope.startButton = true;
 		  		$scope.stopButton = false;
 		  	}
