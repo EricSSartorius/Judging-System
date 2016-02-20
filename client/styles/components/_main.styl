@@ -45,22 +45,25 @@ header
     z-index: z.header
     shadow-level(2)
     .logo
+        font-size 32px
+        display inline-block
         +below($small)
             display none
         margin -15px 0 0 10px
-        float left
-        font-size 32px
+        // float left
+        
     a
         color white
         text-decoration none
     .fa-bars
-        float left
+        display inline-block
+        // float left
         margin -15px 0 0 0
         &:hover
             cursor pointer
             color light-grey
     .login-buttons-dropdown-align-
-        // margin-top -10px
+        margin-top -25px
         float right
         a
             color #FFF
