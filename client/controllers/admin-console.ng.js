@@ -212,7 +212,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			Events.update(scope.event._id, {$set: {inGame: true}});
 		}
 		TimeFactory.cancelTheTimer();
-		debugger
 		$scope.event.currentPlayerId = $scope.event.players[index].id;
 		$scope.roundTime = $scope.event.timeLimit;
 		getTotalScore();
@@ -227,6 +226,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 			if( $scope.event.currentRound === $scope.event.rounds) {
 				$scope.nextRoundButton = false;
 				$scope.nextPlayerButton = false;
+				$scope.startButton = false;
 			}
 			else {
 				$scope.nextPlayerButton = false;
