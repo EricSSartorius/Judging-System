@@ -208,6 +208,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 
 	$scope.nextPlayer = function() {
 		index++;
+		TimeFactory.cancelTheTimer();
 		$scope.event.currentPlayerId = $scope.event.players[index].id;
 		$scope.roundTime = $scope.event.timeLimit;
 		getTotalScore();
@@ -215,6 +216,9 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		Events.update($scope.event._id, {$set: {currentTime: TimeFactory.getCurrentTime() }});
 		Events.update($scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		$scope.updateScores();
+		if($scope.stopButton) {
+			$scope.stopButton = false;
+		}
 		if(index + 1 === $scope.event.players.length) {
 			if( $scope.event.currentRound === $scope.event.rounds) {
 				$scope.nextRoundButton = false;
@@ -233,6 +237,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 
 	$scope.nextRound = function() {
 		$scope.event.currentRound++;
+		TimeFactory.cancelTheTimer();
 		Events.update(scope.event._id, {$set: {currentRound: scope.event.currentRound }});
 		$scope.roundTime = $scope.event.timeLimit;
 		TimeFactory.setCurrentTime($scope.roundTime);
@@ -241,6 +246,9 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		getTotalScore();
 		Events.update(scope.event._id, {$set: {currentPlayerId: scope.event.currentPlayerId }});
 		$scope.updateScores();
+		if($scope.stopButton) {
+			$scope.stopButton = false;
+		}
 		if($scope.event.players.length === 1 && $scope.event.currentRound === $scope.event.rounds) {
 			$scope.startButton = true;
 			$scope.nextRoundButton = false;
