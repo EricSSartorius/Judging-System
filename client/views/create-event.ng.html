@@ -1,12 +1,13 @@
 <div class="create-event main-layout">
   <h1 class="title">Create Event</h1>
+  <hr>
   <form ng-submit="createEvent()">
     <div class="create-wrapper">
     
       <div class="create1">
         <label>Event Name</label>
         <md-input-container class="event-name">
-          <input type="text" ng-model="event.name">
+          <input type="text" ng-model="event.name" aria-label="event name">
         </md-input-container>
       </div>
 
@@ -15,11 +16,11 @@
         <div>
           <md-input-container class="min">
             <label>Min</label>
-            <input type="number" placeholder="2" ng-model="event.timeLimitMin" min = "0" max = "99"/>
+            <input type="number" placeholder="2" ng-model="event.timeLimitMin" min = "0" max = "99" aria-label="min"/>
           </md-input-container>
           <md-input-container class="sec">
             <label>Sec</label>
-            <input placeholder="0" type="number" ng-model="event.timeLimitSec" min = "0" max = "59"/>
+            <input placeholder="0" type="number" ng-model="event.timeLimitSec" min = "0" max = "59" aria-label="sec"/>
           </md-input-container>
         </div>
       </div>
@@ -27,42 +28,42 @@
       <div class="create3">
         <label>Rounds</label>
         <md-input-container class="rounds">
-          <input type="number" ng-model="event.rounds" min="1" max="10" integer />
+          <input type="number" ng-model="event.rounds" min="1" max="10" integer aria-label="rounds"/>
         </md-input-container>
       </div>
     </div>
 
-    <h2>Players</h2>
+    <h1>Players</h1>
     <hr>
     <div class="create-players-wrapper">
       <div class="create-new-player" ng-repeat="player in players | limitTo: noOfPlayers">
           <md-input-container>
             <label>Player {{ $index + 1 }}</label>
-            <input type="text" ng-model="player.name">
+            <input type="text" ng-model="player.name" aria-label="player name">
           </md-input-container>
           <md-input-container>
             <label>Team</label>
-            <input type="text" ng-model="player.team">
+            <input type="text" ng-model="player.team" aria-label="player team">
           </md-input-container>
         <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfPlayers - 1" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
         <button type="button" class="btn-invert" ng-if="!$last || ($index >= noOfPlayers - 1)" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
       </div>
     </div>
     
-    <h2>Judges</h2>
+    <h1>Judges</h1>
     <hr>
     <div class="create-judges-wrapper">
       <div class="create-new-judge new-judge-container" ng-repeat="judge in judges | limitTo: noOfJudges">
         <md-input-container>
           <label>Judge {{ $index + 1 }}</label>
-          <input type="text" ng-model="judge.name" >
+          <input type="text" ng-model="judge.name" aria-label="judge name">
         </md-input-container>
         <md-input-container>
         <label>Email</label>
-        <input type="email" ng-model="judge.email"></md-input-container>
+        <input type="email" ng-model="judge.email" aria-label="judge email"></md-input-container>
         <md-input-container>
         <label>Category</label>
-        <input type="text" ng-model="judge.category"></md-input-container>
+        <input type="text" ng-model="judge.category" aria-label="judge category"></md-input-container>
          <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfJudges - 1" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
         <button type="button" class="btn-invert"  ng-if="!$last || ($index >= noOfJudges - 1)" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
       </div>

@@ -71,6 +71,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		$scope.scores = $scope.$meteorCollection(function() {
 	        if(($scope.event !== null) && ($scope.event !== undefined)) {
 		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
+		        $scope.getJudge();
 		    }
 		    else {
 		    	return Scores.find({eventId:"none"});
