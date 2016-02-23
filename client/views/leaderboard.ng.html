@@ -1,11 +1,17 @@
-<div class="leaderboard main-layout">
+<div class="leaderboard">
 	<h1 class="title">{{ event.name }}</h1>
 	<h1 class="title">{{ noEvent }}</h1>
 	<div class="leaderboard-wrapper">
-		<div class="leaderboard-winner" ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
-	 		<h2>1st Place</h2>
-			<h1 class="winner">{{ player.name }}</h1>
-			<h1 class="winner">{{ player.totalScore }}</h1>
+		{{player.totalScore}}
+		<div class="leaderboard-winner"  ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
+	 		<h2 ng-hide="dowehaveTie">1st Place</h2>
+			<h1 class="winner" ng-hide="dowehaveTie">{{ player.name }}</h1>
+			<h1 class="winner" ng-hide="dowehaveTie">{{ player.totalScore }}</h1>
+			{{dowehaveTie.length}}
+			<h2 ng-hide="downhaveTie">We have a Tie</h2>
+			<div ng-repeat="player in dowehaveTie">
+				<h1>{{player.name}} : {{player.score}}</h1>
+			</div>
 		</div>
 		<div class="leaderboard-list">
 			<ul>
@@ -15,12 +21,26 @@
 				</li>
 			</ul>
 
-			<ul>
-				<li>{{name}}</li>
-				<li ng-repeat="player in events[0].players| orderBy:'-totalScore' | limitTo: 10  ">
+			<!-- tied players -->
+			<ul ng-show="dowehaveTie.length > 1">
+				<li ng-repeat="player in events[0].players| orderBy:'-totalScore' | limitTo: dowehaveTie.length  " style="color:red">
+					{{ player.name }}
+				</li>
+				<!-- if theres tied players this will show the losers -->
+				<li ng-repeat="player in events[0].players| orderBy:'-totalScore' | limitTo: 10 - dowehaveTie.length: dowehaveTie.length">
 					{{ player.name }}
 				</li>
 			</ul>
+			<!-- end tied players lists -->
+
+			<!-- only show this list when there's no tied players -->
+			<ul ng-hide="dowehaveTie.length > 1">
+				<li>{{name}}</li>
+				<li ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo: 10  ">
+					{{ player.name }}
+				</li>
+			</ul>
+			<!-- end of only show this list when there's no tied players -->
 
 			<ul>
 				<li>{{points}}</li>
@@ -28,6 +48,7 @@
 					{{ player.totalScore }}
 				</li>
 			</ul>
+
 		</div>
 	</div>
 </div>
