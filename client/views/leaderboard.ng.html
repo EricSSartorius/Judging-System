@@ -1,15 +1,14 @@
 <div class="leaderboard">
 	<h1 class="title">{{ event.name }}</h1>
+	<!-- <h1 class="title">No event currently running</h1> -->
 	<h1 class="title">{{ noEvent }}</h1>
 	<div class="leaderboard-wrapper">
-		{{player.totalScore}}
 		<div class="leaderboard-winner"  ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
 	 		<h2 ng-hide="dowehaveTie">1st Place</h2>
 			<h1 class="winner" ng-hide="dowehaveTie">{{ player.name }}</h1>
 			<h1 class="winner" ng-hide="dowehaveTie">{{ player.totalScore }}</h1>
-			{{dowehaveTie.length}}
 			<h2 ng-show="dowehaveTie.length > 1">We have a Tie</h2>
-			<div ng-repeat="player in dowehaveTie">
+			<div ng-show="dowehaveTie.length === 2" ng-repeat="player in dowehaveTie">
 				<h1>{{player.name}} : {{player.score}}</h1>
 			</div>
 		</div>
