@@ -1,25 +1,26 @@
 @import '../_styles'
 
 .create-event
-    h2
+    background light-grey
+    shadow-level(2)
+    h1
         text-align center
     hr
         border 0
         height 1px
-        background light-grey
-        margin-bottom 40px
+        width 50%
+        background grey
+        margin-bottom 10px
     padding 20px
     margin-bottom 30px           
     .create-wrapper
-        background light-grey
-        padding 20px
-        margin-bottom 50px
-        lost-column 1
+        clearfix()
+        padding 100px 50px
         .min,.sec,.create3
             lost-column 1/2
         div
             padding 15px 0
-        +above($small)
+        +above(550px)
             .create1
                 lost-column 1/3
                 .event-name
@@ -38,29 +39,32 @@
                 .rounds
                     padding-top 8px
                     margin-top 22px
+                    width 50px
     .create-new-player
+        shadow-level(2)
         +above($small)
             lost-column 1/2
         +above($large)
             lost-column 1/4
         padding 20px
         margin 10px 0
-        background light-grey
+        background white
         input
             margin 0
         button
             width 100%
     .create-players-wrapper
+        clearfix()
         padding 20px 0
-        lost-column 1
-        margin-bottom 10px
+        margin-bottom 50px
     .create-judges-wrapper
+        clearfix()
         lost-utility clearfix
         background transparent 
         padding 10px 0
         margin-top 10px
-        lost-column 1
     .create-new-judge
+        shadow-level(2)
         margin 10px 0
         input
             margin 0
@@ -71,7 +75,10 @@
     .submit-wrapper
         float right
         padding 30px 0
+    .new-judge-container
+        background white
         
+ //style for judge container in admin-console as well as create-event       
 .new-judge-container
     position relative
     background light-grey
