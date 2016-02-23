@@ -4,19 +4,22 @@ md-backdrop
     position fixed
     
 .sidebar
-    svg
-        margin 5px auto 0 auto
     position fixed
     width 200px
     min-width 200px
     max-width 200px
     background light-grey
+    svg
+        margin 5px auto 0 auto
+        &:hover
+            cursor pointer
     .nav-toolbar
         background light-grey
         height 50px
         text-align center
         font-size 1.8em
         color epic-grey
+        margin-bottom 10px
     shadow-level(2)
     ul
         margin 0
@@ -24,8 +27,6 @@ md-backdrop
         list-style none
         li
             border-top 1px solid grey
-            &:first-child
-                border-top none
     a
         color dark-blue
         text-decoration none

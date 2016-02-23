@@ -18,7 +18,7 @@
 		    <md-button ng-click="judging-system.logout()" ng-show="judging-system.isLoggedIn">Logout</md-button> -->
 		</header>
 		<md-sidenav class="sidebar" md-component-id="left">
-	      <md-toolbar class="nav-toolbar">
+	      <md-toolbar ui-sref="home" ng-click="toggleLeft()" class="nav-toolbar">
 	        <svg width="124px" height="164px" viewBox="0 0 124 164" version="1.1">
 			    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
 			        <g id="Logo" sketch:type="MSArtboardGroup">
@@ -35,14 +35,14 @@
 	      </md-toolbar>
 	      <div ng-controller="LeftCtrl" >
 			<ul>
-				<li><a ui-sref="home" ng-click="toggleLeft()">Home</a></li>
-				<li><a ui-sref="createEvent" ng-hide ="hiddenLink"  ng-click="toggleLeft()">Create Event</a></li>
-				<li><a ui-sref="adminConsole" ng-hide ="hiddenLink" ng-click="toggleLeft()">Admin Console</a></li>
-				<li><a ui-sref="judgingConsole" ng-hide ="hiddenLink" ng-click="toggleLeft()">Judging Console</a></li>
-				<li><a ui-sref="leaderboard" ng-hide ="hiddenLink" ng-click="toggleLeft()">Leaderboard</a></li>
+				<!-- <li><a ui-sref="home" ng-click="toggleLeft()">Home</a></li> -->
+				<li ng-hide ="hiddenLink"  ng-click="toggleLeft()"><a ui-sref="createEvent">Create Event</a></li>
+				<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="adminConsole">Admin Console</a></li>
+				<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="judgingConsole">Judging Console</a></li>
+				<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="leaderboard">Leaderboard</a></li>
 <!-- 				<li><a ui-sref="matchHistory" ng-click="toggleRight()">Match History</a></li> -->
-				<li><a ui-sref="quickScoreboard" ng-click="toggleLeft()">Quick Scoreboard</a></li>
-				<li><a ui-sref="help" ng-click="toggleLeft()">Help</a></li>
+				<li ng-click="toggleLeft()"><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
+				<li ng-click="toggleLeft()"><a ui-sref="help">Help</a></li>
 			</ul>
 	      </div>
 	    </md-sidenav>
