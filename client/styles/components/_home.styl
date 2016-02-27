@@ -3,27 +3,30 @@
 .home-wrapper
 	section, footer
 		padding 50px
+		+above($large)
+			padding 100px
 	h1
 		padding 50px 0
 	.home-hero
 		background-image url("/img/skateboarding2.jpg") 
 		background-size cover
+		background-repeat no-repeat
+		background-position center top
 		color white
 		text-align center
 		h1
-			padding-bottom 0
+			padding 0
+			margin 0
 		h3
 			margin 0 0 50px 0
-		button
-			margin-bottom 100px
+		// button
+		// 	margin-bottom 100px
 		svg
-			lost-column 1
 			margin-top 100px
 		.logo
 			+above(380px)
 				font-size 48px
 			margin-bottom 20px
-		clearfix()
 	.home-intro
 		background white
 		clearfix()
@@ -31,9 +34,12 @@
 			text-align center
 			color dark-blue
 		img, .intro-text
-			lost-column 1/2
-			+below($large)
-				lost-column 1
+			lost-column 1
+			+above($large)
+				lost-column 1/2
+				p:first-child
+					margin-top 0
+				
 	.home-123
 		background grey
 		text-align center
@@ -54,6 +60,8 @@
 	.home-quick-sb
 		background-image url("/img/competition2.jpg")
 		background-size cover
+		background-repeat no-repeat
+		background-position center top
 		h1
 			color white
 		p
