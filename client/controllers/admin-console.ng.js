@@ -43,26 +43,32 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		}  
 	};
 
+	function setupMyEvents(eventId) {
+		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
+		if($scope.myEvents.length > 0) {	
+			var eventFound = false;
+		 	for(var i=0; i<$scope.myEvents.length; i++){
+		 		console.log($scope.myEvents[i]); 
+			    if($scope.myEvents[i].inGame){
+			      eventFound = true;      
+			      $scope.event = $scope.myEvents[i];
+			      $scope.myEvents = [$scope.event];
+			      console.log($scope.myEvents);
+			    }
+		  	}
+			if(!eventFound){
+				$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
+			}
+		}
+	};
+
 	function initializeVar(eventId) {
 		window.scope = $scope;
 		$scope.endButton = true;
 		$scope.viewResultsButton = false;
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
 		console.log(Accounts.userId());
-		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
-		if($scope.myEvents.length > 0) {
-			if(Events.findOne({inGame:true})) {
-				$scope.event = Events.findOne({inGame:true});
-				for(var i in $scope.myEvents) {
-					if($scope.event._id === $scope.myEvents[i]._id) {
-						$scope.myEvents.unshift($scope.myEvents.splice(i,1)[0]);
-					}
-				}
-			}
-			else {
-				$scope.event = eventId === undefined ? $scope.myEvents[0] : Events.findOne({_id: eventId});
-			}
-		}
+		setupMyEvents(eventId);
 		if($scope.event === undefined) {
 			$scope.event = emptyEvent;
 			$scope.endButton = false;
@@ -136,7 +142,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 
 	//Refresh admin console when new event is seleted
 	$scope.updateEventDetails = function(myEventId) {
-		var allEvents = Events.find({}).fetch();
+		var allEvents = Events.find({author:Accounts.userId()}).fetch();
 		for(var i in allEvents) {
 			if(allEvents[i]._id !== $scope.event._id) {
 				Events.update(allEvents[i]._id, {$set: {inGame: false}});
@@ -184,7 +190,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				$scope.nextRoundButton = $scope.rounds > 1 ? true : false;
 			}
 			Events.update(scope.event._id, {$set: {inGame: true}});
-			var allEvents = Events.find({}).fetch();
+			setupMyEvents();
+			var allEvents = Events.find({author:Accounts.userId()}).fetch();
 			for(var i in allEvents) {
 				if(allEvents[i]._id !== $scope.event._id) {
 					Events.update(allEvents[i]._id, {$set: {inGame: false}});
@@ -273,6 +280,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		TimeFactory.setCurrentTime($scope.roundTime);
 		getTotalScore();
 		Events.update(scope.event._id, {$set: {inGame: false }});
+		setupMyEvents();
 		$scope.nextRoundButton = false;
 		$scope.nextPlayerButton = false;
 		$scope.startButton = false;
