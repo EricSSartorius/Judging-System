@@ -2,60 +2,63 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	$scope.score = 0;
 	// $scope.disabled = true;
 	// window.scope = $scope;
-	$scope.event = $scope.$meteorCollection(function(){
+	$scope.events = $scope.$meteorCollection(function(){
 		return runningEvents = Events.find({inGame: true});
     });
 
     $scope.checkForJudge = function() {
-		for(var i = 0; i < $scope.event[0].judges.length; i++){
-			var judge = $scope.event[0].judges[i];
-			var user = Meteor.users.findOne({_id:Meteor.userId()});
-		  	if (user.emails.map(function(email){return email.address;}).indexOf(judge.email) !== -1){
-		  		$scope.judge = judge;
-		  		break;
-		  	}
+		for(var j=0; j < $scope.events.length; j++){
+			for(var i = 0; i < $scope.events[j].judges.length; i++){
+				var judge = $scope.events[j].judges[i];
+				var user = Meteor.users.findOne({_id:Meteor.userId()});
+			  	if (user.emails.map(function(email){return email.address;}).indexOf(judge.email) !== -1){
+			  		$scope.judge = judge;
+			  		$scope.event = $scope.events[j];
+			  		break;
+			  	}
+			}
 		}
 	};
 
 	$scope.showTime = function() {
-		if ($scope.event[0] === undefined) {
+		if ($scope.event === undefined) {
 			return 0;
 		}
 		else {
-			return $scope.event[0].currentTime;
+			return $scope.event.currentTime;
 		}
 	};
 
 	$scope.disableConsole = function() {
+		$scope.checkForJudge();
 		var disabled = false;
-		if($scope.event[0] === undefined) {
+		if($scope.event === undefined) {
 			disabled = true;
 		}
 		else {
-			$scope.checkForJudge();
-			var scoreCollection = Scores.find({eventId:$scope.event[0]._id, judgeId: $scope.judge.id, playerId: $scope.event[0].currentPlayerId, round: $scope.event[0].currentRound}).fetch();
+			var scoreCollection = Scores.find({eventId:$scope.event._id, judgeId: $scope.judge.id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound}).fetch();
 		    disabled = scoreCollection.length > 0;
 		    if(!disabled){
-		    	disabled = $scope.event[0].currentTime === $scope.event[0].timeLimit;
+		    	disabled = $scope.event.currentTime === $scope.event.timeLimit;
 		    }
 		}
 		return disabled;
 	}
 	$scope.getPlayerName = function(){
-		if ($scope.event[0] === undefined) {
+		if ($scope.event === undefined) {
 			return "No Current Player";
 		}
 		else {
-			return $scope.event[0].players.find(function(player){return player.id === $scope.event[0].currentPlayerId;}).name;
+			return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).name;
 		}
 	};
 
 	$scope.showCurrentRound = function(){
-		if ($scope.event[0] === undefined) {
+		if ($scope.event === undefined) {
 			return "-";
 		}
 		else {
-			return $scope.event[0].currentRound;
+			return $scope.event.currentRound;
 		}
 	};
 
@@ -63,9 +66,9 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 		$scope.submitted = true;
 	    var existingScore = Scores.findOne({
 	        judgeId: $scope.judge.id,
-	        playerId: $scope.event[0].currentPlayerId,
-	        eventId: $scope.event[0]._id,
-	        round: $scope.event[0].currentRound
+	        playerId: $scope.event.currentPlayerId,
+	        eventId: $scope.event._id,
+	        round: $scope.event.currentRound
 	    });
 	    if (existingScore){
 			 Scores.update({_id: existingScore._id}, {$set: {score: $scope.score}});
@@ -73,9 +76,9 @@ angular.module('judging-system').controller('JudgingConsoleCtrl', function ($sco
 	    else {
 			Scores.insert({
 		        judgeId: $scope.judge.id,
-		        playerId: $scope.event[0].currentPlayerId,
-		        eventId: $scope.event[0]._id,
-		        round: $scope.event[0].currentRound,
+		        playerId: $scope.event.currentPlayerId,
+		        eventId: $scope.event._id,
+		        round: $scope.event.currentRound,
 		        score: $scope.score
 	    	});
     	}

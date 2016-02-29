@@ -48,12 +48,10 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		if($scope.myEvents.length > 0) {	
 			var eventFound = false;
 		 	for(var i=0; i<$scope.myEvents.length; i++){
-		 		console.log($scope.myEvents[i]); 
 			    if($scope.myEvents[i].inGame){
 			      eventFound = true;      
 			      $scope.event = $scope.myEvents[i];
 			      $scope.myEvents = [$scope.event];
-			      console.log($scope.myEvents);
 			    }
 		  	}
 			if(!eventFound){
