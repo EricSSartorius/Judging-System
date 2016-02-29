@@ -1,9 +1,8 @@
-angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $meteor) {
+angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $meteor, $state) {
 	$scope.noOfJudges = 7;
 	$scope.noOfPlayers = 100;
 
 	var initializeObjects = function(createdName) {
-		$scope.success = createdName ? "Event " + createdName + " created." : "";
 		$scope.event = {
 			name: '',
 			timeLimitMin: 2,
@@ -22,7 +21,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			name: '',
 			category: ''
 		}];
-		$scope.error = "";
+		$scope.errorMsg = "";
 	};
 	initializeObjects();
 
@@ -51,10 +50,10 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			jEmails.push($scope.judges[i].email);
 		}
 		if(hasDuplicateEmail){
-			$scope.error = "A judge's email address cannot be used more than once.";
+			$scope.errorMsg = "A judge's email address cannot be used more than once.";
 		}
 		else {
-			$scope.error = "";
+			$scope.errorMsg = "";
 			$scope.event.timeLimit = timeLimit;
 		    $scope.event.players = $scope.players;
 		    $scope.event.judges = $scope.judges;
@@ -65,8 +64,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 				else {
 					$scope.$apply(function(){
 						if (id) {
-							initializeObjects($scope.event.name);
-							window.scrollTo(0,0);
+							$state.go('adminConsole');
 						}
 					});
 				}
