@@ -2,7 +2,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	$scope.noOfJudges = 7;
 	$scope.noOfPlayers = 100;
 
-	var initializeObjects = function() {
+	var initializeObjects = function(createdName) {
+		$scope.success = createdName ? "Event " + createdName + " created." : "";
 		$scope.event = {
 			name: '',
 			timeLimitMin: 2,
@@ -21,6 +22,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			name: '',
 			category: ''
 		}];
+		$scope.error = "";
 	};
 	initializeObjects();
 
@@ -40,20 +42,35 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 
 	$scope.createEvent = function() {
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
-		$scope.event.timeLimit = timeLimit;
-	    $scope.event.players = $scope.players;
-	    $scope.event.judges = $scope.judges;
-		Events.insert($scope.event, function(err, id){
-			if (err) {
-				console.log(err);
-			} 
-			else {
-				$scope.$apply(function(){
-					if (id) {
-						initializeObjects();
-					}
-				});
+		var jEmails = [];
+		var hasDuplicateEmail = false;
+		for(var i = 0; i < $scope.judges.length; i++){
+			if(jEmails.indexOf($scope.judges[i].email) > -1){
+				hasDuplicateEmail = true;
 			}
-		});
+			jEmails.push($scope.judges[i].email);
+		}
+		if(hasDuplicateEmail){
+			$scope.error = "A judge's email address cannot be used more than once.";
+		}
+		else {
+			$scope.error = "";
+			$scope.event.timeLimit = timeLimit;
+		    $scope.event.players = $scope.players;
+		    $scope.event.judges = $scope.judges;
+			Events.insert($scope.event, function(err, id){
+				if (err) {
+					console.log(err);
+				} 
+				else {
+					$scope.$apply(function(){
+						if (id) {
+							initializeObjects($scope.event.name);
+							window.scrollTo(0,0);
+						}
+					});
+				}
+			});
+		}
 	};
 });

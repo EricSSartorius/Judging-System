@@ -1,4 +1,7 @@
 <div class="create-event main-layout">
+  <div class="success-message">
+    <p class="suc-msg">{{ success }}</p>
+  </div>
   <h1 class="title">Create Event</h1>
   <hr>
   <form ng-submit="createEvent()">
@@ -69,6 +72,10 @@
       </div>
     </div>
 
+    <div class="error-message">
+      <p class="err-msg">{{ error }}</p>
+    </div>
+    
     <div class="submit-wrapper">
       <button type="submit">Submit</button>
     </div>
