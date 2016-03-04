@@ -44,16 +44,19 @@
       <hr>
       <div class="create-players-wrapper">
         <div class="create-new-player" ng-repeat="player in players | limitTo: noOfPlayers">
-            <md-input-container>
-              <label>Player {{ $index + 1 }}</label>
-              <input type="text" ng-model="player.name" maxlength="20" aria-label="player name" name="playerName" required>
-            </md-input-container>
-            <md-input-container>
-              <label>Team</label>
-              <input type="text" ng-model="player.team" maxlength="20" aria-label="player team" name="playerTeam">
-            </md-input-container>
-          <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfPlayers - 1" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
-          <button type="button" class="btn-invert" ng-if="!$last || ($index >= noOfPlayers - 1)" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
+          <md-input-container>
+            <label>Player {{ $index + 1 }}</label>
+            <input type="text" ng-model="player.name" maxlength="20" aria-label="player name" name="playerName" required>
+          </md-input-container>
+          <md-input-container>
+            <label>Team</label>
+            <input type="text" ng-model="player.team" maxlength="20" aria-label="player team" name="playerTeam">
+          </md-input-container>
+          <div class="add-delete">
+            <button type="button" class="btn-invert" ng-if="players.length > 1" ng-click="removePerson(players, $index)"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfPlayers - 1" ng-click="addPlayer()"><i class="fa fa-plus"></i></button>
+           
+          </div>
         </div>
       </div>
       
@@ -72,8 +75,10 @@
           <md-input-container>
           <label>Category</label>
           <input type="text" ng-model="judge.category" aria-label="judge category"></md-input-container>
-           <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfJudges - 1" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
-          <button type="button" class="btn-invert"  ng-if="!$last || ($index >= noOfJudges - 1)" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
+          <div class="add-delete">
+            <button type="button" class="btn-invert"  ng-if="judges.length > 1" ng-click="removePerson(judges, $index)"><i class="fa fa-minus"></i></button>
+             <button type="button" class="btn-invert" ng-show="$last" ng-if="$index < noOfJudges - 1" ng-click="addJudge()"><i class="fa fa-plus"></i></button>
+          </div>
         </div>
       </div>
 
