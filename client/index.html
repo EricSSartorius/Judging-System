@@ -8,12 +8,10 @@
 	<div ng-app="judging-system" ng-controller="AppCtrl">
 		<header ng-controller="RootCtrl">
 			<i  ng-click="toggleLeft()" class="fa fa-bars fa-2x"></i>
-			<div class="logo">
-				<a ui-sref="home">UJUDGE</a>
-			</div>
+			<a ui-sref="home" class="logo">UJUDGE</a>
 			<button class="btn-text-dark" ui-sref="login" ng-hide="currentUser">Login</button>
 		    <button class="btn-text-dark" ui-sref="register" ng-hide="currentUser">Sign up</button>
-		    <div ng-show="currentUser">{{ currentUser }}</div>
+		    <!-- <p ng-show="currentUser">{{ currentUser }}</p> -->
 		    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout</button>
 		</header>
 		<md-sidenav class="sidebar" md-component-id="left">
