@@ -3,24 +3,25 @@ angular.module("judging-system").directive('login', function() {
     restrict: 'E',
     templateUrl: 'client/auth/login/login.ng.html',
     controllerAs: 'login',
-    controller: function ($scope, $reactive, $state) {
-      $reactive(this).attach($scope);
+    controller: function ($scope, $state) {
+      // $reactive(this).attach($scope);
  
-      this.credentials = {
+      $scope.credentials = {
         email: '',
         password: ''
       };
  
-      this.error = '';
+      $scope.error = '';
  
-      this.login = () => {
-        Meteor.loginWithPassword(this.credentials.email, this.credentials.password, (err) => {
+      $scope.login = () => {
+        Meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password, (err) => {
           if (err) {
-            this.error = err;
+            $scope.error = err;
+            console.log(err);
           }
-          else {
-            $state.go('home');
-          }
+          // else {
+          //   $state.go('home');
+          // }
         });
       };
     }

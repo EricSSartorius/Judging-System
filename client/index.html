@@ -6,16 +6,15 @@
 </head>
 <body>
 	<div ng-app="judging-system" ng-controller="AppCtrl">
-		<header>
+		<header ng-controller="RootCtrl">
 			<i  ng-click="toggleLeft()" class="fa fa-bars fa-2x"></i>
 			<div class="logo">
 				<a ui-sref="home">UJUDGE</a>
 			</div>
-			<login-buttons></login-buttons>
-			<!-- <md-button ng-href="/login" ng-hide="judging-system.isLoggedIn">Login</md-button>
-		    <md-button ng-href="/register" ng-hide="judging-system.isLoggedIn">Sign up</md-button>
-		    <div ng-show="judging-system.isLoggedIn">{{ judging-system.currentUser | displayName }}</div>
-		    <md-button ng-click="judging-system.logout()" ng-show="judging-system.isLoggedIn">Logout</md-button> -->
+			<button class="btn-text-dark" ui-sref="login" ng-hide="currentUser">Login</button>
+		    <button class="btn-text-dark" ui-sref="register" ng-hide="currentUser">Sign up</button>
+		    <div ng-show="currentUser">{{ currentUser }}</div>
+		    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout</button>
 		</header>
 		<md-sidenav class="sidebar" md-component-id="left">
 	      <md-toolbar ui-sref="home" ng-click="toggleLeft()" class="nav-toolbar">

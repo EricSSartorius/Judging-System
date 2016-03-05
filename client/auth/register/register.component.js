@@ -3,23 +3,21 @@ angular.module("judging-system").directive('register', function() {
     restrict: 'E',
     templateUrl: 'client/auth/register/register.ng.html',
     controllerAs: 'register',
-    controller: function ($scope, $reactive, $state) {
-      $reactive(this).attach($scope);
+    controller: function ($scope, $state) {
+      // $reactive(this).attach($scope);
  
-      this.credentials = {
+      $scope.credentials = {
         email: '',
         password: ''
       };
  
-      this.error = '';
+      $scope.error = '';
  
-      this.register = () => {
-        Accounts.createUser(this.credentials, (err) => {
+      $scope.register = () => {
+        Accounts.createUser($scope.credentials, (err) => {
           if (err) {
-            this.error = err;
-          }
-          else {
-            $state.go('home');
+            $scope.error = err;
+            console.log(err);
           }
         });
       };
