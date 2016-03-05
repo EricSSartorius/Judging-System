@@ -27,15 +27,18 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
     })
     .state('login', {
         url: '/login',
-        template: '<login></login>'
+        template: '<login></login>',
+        // controller: 'LoginCtrl'
       })
       .state('register', {
         url: '/register',
-        template: '<register></register>'
+        template: '<register></register>',
+        // controller: 'RegisterCtrl'
       })
       .state('resetpw', {
         url: '/resetpw',
-        template: '<resetpw></resetpw>'
+        template: '<resetpw></resetpw>',
+        // controller: 'ResetpwCtrl'
       })
     .state('judgingConsole', {
       url: '/judging-console',

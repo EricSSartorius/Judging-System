@@ -107,7 +107,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 				if($scope.event.players[i].id === $scope.event.currentPlayerId){ index = Number(i) };
 			}
 			$scope.roundTime = TimeFactory.getCurrentTime();
-			if($scope.roundTime===$scope.event.timeLimit) {
+			if($scope.roundTime===$scope.event.timeLimit && !eventId) {
 				$scope.startButton = true;
 		  		$scope.stopButton = false;
 		  	}
@@ -195,7 +195,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 					Events.update(allEvents[i]._id, {$set: {inGame: false}});
 				}
 			}
-			
 		}
 		getTotalScore();
 		$scope.startTimer();
