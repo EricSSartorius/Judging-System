@@ -3,23 +3,23 @@ angular.module("judging-system").directive('resetpw', function() {
     restrict: 'E',
     templateUrl: 'client/auth/reset-password/reset-password.ng.html',
     controllerAs: 'resetpw',
-    controller: function ($scope, $reactive, $state) {
-      $reactive(this).attach($scope);
+    controller: function ($scope, $state) {
+      // $reactive(this).attach($scope);
  
-      this.credentials = {
+      $scope.credentials = {
         email: ''
       };
  
-      this.error = '';
+      $scope.error = '';
  
-      this.reset = () => {
-        Accounts.forgotPassword(this.credentials, (err) => {
+      $scope.reset = () => {
+        Accounts.forgotPassword($scope.credentials, (err) => {
           if (err) {
-            this.error = err;
+            $scope.error = err;
           }
-          else {
-            $state.go('home');
-          }
+          // else {
+          //   $state.go('home');
+          // }
         });
       };
     }
