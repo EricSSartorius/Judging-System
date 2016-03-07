@@ -1,7 +1,7 @@
-<div class="leaderboard main-layout">
+<div class="leaderboard main-layout" >
 	<h1 class="title">{{ event.name }}</h1>
 	<h1 class="title">{{ noEvent }}</h1>
-	<div class="leaderboard-wrapper">
+	<div class="leaderboard-wrapper" ng-show="event.author === currentUser">
 		<div class="leaderboard-winner" ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
 	 		<h2>1st Place</h2>
 			<h1 class="winner">{{ player.name }}</h1>
