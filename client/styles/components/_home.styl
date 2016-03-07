@@ -1,7 +1,7 @@
 @import '../_styles'
 
 .home-wrapper
-	section, footer
+	section
 		padding 50px
 		+above($large)
 			padding 100px
@@ -80,6 +80,13 @@
 			margin 20px 0
 		clearfix()
 	footer
+		display relative
+		padding 50px
 		background muted-grey
 		color white
-			
+		div
+			display flex
+			justify-content center
+		img
+			width 50px
+			height 50px		
