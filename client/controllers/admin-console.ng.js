@@ -182,6 +182,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	}; 
 
 	$scope.startPlayer = function() {
+		$scope.startButton = false;
+		$scope.stopButton = true;
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			if($scope.event.players.length === 1) {
 				$scope.nextPlayerButton = false;
@@ -198,8 +200,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 		}
 		getTotalScore();
 		$scope.startTimer();
-		$scope.startButton = false;
-		$scope.stopButton = true;
 	};
 
 	$scope.endPlayer = function() {

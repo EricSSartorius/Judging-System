@@ -1,7 +1,7 @@
 angular.module("judging-system").directive('resetpw', function() {
   return {
     restrict: 'E',
-    templateUrl: 'client/auth/reset-password/reset-password.ng.html',
+    templateUrl: 'client/views/components/reset-password.ng.html',
     controllerAs: 'resetpw',
     controller: function ($scope, $state) {
       // $reactive(this).attach($scope);

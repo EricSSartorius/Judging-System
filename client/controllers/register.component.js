@@ -1,8 +1,8 @@
-angular.module("judging-system").directive('login', function() {
+angular.module("judging-system").directive('register', function() {
   return {
     restrict: 'E',
-    templateUrl: 'client/auth/login/login.ng.html',
-    controllerAs: 'login',
+    templateUrl: 'client/views/components/register.ng.html',
+    controllerAs: 'register',
     controller: function ($scope, $state) {
       // $reactive(this).attach($scope);
  
@@ -13,15 +13,12 @@ angular.module("judging-system").directive('login', function() {
  
       $scope.error = '';
  
-      $scope.login = () => {
-        Meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password, (err) => {
+      $scope.register = () => {
+        Accounts.createUser($scope.credentials, (err) => {
           if (err) {
             $scope.error = err;
             console.log(err);
           }
-          // else {
-          //   $state.go('home');
-          // }
         });
       };
     }
