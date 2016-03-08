@@ -199,6 +199,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		}
 		getTotalScore();
 		$scope.startTimer();
+		$scope.startButton = false;
+		$scope.stopButton = true;
 	};
 
 	$scope.endPlayer = function() {
