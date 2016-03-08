@@ -1,4 +1,4 @@
-angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope, $interval, $meteor, TimeFactory) {
+angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootScope, $scope, $interval, $meteor, TimeFactory) {
 	var index;
 
 	var emptyEvent = {
@@ -182,14 +182,13 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($scope
 	}; 
 
 	$scope.startPlayer = function() {
-		$scope.startButton = false;
-		$scope.stopButton = true;
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			if($scope.event.players.length === 1) {
 				$scope.nextPlayerButton = false;
 				$scope.nextRoundButton = $scope.rounds > 1 ? true : false;
 			}
 			Events.update(scope.event._id, {$set: {inGame: true}});
+			$rootScope.recentEvent = $scope.event._id;
 			setupMyEvents();
 			var allEvents = Events.find({author:Accounts.userId()}).fetch();
 			for(var i in allEvents) {
