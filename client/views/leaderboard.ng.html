@@ -2,11 +2,6 @@
 	<h1 class="title">{{ events[0].name }}</h1>
 	<h1 class="title">{{ noEvent }}</h1>
 	<div class="leaderboard-wrapper">
-		<div class="leaderboard-winner" ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
-	 		<h2>1st Place</h2>
-			<h1 class="winner">{{ player.name }}</h1>
-			<h1 class="winner">{{ player.totalScore }}</h1>
-		</div>
 		<div class="leaderboard-list">
 			<ul>
 				<li>{{rank}}</li>
@@ -28,6 +23,11 @@
 					{{ player.totalScore }}
 				</li>
 			</ul>
+		</div>
+		<div class="leaderboard-winner" ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1"  ng-hide="tie">
+	 		<h2>1st Place</h2>
+			<h1 class="winner">{{ player.name }}</h1>
+			<h1 class="winner">{{ player.totalScore }}</h1>
 		</div>
 	</div>
 </div>
