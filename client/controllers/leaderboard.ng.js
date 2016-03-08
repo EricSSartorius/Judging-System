@@ -1,15 +1,12 @@
-angular.module('judging-system').controller('LeaderboardCtrl', function ($scope, $meteor) {
-	$scope.event = Events.findOne({inGame:true});
-	$scope.currentUser = Meteor.userId();
+angular.module('judging-system').controller('LeaderboardCtrl', function ($rootScope, $scope, $meteor) {
 	window.scope=$scope;
-	if ($scope.event && $scope.currentUser === event.author) {
+	if($rootScope.recentEvent){
+		$scope.events = $scope.$meteorCollection(function(){
+			return Events.find({_id: $rootScope.recentEvent});
+		});
 		$scope.rank = "Rank";
 		$scope.name = "Name";
 		$scope.points = "Points";
-
-		$scope.events = $scope.$meteorCollection(function(){
-			return Events.find({inGame:true});
-		});
 	}
 	else {
 		$scope.noEvent = "No event currently running";
