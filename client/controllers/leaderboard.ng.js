@@ -7,6 +7,10 @@ angular.module('judging-system').controller('LeaderboardCtrl', function ($rootSc
 		$scope.rank = "Rank";
 		$scope.name = "Name";
 		$scope.points = "Points";
+		var sortedScores = $scope.events[0].players.sort(function(a,b){
+			return b.totalScore - a.totalScore;
+		});
+		$scope.tie = sortedScores[1].totalScore === sortedScores[0].totalScore;
 	}
 	else {
 		$scope.noEvent = "No event currently running";
