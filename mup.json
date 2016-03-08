@@ -30,7 +30,7 @@
   "appName": "ujudge",
 
   // Location of app (local directory)
-  "app": "/Users/Epic/bloc/capstone/judging-system/",
+  "app": "~/bloc/capstone/judging-system/",
 
   // Configure environment
   "env": {

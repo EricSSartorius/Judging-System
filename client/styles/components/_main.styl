@@ -43,9 +43,11 @@ header
     width 100%
     z-index: z.header
     shadow-level(2)
+    .logo-short
+        display none
     i
         margin 0 10px
-    a
+    .logo, .logo-short
         font-size 32px
         color white
         text-decoration none
@@ -57,8 +59,10 @@ header
         float right
         margin 5px 10px
     +below($small)
-        a
+        .logo
             display none
+        .logo-short 
+            display inline-block
         button
             margin-left 0
 
