@@ -2,7 +2,7 @@ angular.module('judging-system').controller('LeaderboardCtrl', function ($scope,
 	$scope.event = Events.findOne({inGame:true});
 	$scope.currentUser = Meteor.userId();
 	window.scope=$scope;
-	if ($scope.event && $scope.currentUser === event.author) {
+	if ($scope.event && $scope.currentUser === $scope.event.author) {
 		$scope.rank = "Rank";
 		$scope.name = "Name";
 		$scope.points = "Points";

@@ -1,7 +1,11 @@
 <div class="leaderboard main-layout" >
-	<h1 class="title">{{ event.name }}</h1>
-	<h1 class="title">{{ noEvent }}</h1>
-	<div class="leaderboard-wrapper" ng-show="event.author === currentUser">
+	<!-- <p>inGame: {{event.inGame}}</p>
+	<p>author: {{event.author}}</p>
+	<p>currentUser: {{currentUser}}</p>
+	<p>{{event.inGame === true}}</p> -->
+	<h1 class="title" ng-show="event.author === currentUser && event.inGame === true" ng-cloak>{{ event.name }}</h1>
+	<h1 class="title" ng-show="event.author !== currentUser" ng-cloak>{{ noEvent }}</h1>
+	<div class="leaderboard-wrapper" ng-show="event.author === currentUser" ng-cloak>
 		<div class="leaderboard-winner" ng-repeat="player in events[0].players | orderBy:'-totalScore' | limitTo:1">
 	 		<h2>1st Place</h2>
 			<h1 class="winner">{{ player.name }}</h1>
