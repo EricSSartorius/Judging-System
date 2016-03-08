@@ -1,0 +1,17 @@
+<md-sidenav class="sidebar" md-component-id="left">
+  <md-toolbar ui-sref="home" ng-click="toggleLeft()" class="nav-toolbar">
+    <img src="/img/u-logo.svg" alt="U Logo">
+  </md-toolbar>
+  <div ng-controller="LeftCtrl" >
+	<ul>
+		<!-- <li><a ui-sref="home" ng-click="toggleLeft()">Home</a></li> -->
+		<li ng-hide ="hiddenLink"  ng-click="toggleLeft()"><a ui-sref="createEvent">Create Event</a></li>
+		<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="adminConsole">Admin Console</a></li>
+		<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="judgingConsole">Judging Console</a></li>
+		<li ng-hide ="hiddenLink" ng-click="toggleLeft()"><a ui-sref="leaderboard">Leaderboard</a></li>
+<!-- 				<li><a ui-sref="matchHistory" ng-click="toggleRight()">Match History</a></li> -->
+		<li ng-click="toggleLeft()"><a ui-sref="quickScoreboard">Quick Scoreboard</a></li>
+		<li ng-click="toggleLeft()"><a ui-sref="help">Help</a></li>
+	</ul>
+  </div>
+</md-sidenav>
