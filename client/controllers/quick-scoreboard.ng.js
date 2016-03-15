@@ -7,6 +7,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 	$scope.startTime = $scope.quickTimer;
 	TimeFactory.setCurrentTime($scope.quickTimer);
 
+	//Add time to the timer in 1 minute increments
 	$scope.timerUp = function() {
 			if($scope.quickTimer>=3540){
 				$scope.quickTimer = -60;
@@ -15,6 +16,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
 
+	//Subtract time from the timer in 1 minute increments
 	$scope.timerDown = function() {
 			if($scope.quickTimer<=0){
 				$scope.quickTimer = 3600;
@@ -23,6 +25,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
 
+	//Starts the timer via timer service
 	$scope.startTimer = function() {
 		if($scope.quickTimer !== 0){
 			$scope.start = false;
@@ -40,11 +43,13 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 		    },1000,0);  
 	};
 
+	//Pause the timer
 	$scope.pauseTimer = function() {
 		$scope.start = true;
 		TimeFactory.cancelTheTimer();
 	};
 
+	//End the timer
 	$scope.endTimer = function() {
 		$scope.start = true;
 		$scope.end = false;
@@ -53,6 +58,7 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 		$scope.startTime = $scope.quickTimer;
 	};
 
+	//Reset the timer
 	$scope.resetTimer = function() {
 		$scope.quickTimer = $scope.startTime;
 		TimeFactory.resetTheTimer($scope.quickTimer)
@@ -62,21 +68,25 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 		$scope.end = false;
 	}
 
+	//Increase score for left side
 	$scope.leftScoreUp = function() {
 		if($scope.leftScore < 100)
 			$scope.leftScore++;
 	};
 
+	//Decrease score for left side
 	$scope.leftScoreDown = function() {
 		if($scope.leftScore > 0)
 			$scope.leftScore--;
 	};
 
+	//Increase score for right side
 	$scope.rightScoreUp = function() {
 		if($scope.rightScore < 100)
 			$scope.rightScore++;
 	};
 	
+	//Decrease score for right side
 	$scope.rightScoreDown = function() {
 		if($scope.rightScore > 0)
 			$scope.rightScore--;

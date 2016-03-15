@@ -4,7 +4,6 @@ angular.module("judging-system").directive('resetpw', function() {
     templateUrl: 'client/views/components/reset-password.ng.html',
     controllerAs: 'resetpw',
     controller: function ($scope, $state) {
-      // $reactive(this).attach($scope);
  
       $scope.credentials = {
         email: ''
@@ -17,9 +16,6 @@ angular.module("judging-system").directive('resetpw', function() {
           if (err) {
             $scope.error = err;
           }
-          // else {
-          //   $state.go('home');
-          // }
         });
       };
     }

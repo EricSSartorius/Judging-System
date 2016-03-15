@@ -3,6 +3,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	$scope.noOfPlayers = 100;
 
 	var initializeObjects = function(createdName) {
+
+		//Information from Event schema to be put into the form
 		$scope.event = {
 			name: '',
 			timeLimitMin: 2,
@@ -25,11 +27,13 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	};
 	initializeObjects();
 
+	//Adds a new player everytime a new player section is created on form
 	$scope.addPlayer = function() {
 		var newPlayerNo = $scope.players.length+1;
 		$scope.players.push({'id':'player'+newPlayerNo});
 	};
 
+	//Adds a new judge everytime a new judge section is created on form
 	$scope.addJudge = function() {
 		var newJudgeNo = $scope.judges.length+1;
 		$scope.judges.push({'id':'judge'+newJudgeNo});
@@ -43,6 +47,8 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
 		var jEmails = [];
 		var hasDuplicateEmail = false;
+
+		//Checks that no 2 judges can have the same email address
 		for(var i = 0; i < $scope.judges.length; i++){
 			if(jEmails.indexOf($scope.judges[i].email) > -1){
 				hasDuplicateEmail = true;
