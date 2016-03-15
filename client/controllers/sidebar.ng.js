@@ -5,18 +5,14 @@ angular.module("judging-system").directive('sidebar', function() {
     controllerAs: 'sidebar',
     controller: function ($scope, $timeout, $mdSidenav, $log) {
 
-
-// angular.module('judging-system').controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
       $scope.toggleLeft = buildToggler('left');
       $scope.hiddenLink = (Accounts.userId()===null) ? true : false;
 
       $scope.isOpenLeft = function() {
         return $mdSidenav('left').isOpen();
       };
-      /**
-       * Supplies a function that will continue to operate until the
-       * time is up.
-       */
+
+      //Supplies a function that will continue to operate until the time is up.
       function debounce(func, wait, context) {
         var timer;
         return function debounced() {
@@ -29,10 +25,8 @@ angular.module("judging-system").directive('sidebar', function() {
           }, wait || 10);
         };
       }
-      /**
-       * Build handler to open/close a SideNav; when animation finishes
-       * report completion in console
-       */
+
+      //Build handler to open/close a SideNav; when animation finishes report completion in console
       function buildDelayedToggler(navID) {
         return debounce(function() {
           $mdSidenav(navID)

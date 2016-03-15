@@ -1,6 +1,7 @@
 angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootScope, $scope, $interval, $meteor, TimeFactory) {
 	var index;
 
+	// Display an empty event in case of no events
 	var emptyEvent = {
 		_id: "empty",
 		name: "No events created",
@@ -9,6 +10,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		inGame: false
 	};
 
+	//Calculates the total score for the current player
 	function getTotalScore() {
 		var playerScores = $scope.$meteorCollection(function() {
 			return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId});
@@ -29,6 +31,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 	//Initialize variables in a function so that info is not reset on view change
 	initializeVar();
 
+	//Access the timer on the collection
 	function startMyTimer() {
 		theTimer = $interval(timerCallback,1000,0);
 		function timerCallback() {
@@ -43,6 +46,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		}  
 	};
 
+	//Change the current event shown when option menu is toggled
 	function setupMyEvents(eventId) {
 		$scope.myEvents = Events.find({author:Accounts.userId()}).fetch();
 		if($scope.myEvents.length > 0) {	
@@ -60,6 +64,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		}
 	};
 
+	//Initialize variables for the current event
 	function initializeVar(eventId) {
 		window.scope = $scope;
 		$scope.endButton = true;
@@ -72,6 +77,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 			$scope.endButton = false;
 			$scope.viewResultsButton = false;
 		}
+
+		//$meteorCollection depriciated. Needs updated
 		$scope.scores = $scope.$meteorCollection(function() {
 	        if(($scope.event !== null) && ($scope.event !== undefined)) {
 		        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
@@ -81,6 +88,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		    	return Scores.find({eventId:"none"});
 		    }
 		});
+
+		//Start a new game
 		if (!$scope.event.inGame && $scope.event._id !== "empty") {
 			index = 0;
 			$scope.totalScore = 0;
@@ -101,6 +110,8 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		  	Events.update($scope.event._id, {$set: {currentPlayerId: $scope.event.currentPlayerId }});
 		  	Events.update($scope.event._id, {$set: {currentRound: $scope.event.currentRound }});
 		}
+
+		//Continue existing game
 		else if($scope.event.inGame) {
 			getTotalScore();
 			for(var i in $scope.event.players) {
@@ -149,12 +160,14 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		initializeVar(myEventId);
 	};
 
+	//Constantly checks to update scores. $MeteorCollection is depriciated
 	$scope.updateScores = function() {
 		$scope.scores = $scope.$meteorCollection(function() {
 	        return Scores.find({eventId:$scope.event._id, playerId: $scope.event.currentPlayerId, round: $scope.event.currentRound});
 	    });
 	};
 
+	//Grab scores from each judge and adds them together for the round total
 	$scope.getRoundTotal = function() {
 	    var total = 0;
 	    angular.forEach($scope.event.judges, function(judge) {
@@ -167,20 +180,24 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 	    return total;
 	};
 
+	//Sends scores from judges connected to the event
 	$scope.getJudge = function(score) {
 		return $scope.event.judges.find(function(judge){return judge.id === score.judgeId;});
 	};
 
+	//Gets players for the event
 	$scope.getPlayerName = function() {
 		if($scope.event._id === "empty" ) return $scope.event.name;
 		return $scope.event.players.find(function(player){return player.id === $scope.event.currentPlayerId;}).name;
 	};
 
+	//Starts timer for both service and collection
 	$scope.startTimer = function() {
 		TimeFactory.startTheTimer();
         startMyTimer();
 	}; 
 
+	//Logic when Start button is pressed
 	$scope.startPlayer = function() {
 		if ($scope.event.players[0].id === "player1" && $scope.event.currentRound === 1) {
 			if($scope.event.players.length === 1) {
@@ -203,6 +220,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		$scope.stopButton = true;
 	};
 
+	//Logic when Force Stop button is pressed
 	$scope.endPlayer = function() {
 		TimeFactory.cancelTheTimer();
 		$scope.roundTime = 0;
@@ -212,6 +230,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		$scope.stopButton = false;
 	};
 
+	//Logic when Next Player button is pressed
 	$scope.nextPlayer = function() {
 		index++;
 		if(!$scope.event.inGame) {
@@ -246,6 +265,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		}
 	};
 
+	//Logic when Next Round button is pressed
 	$scope.nextRound = function() {
 		$scope.event.currentRound++;
 		TimeFactory.cancelTheTimer();
@@ -272,6 +292,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		}
 	};
 	
+	//Logic when End Game button is pressed
 	$scope.endGame = function() {
 		TimeFactory.cancelTheTimer();
 		$scope.roundTime = 0;

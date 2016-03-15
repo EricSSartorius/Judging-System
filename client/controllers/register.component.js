@@ -4,7 +4,6 @@ angular.module("judging-system").directive('register', function() {
     templateUrl: 'client/views/components/register.ng.html',
     controllerAs: 'register',
     controller: function ($scope, $state) {
-      // $reactive(this).attach($scope);
  
       $scope.credentials = {
         email: '',
