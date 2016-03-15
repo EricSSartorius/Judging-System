@@ -4,7 +4,6 @@ angular.module("judging-system").directive('login', function() {
     templateUrl: 'client/views/components/login.ng.html',
     controllerAs: 'login',
     controller: function ($scope, $state) {
-      // $reactive(this).attach($scope);
  
       $scope.credentials = {
         email: '',
@@ -12,16 +11,13 @@ angular.module("judging-system").directive('login', function() {
       };
  
       $scope.error = '';
- 
+      
       $scope.login = () => {
         Meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password, (err) => {
           if (err) {
             $scope.error = err;
             console.log(err);
           }
-          // else {
-          //   $state.go('home');
-          // }
         });
       };
     }
