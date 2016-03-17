@@ -1,17 +1,29 @@
 angular.module("judging-system").run(function ($rootScope, $state) {
+
   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
     if (error === 'AUTH_REQUIRED') {
       $state.go('home');
     }
   });
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      //Prevent user from going to login or register screen if already logged in
+      if((Accounts.user() && toState.name === 'login') || (Accounts.user() && toState.name === 'register')) {
+        event.preventDefault();
+        $state.go('adminConsole');
+      }
+  });
+
+  //Go to Admin Console if the user has pre-existing events, otherwise go to Create Event
   Accounts.onLogin(function() {
     if(Events.find({author:Accounts.userId()}).count() > 0){
-      $state.go('adminConsole');
+      $state.go('adminConsole'); 
     }
     else{
       $state.go('createEvent');
     }
   });
+
   Accounts.onLogout(function() {
     $state.go('home');
   });
