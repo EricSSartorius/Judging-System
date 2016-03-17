@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="Logo" sketch:type="MSArtboardGroup">
-            <text id="JUDGE" sketch:type="MSTextLayer" font-family="sans-serif" font-size="18" font-weight="normal" letter-spacing="5.0999999" fill="#000000">
+            <text id="JUDGE" sketch:type="MSTextLayer" text-align="center" font-family="sans-serif" font-size="18" font-weight="normal" letter-spacing="5.0999999" fill="#000000">
                 <tspan x="17" y="147">UJUDGE</tspan>
             </text>
             <g id="Group" sketch:type="MSLayerGroup" transform="translate(20.000000, 10.000000)">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="75px" height="93px" viewBox="0 0 75 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" filter="url(#filter-1)">
+        <g id="Group" transform="translate(4.000000, 2.835266)">
+            <path d="M11.9042921,56.9086929 C12.5835918,61.958504 14.4471447,65.9428433 17.4949785,68.8617886 C21.4169493,72.617905 27.0691166,74.495935 34.4516499,74.495935 C41.4496763,74.495935 46.7750176,72.617905 50.4278336,68.8617886 C54.0806495,65.1056723 55.9070301,59.5854023 55.9070301,52.300813 L55.9070301,0.398373984 L66.8654232,0.398373984 L66.8654232,52.300813 C66.8654232,62.6965289 64.0585647,70.4931989 58.4447633,75.6910569 C52.8309619,80.8889149 44.8333374,83.4878049 34.4516499,83.4878049 C23.8392583,83.4878049 15.5532579,81.0027349 9.59340029,76.0325203 C3.81884396,71.2168375 0.841837758,63.6408725 0.662300371,53.3044094 L11.9042921,56.9086929 Z M11.6120516,47.0013506 L11.6120516,0.398373984 L0.653658537,0.398373984 L0.653658537,43.4879913 L11.6120516,47.0013506 Z" id="U" fill="#318AE4"></path>
+            <path d="M11.8235294,47.0691523 L11.8235294,0 L0,0 L0,43.2784225 L11.8235294,47.0691523 Z" id="Rectangle-108" fill="#D8D8D8"></path>
+        </g>
+    </g>
+</svg>
