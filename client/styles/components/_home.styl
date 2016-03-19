@@ -12,16 +12,23 @@
 		background-size cover
 		background-repeat no-repeat
 		background-position center top
-		p,h1,h3
-			color white
-		text-align center
-		h1
-			padding 0
+		color white
+		// display flex
+		// align-items center
+		// justify-content center
+		.hero-logo
+			text-align center
+			margin 100px 50px
+			h1
+				padding 0
+				margin 0
+		.hero-text
+			h3, button
+				display inline-block
+				margin 0 20px
+			text-align center
 			margin 0
-		h3
-			margin 0 0 50px 0
-		svg
-			margin-top 100px
+		clearfix()
 		.logo
 			+above(380px)
 				font-size 48px
