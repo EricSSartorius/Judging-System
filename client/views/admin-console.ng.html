@@ -2,8 +2,8 @@
 	<div id="admin-console">
 		<div class="console-container">
 			<div class="delete-buttons">
-				<button class="reset-button">Reset Game</button>
-				<button class="delete-button btn-deny">Delete Game</button>
+				<button class="reset-button" ng-click="resetGame()">Reset Scores</button>
+				<button class="delete-button btn-deny" ng-click="deleteGame()">Delete Game</button>
 			</div>
 			<div class="admin-top">
 			 	<select ng-options="event.name for event in myEvents track by event._id" ng-change="updateEventDetails(event._id)" ng-model="event">

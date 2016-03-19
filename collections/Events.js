@@ -6,6 +6,9 @@ Events.allow({
 	},
 	update: function(userId, doc) {
 		return !!userId;
+	},
+	remove: function(userId, doc) {
+		return !!userId;
 	}
 });
 
@@ -49,6 +52,9 @@ Scores.allow({
 		return !!userId;
 	},
 	update: function(userId, doc) {
+		return !!userId;
+	},
+	remove: function(userId, doc) {
 		return !!userId;
 	}
 });

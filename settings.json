@@ -1,5 +1,14 @@
 {
   "public": {
-
-  }
+  		"test": "Hello"
+  },
+  "private": {
+  		"ptest": "Hello Private"
+  },
+   "galaxy.meteor.com": {
+    	"env": {
+    		"ROOT_URL": "http://ujudge.meteorapp.com", 
+    		"MONGO_URL": "mongodb://ericssartorius:yako44@ds015929.mlab.com:15929/ujudge" 
+    	}
+    }
 }
