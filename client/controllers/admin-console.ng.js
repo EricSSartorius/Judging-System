@@ -307,4 +307,22 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		$scope.endButton = false;
 		$scope.viewResultsButton = true;
 	};
+
+	//Deletes all scores in collection associated with currently selected game
+	$scope.resetGame = function() {
+		var eventScores = Scores.find({eventId: scope.event._id}).fetch();
+		for(var i=0; i<eventScores.length; i++){
+			Scores.remove(eventScores[i]._id);
+		}
+	};
+
+	//Deletes the currently selected game and all associated scores
+	$scope.deleteGame = function() {
+		var eventScores = Scores.find({eventId: scope.event._id}).fetch();
+		for(var i=0; i<eventScores.length; i++){
+			Scores.remove(eventScores[i]._id);
+		}
+		Events.remove(scope.event._id);
+		location.reload();
+	};
 });
