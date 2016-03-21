@@ -48,6 +48,7 @@ email@1.0.8
 es5-shim@4.1.14
 fastclick@1.0.7
 fortawesome:fontawesome@4.5.0
+fourseven:scss@3.3.3_3
 geojson-utils@1.0.4
 gwendall:auth-client-callbacks@0.1.0
 gwendall:body-events@0.1.6
@@ -115,6 +116,7 @@ standard-minifiers@1.0.2
 stolinski:stylus-multi@1.4.3
 templating@1.1.5
 templating-tools@1.0.0
+themeteorchef:bert@2.1.0
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
