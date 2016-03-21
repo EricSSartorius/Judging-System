@@ -314,6 +314,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		for(var i=0; i<eventScores.length; i++){
 			Scores.remove(eventScores[i]._id);
 		}
+		 Bert.alert('All scores for this event have been deleted.', 'info', 'fixed-top');
 	};
 
 	//Deletes the currently selected game and all associated scores
