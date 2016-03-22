@@ -15,8 +15,7 @@ angular.module("judging-system").directive('register', function() {
       $scope.register = () => {
         Accounts.createUser($scope.credentials, (err) => {
           if (err) {
-            $scope.error = err;
-            console.log(err);
+            Bert.alert("" + err, 'danger', 'fixed-top');
           }
         });
       };

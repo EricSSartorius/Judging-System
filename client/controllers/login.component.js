@@ -15,8 +15,7 @@ angular.module("judging-system").directive('login', function() {
       $scope.login = () => {
         Meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password, (err) => {
           if (err) {
-            $scope.error = err;
-            console.log(err);
+            Bert.alert("" + err, 'danger', 'fixed-top');
           }
         });
       };
