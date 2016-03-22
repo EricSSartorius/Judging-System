@@ -56,7 +56,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			jEmails.push($scope.judges[i].email);
 		}
 		if(hasDuplicateEmail){
-			$scope.errorMsg = "A judge's email address cannot be used more than once.";
+			Bert.alert( "A judge's email address cannot be used more than once.", 'danger', 'fixed-top');
 		}
 		else {
 			$scope.errorMsg = "";
@@ -65,12 +65,14 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		    $scope.event.judges = $scope.judges;
 			Events.insert($scope.event, function(err, id){
 				if (err) {
+					Bert.alert("" + err, 'danger', 'fixed-top');
 					console.log(err);
 				} 
 				else {
 					$scope.$apply(function(){
 						if (id) {
 							$state.go('adminConsole');
+							Bert.alert('Event created sucessfully.', 'success', 'growl-top-right');
 						}
 					});
 				}

@@ -14,7 +14,7 @@ angular.module("judging-system").directive('resetpw', function() {
       $scope.reset = () => {
         Accounts.forgotPassword($scope.credentials, (err) => {
           if (err) {
-            $scope.error = err;
+            Bert.alert("" + err, 'danger', 'fixed-top');
           }
         });
       };
