@@ -43,28 +43,37 @@ header
     width 100%
     z-index: z.header
     shadow-level(2)
-    .logo-short
+    img
         display none
-    i
-        margin 0 10px
-    .logo, .logo-short
-        font-size 32px
-        color white
-        text-decoration none
-    .fa-bars
-        &:hover
-            cursor pointer
-            color light-grey
-    button
+        width 21px
+        height 31px
+        padding-top 5px
+    .dropdown-logo
+        float left
+        i
+            margin 0 10px
+        .logo, .logo-short
+            font-size 32px
+            color white
+            text-decoration none
+        .fa-bars
+            &:hover
+                cursor pointer
+                color light-grey
+    .login-buttons
         float right
-        margin 5px 10px
+        button
+            // float right
+            margin 5px 10px
     +below($small)
         .logo
             display none
-        .logo-short 
+        img 
             display inline-block
-        button
-            margin-left 0
+            padding-top 8px
+        .login-buttons
+            button
+                margin-left 0
 
 //MISC	
 .logo

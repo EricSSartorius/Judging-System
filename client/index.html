@@ -7,13 +7,19 @@
 <body>
 	<div ng-app="judging-system">
 		<header ng-controller="RootCtrl">
-			<i  ng-click="toggleLeft()" class="fa fa-bars fa-2x"></i>
-			<a ui-sref="home" class="logo">UJUDGE</a>
-			<a ui-sref="home" class="logo-short">UJ</a>
-			<button class="btn-text-dark" ui-sref="login" ng-hide="currentUser">Login</button>
-		    <button class="btn-text-dark" ui-sref="register" ng-hide="currentUser">Sign up</button>
-		    <!-- <p ng-show="currentUser">{{ currentUser }}</p> -->
-		    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout</button>
+			<div class="dropdown-logo">
+				<i  ng-click="toggleLeft()" class="fa fa-bars fa-2x"></i>
+				<a ui-sref="home" class="logo">UJUDGE</a>
+				<a ui-sref="home" class="logo-short">
+					<img  src="/img/Ulogo.svg" alt="Ujudge Logo">	
+				</a>
+			</div>	
+			<div class="login-buttons">
+				<button class="btn-text-dark" ui-sref="login" ng-hide="currentUser">Login</button>
+			    <button class="btn-text-dark" ui-sref="register" ng-hide="currentUser">Sign up</button>
+			    <!-- <p ng-show="currentUser">{{ currentUser }}</p> -->
+			    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout</button>
+			</div>	
 		</header>
 		<sidebar></sidebar>
 		<main>

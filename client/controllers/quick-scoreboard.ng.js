@@ -25,6 +25,24 @@ angular.module('judging-system').controller('QuickScoreboardCtrl', function ($sc
 			TimeFactory.setCurrentTime($scope.quickTimer);
 	};
 
+	//Add time to the timer in 1 second increments
+	$scope.secTimerUp = function() {
+			if($scope.quickTimer>=3540){
+				$scope.quickTimer = -1;
+			}
+			$scope.quickTimer+=1;
+			TimeFactory.setCurrentTime($scope.quickTimer);
+	};
+
+	//Subtract time from the timer in 1 second increments
+	$scope.secTimerDown = function() {
+			if($scope.quickTimer<=0){
+				$scope.quickTimer = 3600;
+			}
+			$scope.quickTimer-=1;
+			TimeFactory.setCurrentTime($scope.quickTimer);
+	};
+
 	//Starts the timer via timer service
 	$scope.startTimer = function() {
 		if($scope.quickTimer !== 0){

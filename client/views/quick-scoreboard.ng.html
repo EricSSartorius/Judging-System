@@ -17,8 +17,14 @@
 			</div> -->
 			<h4>Time</h4>
 			<h1 class="md-display-4">{{ quickTimer | timeFilter | date:"mm:ss" }}</h1>
-			<i class="fa fa-plus" ng-show="start" ng-click="timerUp()"></i>
-        	<i class="fa fa-minus" ng-show="start" ng-click="timerDown()"></i>
+			<div class="scoreboard-min">
+				<i class="fa fa-plus" ng-show="start" ng-click="timerUp()"></i>
+        		<i class="fa fa-minus" ng-show="start" ng-click="timerDown()"></i>
+			</div>
+			<div class="scoreboard-sec">
+				<i class="fa fa-plus" ng-show="start" ng-click="secTimerUp()"></i>
+        		<i class="fa fa-minus" ng-show="start" ng-click="secTimerDown()"></i>
+			</div>
 		</div>
 		<div class="admin-grid3 quick-grid3">
 			<h3 class="player-2">Player 2</h3>

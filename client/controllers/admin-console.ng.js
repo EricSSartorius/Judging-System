@@ -70,7 +70,6 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		$scope.endButton = true;
 		$scope.viewResultsButton = false;
 		$scope.events = Events.find({}, {sort: {createdAt: -1}}).fetch();
-		console.log(Accounts.userId());
 		setupMyEvents(eventId);
 		if($scope.event === undefined) {
 			$scope.event = emptyEvent;
@@ -294,18 +293,18 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 	
 	//Logic when End Game button is pressed
 	$scope.endGame = function() {
-		TimeFactory.cancelTheTimer();
-		$scope.roundTime = 0;
-		TimeFactory.setCurrentTime($scope.roundTime);
-		getTotalScore();
-		Events.update(scope.event._id, {$set: {inGame: false }});
-		setupMyEvents();
-		$scope.nextRoundButton = false;
-		$scope.nextPlayerButton = false;
-		$scope.startButton = false;
-		$scope.stopButton = false;
-		$scope.endButton = false;
-		$scope.viewResultsButton = true;
+			TimeFactory.cancelTheTimer();
+			$scope.roundTime = 0;
+			TimeFactory.setCurrentTime($scope.roundTime);
+			getTotalScore();
+			Events.update(scope.event._id, {$set: {inGame: false }});
+			setupMyEvents();
+			$scope.nextRoundButton = false;
+			$scope.nextPlayerButton = false;
+			$scope.startButton = false;
+			$scope.stopButton = false;
+			$scope.endButton = false;
+			$scope.viewResultsButton = true;
 	};
 
 	//Deletes all scores in collection associated with currently selected game
@@ -314,7 +313,7 @@ angular.module('judging-system').controller('AdminConsoleCtrl', function ($rootS
 		for(var i=0; i<eventScores.length; i++){
 			Scores.remove(eventScores[i]._id);
 		}
-		 Bert.alert('All scores for this event have been successfully deleted.', 'success', 'growl-top-right');
+		Bert.alert('All scores for ' + $scope.event.name.toUpperCase() + ' have been successfully reset.', 'success', 'growl-top-right');
 	};
 
 	//Deletes the currently selected game and all associated scores

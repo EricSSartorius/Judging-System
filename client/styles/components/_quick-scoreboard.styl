@@ -16,8 +16,15 @@
 			cursor pointer
 	.quick-bot
 		padding-top 20px
+	.scoreboard-min, .scoreboard-sec
+		margin 0 15px
+		display inline-block
+		i
+			padding 0 10px 20px 10px
 	
-			
+	+below(790px)
+		.scoreboard-sec
+			display none
 	+below($med)
 		.quick-grid1, .quick-grid2, .quick-grid3
 			h1
