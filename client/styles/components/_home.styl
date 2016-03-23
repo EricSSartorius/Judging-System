@@ -6,7 +6,9 @@
 		+above($large)
 			padding 100px
 	h1
-		padding-bottom 50px
+		padding-bottom 
+	p
+		line-height 1.5 
 	.home-hero
 		background-image url("/img/skateboarding2.jpg") 
 		background-size cover
@@ -17,8 +19,11 @@
 		// align-items center
 		// justify-content center
 		.hero-logo
+			img
+				width 124px
+				height 144px
 			text-align center
-			margin 100px 50px
+			margin 100px 50px 50px
 			h1
 				padding 0
 				margin 0
@@ -46,7 +51,7 @@
 					margin-top 0
 				
 	.home-123
-		background grey
+		background light-grey
 		text-align center
 		h1
 			color epic-grey
@@ -69,6 +74,7 @@
 		background-position center center
 		h1
 			color white
+			margin-bottom 30px
 		p
 			margin 0 10px 20px 0
 			lost-column 2/3
@@ -83,16 +89,17 @@
 	.home-signup
 		background white
 		text-align left
-		button
-			margin 20px 0
+		div
 			lost-align center
-		clearfix()
+			margin 40px 0
+			+below($small)
+				lost-align left
 	footer
 		text-align center
 		display relative
 		padding 50px
-		background muted-grey
-		color white
+		background grey
+		color muted-grey
 		div
 			display flex
 			justify-content center

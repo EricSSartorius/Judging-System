@@ -2,7 +2,7 @@
 	<div id="admin-console">
 		<div class="console-container">
 			<div class="delete-buttons">
-				<button class="reset-button" ng-click="resetGame()">Reset Scores</button>
+				<button class="reset-button"  ng-click="resetGame()">Reset Scores</button>
 				<button class="delete-button btn-deny" ng-click="deleteGame()">Delete Game</button>
 			</div>
 			<div class="admin-top">
@@ -35,8 +35,9 @@
 				<button ng-show="stopButton" ng-click="endPlayer()">Force Stop</button>
 				<button ng-show="nextPlayerButton" ng-click="nextPlayer()">Next Player</button>
 				<button ng-show="nextRoundButton" ng-click="nextRound()">Next Round</button>
-				<button ng-show="endButton" ng-click="endGame()">End Game</button>
+				<button ng-show="endButton" class="judging-button" ng-disabled="!event.inGame" ng-click="endGame()">End Game</button>
 				<button ng-show="viewResultsButton" ui-sref="leaderboard">View Results</button>
+				<h5 class="in-session" ng-if="event.inGame">GAME IN SESSION</h5>
 			</div>
 
 		</div>

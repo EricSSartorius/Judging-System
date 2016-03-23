@@ -8,7 +8,7 @@ angular.module("judging-system").run(function ($rootScope, $state) {
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       //Prevent user from going to login or register screen if already logged in
-      if((Accounts.user() && toState.name === 'login') || (Accounts.user() && toState.name === 'register')) {
+      if((Accounts.user() && toState.name === 'login') || (Accounts.user() && toState.name === 'register') || (Accounts.user() && toState.name === 'resetpw')) {
         event.preventDefault();
         $state.go('adminConsole');
       }
