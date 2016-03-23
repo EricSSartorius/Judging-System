@@ -1,9 +1,25 @@
 .login-wrapper
-	.login-toolbar
-		background light-grey
-	button
-		margin 10px 10px 20px 0
-	a
-		margin 10px 0
-	img
-		margin 10px auto
+	.login-container
+		margin-bottom 10px
+		width 400px
+		shadow-level(2)
+		.login-top
+			padding 10px
+			background light-grey
+			text-align center
+		.sign-in
+			clearfix()
+			p
+				padding-left 10px
+		form
+			padding 10px
+		.login-button
+			text-align right
+			button
+				margin 10px 10px 20px 0
+		a
+			padding 10px
+			text-align center
+			display block
+			&:last-child
+				margin-bottom 10px
