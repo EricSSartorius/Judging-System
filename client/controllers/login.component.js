@@ -9,9 +9,9 @@ angular.module("judging-system").directive('login', function() {
         email: '',
         password: ''
       };
- 
+
       $scope.error = '';
-      
+
       $scope.login = () => {
         Meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password, (err) => {
           if (err) {
@@ -20,5 +20,5 @@ angular.module("judging-system").directive('login', function() {
         });
       };
     }
-  }
+  }// end return
 });

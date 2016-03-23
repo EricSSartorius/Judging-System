@@ -1,13 +1,17 @@
 <div class="register-wrapper main-layout" layout="row" layout-align="center start" layout-fill layout-margin>
   <div class="login-container">
 
-     <div class="login-top">   
+     <div class="login-top">
         <img src="/img/Ulogo.svg" alt="U Judge Logo">
      </div>
      <div class="sign-in">
-       <p class="md-body-2"> Sign up with your email</p>
+       <p class="md-body-2"> Sign up with your name & email</p>
      </div>
       <form name="loginForm">
+        <md-input-container>
+          <label> First Name </label>
+          <input type="text" ng-model="credentials.username" aria-label="username" required/>
+        </md-input-container>
         <md-input-container>
           <label> Email </label>
           <input type="text" ng-model="credentials.email" aria-label="email" required/>
@@ -22,6 +26,6 @@
       </form>
 
         <a ui-sref="login">Already a user?</a>
-  
+
   </div>
 </div>
