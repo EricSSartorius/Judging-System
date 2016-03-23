@@ -4,7 +4,7 @@ angular.module("judging-system").directive('login', function() {
     templateUrl: 'client/views/components/login.ng.html',
     controllerAs: 'login',
     controller: function ($scope, $state) {
-
+ 
       $scope.credentials = {
         email: '',
         password: ''

@@ -12,5 +12,4 @@ Meteor.startup(function(){
   Accounts.config({
     sendVerificationEmail: true
   });
-  // Accounts.sendResetPasswordEmail(user.id)
 });
