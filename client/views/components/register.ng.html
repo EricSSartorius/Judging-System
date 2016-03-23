@@ -1,33 +1,27 @@
-<md-content class="register-wrapper main-layout" layout="row" layout-align="center start" layout-fill layout-margin>
-  <md-whiteframe layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
-  <md-toolbar class="login-toolbar">
-    <img src="/img/Ulogo.svg" alt="U Judge Logo">
-    </md-toolbar>
-    <div layout="column" layout-fill layout-margin layout-padding>
- 
-      <div layout="row" layout-fill layout-margin layout-padding>
-        <p class="md-body-2">Sign up with your email</p>
-      </div>
- 
-      <form name="registerForm" layout="column" layout-fill layout-padding layout-margin>
-        <md-input-container >
+<div class="register-wrapper main-layout" layout="row" layout-align="center start" layout-fill layout-margin>
+  <div class="login-container">
+
+     <div class="login-top">   
+        <img src="/img/Ulogo.svg" alt="U Judge Logo">
+     </div>
+     <div class="sign-in">
+       <p class="md-body-2"> Sign up with your email</p>
+     </div>
+      <form name="loginForm">
+        <md-input-container>
           <label> Email </label>
           <input type="text" ng-model="credentials.email" aria-label="email" required/>
         </md-input-container>
-        <md-input-container >
+        <md-input-container>
           <label> Password </label>
           <input type="password" ng-model="credentials.password" aria-label="password" required/>
         </md-input-container>
-        <div layout="row" layout-align="end center">
+        <div class="login-button">
           <button ng-click="register()" aria-label="login">Register</button>
         </div>
       </form>
 
-      <div layout="row" layout-align="center">
-        <a  ui-sref="login">Already a user?</a>
-      </div>
- 
-    </div>
- 
-  </md-whiteframe>
-</md-content>
+        <a ui-sref="login">Already a user?</a>
+  
+  </div>
+</div>

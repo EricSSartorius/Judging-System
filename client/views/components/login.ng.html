@@ -1,16 +1,13 @@
-<md-content class="login-wrapper main-layout" layout="row" layout-align="center start" layout-fill layout-margin>
- 
-  <md-whiteframe layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
-     <md-toolbar class="login-toolbar">   
+<div class="login-wrapper main-layout" layout="row" layout-align="center start" layout-fill layout-margin>
+  <div class="login-container">
+
+     <div class="login-top">   
         <img src="/img/Ulogo.svg" alt="U Judge Logo">
-      </md-toolbar>
-    <div layout="column" layout-fill layout-margin layout-padding>
- 
-      <div layout="row" layout-fill layout-margin layout-padding>
-        <p class="md-body-2"> Sign in with your email</p>
-      </div>
- 
-      <form name="loginForm" layout="column" layout-fill layout-padding layout-margin>
+     </div>
+     <div class="sign-in">
+       <p class="md-body-2"> Sign in with your email</p>
+     </div>
+      <form name="loginForm">
         <md-input-container>
           <label> Email </label>
           <input type="text" ng-model="credentials.email" aria-label="email" required/>
@@ -19,20 +16,13 @@
           <label> Password </label>
           <input type="password" ng-model="credentials.password" aria-label="password" required/>
         </md-input-container>
-        <div layout="row" layout-align="end center">
-<!--           <a class="md-button" href="/resetpw">Forgot password?</a> -->
+        <div class="login-button">
           <button ng-click="login()" aria-label="login">Sign In</button>
         </div>
       </form>
 
-      <div layout="row" layout-align="center">
         <a ui-sref="resetpw">Forgot your password?</a>
-      </div>
-      <div layout="row" layout-align="center">
         <a ui-sref="register">Need an account?</a>
-      </div>
-
-    </div>
- 
-  </md-whiteframe>
-</md-content>
+  
+  </div>
+</div>
