@@ -108,5 +108,7 @@ angular.module('judging-system').config(function($urlRouterProvider, $stateProvi
         }
       }
     });
-  $urlRouterProvider.otherwise("/home");
+  $urlRouterProvider.otherwise(function() {
+    return Accounts.user() ? '/admin-console' : '/home';  
+  });
 });

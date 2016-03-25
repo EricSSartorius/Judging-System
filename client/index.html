@@ -18,8 +18,7 @@
 			<div class="login-buttons">
 				<button class="btn-text-dark" ui-sref="login" ng-hide="currentUser">Login</button>
 			    <button class="btn-text-dark" ui-sref="register" ng-hide="currentUser">Sign up</button>
-			    <!-- <p ng-show="currentUser">{{ currentUser }}</p> -->
-			    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout</button><span> {{currentUser.username}} </span>
+			    <button class="btn-text-dark" ng-click="logout()" ng-show="currentUser">Logout {{currentUser.username}}</button>
 			</div>
 		</header>
 		<sidebar></sidebar>
