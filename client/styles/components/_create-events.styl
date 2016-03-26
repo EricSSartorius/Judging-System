@@ -22,48 +22,52 @@
             .create2
                 lost-column 1/2
     .create-new-player
-        shadow-level(2)
         +above($small)
             lost-column 1/2
         +above($large)
             lost-column 1/4
-        padding 20px
         margin 10px 0
-        background light-grey
         input
             margin 0
         .add-delete
             text-align center
+    .player-content-container
+        shadow-level(2)
+        padding 20px
+        margin-bottom 10px
+        background light-grey  
     .create-players-wrapper
         clearfix()
         padding 20px 0
         margin-bottom 50px
     .create-judges-wrapper
         clearfix()
-        lost-utility clearfix
+        // lost-utility clearfix
         background transparent 
         padding 10px 0
         margin-top 10px
     .create-new-judge
-        shadow-level(2)
         margin 10px 0
         input
             margin 0
         +above($small)
             lost-column 1/2
         +above($large)
-            lost-column 1/4   
+            lost-column 1/4
+    .judge-content-container
+        shadow-level(2)
+        padding 20px
+        margin-bottom 10px
+        background light-grey   
     .submit-wrapper
         float right
         padding 30px 0
-    .new-judge-container
-        background light-grey
         
  //style for judge container in admin-console as well as create-event       
 .new-judge-container
     position relative
-    background light-grey
-    padding 20px 
+    // background light-grey
+    // padding 20px 
     margin-bottom 20px 
     shadow-level(0)  
     input
@@ -71,12 +75,4 @@
         display block
         margin-bottom 10px 
     .add-delete
-        text-align center
- 
-//error notifications        
-.error-message
-    text-align center
-    p
-        color rgb(244,67,54)
-    font-size 16px
-    
+        text-align center    
