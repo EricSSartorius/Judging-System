@@ -3,12 +3,17 @@
 .admin-judge-box
 	lost-column 1/4
 	text-align center
+	+below(750px)
+		lost-column 1/2
+	+below(470px)
+		lost-column 1
 	
 #admin-console
 	.new-judge-container
 		background light-grey
 		padding 20px
 		shadow-level(2)
+
     	
 .console-container
 	.delete-buttons
@@ -37,8 +42,6 @@
 	+below(750px)
 		h1
 			font-size 36px
-		.admin-judge-box
-			lost-column 1/2
 		.admin-bot 
 			button
 				margin 5px
@@ -52,6 +55,4 @@
 			.delete-button
 				float none
 		.admin-grid1, .admin-grid2, .admin-grid3
-			lost-column 1
-		.admin-judge-box
 			lost-column 1
