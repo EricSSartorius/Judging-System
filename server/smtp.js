@@ -16,9 +16,9 @@ Meteor.startup(function(){
 
 // In your server code: define a method that the client can call
 Meteor.methods({
-  sendEmail: function (to, from, subject, text) {
+  sendEmail: function (to, frum, subject, text) {
     check(to, String);
-    check(from, String);
+    check(frum, String);
     check(subject, String);
     check(text, String);
 
@@ -28,7 +28,7 @@ Meteor.methods({
 
     Email.send({
       to: to,
-      from: from,
+      frum: frum,
       subject: subject,
       text: text
     });

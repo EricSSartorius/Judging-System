@@ -51,16 +51,17 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 
 
 
-	$scope.doesExist = function(judge){
+	$scope.doesUserEmailExist = function(judge){
 		var currentJudge = judge.email;
+		//check if email is registered user
 		var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
-		console.log('The email exists: ', currentJudge + "  "+ doesemailexist);
-		console.log('Length of currentJudge', currentJudge)
+
 		if(doesemailexist === undefined && currentJudge !== undefined ){
-				// throw "The email isn't registed to UJudge. Use a registered users email address."
+			// throw Error by setting value to true will throw ng-show
 			return true
 		}
 		else{
+			//when false, ng-show will not show error if email is valid user.
 			return false
 		}
 	}
@@ -77,7 +78,17 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		var timeLimit = parseInt($scope.event.timeLimitMin, 10) * 60 + parseInt($scope.event.timeLimitSec, 10);
 		var jEmails = [];
 		var hasDuplicateEmail = false;
+		var hasUnregisteredEmail = false;
+		//check that you have registered users as emails
+		for(var b = 0; b < $scope.judges.length; b++){
+			var currentJudge = $scope.judges[b].email;
+			var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
 
+			if(doesemailexist === undefined && currentJudge !== undefined){
+				hasUnregisteredEmail = true;
+			}
+
+		}
 		//Checks that no 2 judges can have the same email address
 		for(var i = 0; i < $scope.judges.length; i++){
 			if(jEmails.indexOf($scope.judges[i].email) > -1){
@@ -87,6 +98,18 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		}
 		if(hasDuplicateEmail){
 			Bert.alert( "A judge's email address cannot be used more than once.", 'danger', 'fixed-top');
+		}
+		else if (hasUnregisteredEmail) {
+			Bert.alert("You must use emails registered to UJudge!", 'danger', 'fixed-top');
+			//Send Email to User indicating to change email to a correct registered user.
+			console.log(Meteor.user().emails[0].address.toString(),"is a typeof ", typeof Meteor.user().emails[0].address.toString())
+			Meteor.call(
+				'sendEmail',
+				Meteor.user().emails[0].address.toString(),
+				'iamtheepic@gmail.com',
+				'Hello from UJudge!',
+				'You tried to create an event with an unregistered email. Use registerd users for Judges.'
+			);
 		}
 		else {
 			$scope.errorMsg = "";
