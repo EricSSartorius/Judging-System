@@ -13,7 +13,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
       		players: [],
       		judges: [],
       		scores: []
-		}; 
+		};
 		$scope.players = [{
 			id: 'player1',
 			name: ''
@@ -33,11 +33,41 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		$scope.players.push({'id':'player'+newPlayerNo});
 	};
 
+
+
+
+
+
 	//Adds a new judge everytime a new judge section is created on form
 	$scope.addJudge = function() {
 		var newJudgeNo = $scope.judges.length+1;
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
+
+
+
+
+
+
+
+
+	$scope.doesExist = function(judge){
+		var currentJudge = judge.email;
+		var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
+		console.log('The email exists: ', currentJudge + "  "+ doesemailexist);
+		console.log('Length of currentJudge', currentJudge)
+		if(doesemailexist === undefined && currentJudge !== undefined ){
+				// throw "The email isn't registed to UJudge. Use a registered users email address."
+			return true
+		}
+		else{
+			return false
+		}
+	}
+
+
+
+
 
 	$scope.removePerson = function(array, index) {
 	    array.splice(index, 1);
@@ -67,7 +97,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 				if (err) {
 					Bert.alert("" + err, 'danger', 'fixed-top');
 					console.log(err);
-				} 
+				}
 				else {
 					$scope.$apply(function(){
 						if (id) {
