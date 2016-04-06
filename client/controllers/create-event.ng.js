@@ -39,20 +39,22 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
 
-	$scope.doesUserEmailExist = function(judge){
-		var currentJudge = judge.email;
-		//check if email is registered user
-		var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
 
-		if(doesemailexist === undefined && currentJudge !== undefined ){
-			// throw Error by setting value to true will throw ng-show
-			return true
-		}
-		else{
-			//when false, ng-show will not show error if email is valid user.
-			return false
-		}
+	$scope.doesUserEmailExist = function(judge){
+		return Meteor.call('checkUserByEmail', judge.email , function(err, res){
+			if(err){
+				console.log('Error ',judge.email , 'does not exist!');
+				return false;
+			}
+			else{
+				console.log('Judge Exists!')
+				return true;
+			}
+		})
 	}
+
+
+
 
 	$scope.removePerson = function(array, index) {
 	    array.splice(index, 1);
@@ -86,7 +88,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		else if (hasUnregisteredEmail) {
 			Bert.alert("You must use emails registered to UJudge!", 'danger', 'fixed-top');
 			//Send Email to User indicating to change email to a correct registered user.
-			console.log(Meteor.user().emails[0].address.toString(),"is a typeof ", typeof Meteor.user().emails[0].address.toString())
+			// console.log(Meteor.user().emails[0].address.toString(),"is a typeof ", typeof Meteor.user().emails[0].address.toString())
 			Meteor.call(
 				'sendEmail',
 				Meteor.user().emails[0].address.toString(),
