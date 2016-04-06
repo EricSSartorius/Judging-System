@@ -33,23 +33,11 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		$scope.players.push({'id':'player'+newPlayerNo});
 	};
 
-
-
-
-
-
 	//Adds a new judge everytime a new judge section is created on form
 	$scope.addJudge = function() {
 		var newJudgeNo = $scope.judges.length+1;
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
-
-
-
-
-
-
-
 
 	$scope.doesUserEmailExist = function(judge){
 		var currentJudge = judge.email;
@@ -65,10 +53,6 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 			return false
 		}
 	}
-
-
-
-
 
 	$scope.removePerson = function(array, index) {
 	    array.splice(index, 1);
