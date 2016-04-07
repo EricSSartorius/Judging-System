@@ -73,7 +73,6 @@
             <md-input-container>
               <label>Email</label>
               <input type="email" ng-model="judge.email" aria-label="judge email" name="judgeEmail" minlength="5" maxlength="50" ng-pattern="/^.+@.+\..+$/" required><span id="judgeEmailWarning" ng-show="isJudgeValid(judge) === false && judge.email.length > 0"> Invalid! Email not registered to UJudge.</span>
-              <p>Is judge valid :{{isJudgeValid(judge)}}</p>
             </md-input-container>
             <md-input-container>
               <label>Category</label>

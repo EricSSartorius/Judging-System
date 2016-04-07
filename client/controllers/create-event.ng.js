@@ -79,12 +79,12 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		//check that you have registered users as emails
 		for(var b = 0; b < $scope.judges.length; b++){
 			var currentJudge = $scope.judges[b].email;
-			var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
-
-			if(doesemailexist === undefined && currentJudge !== undefined){
+			if(Session.get(currentJudge) !== true){
 				hasUnregisteredEmail = true;
 			}
-
+			// if(doesemailexist === undefined && currentJudge !== undefined){
+			// 	hasUnregisteredEmail = true;
+			// }
 		}
 		//Checks that no 2 judges can have the same email address
 		for(var i = 0; i < $scope.judges.length; i++){
