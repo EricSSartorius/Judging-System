@@ -40,7 +40,6 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	};
 
 	$scope.doesUserEmailExist = function(judge){
-		judge.trueJudge = true;
     var exist = Meteor.call('checkUserByEmail', judge.email , function(err, res){
 				if(err){
 						console.log(err + ' ' + judge.email , 'does not exist!');
@@ -60,11 +59,12 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 	//based on the Session value from
 	//doesUserEmailExist
 	$scope.isJudgeValid = function(judge){
-		if (Session.get(judge.email) === true){
-			return true;
-		}else{
-			return false;
-		}
+		// if (Session.get(judge.email) === true){
+		// 	return true;
+		// }else{
+		// 	return false;
+		// }
+		return Session.get(judge.email) === true;
 	}
 
 	$scope.removePerson = function(array, index) {
@@ -79,9 +79,9 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		//check that you have registered users as emails
 		for(var b = 0; b < $scope.judges.length; b++){
 			var currentJudge = $scope.judges[b].email;
-			if(Session.get(currentJudge) !== true){
-				hasUnregisteredEmail = true;
-			}
+			// if(Session.get(currentJudge) !== true){
+			// 	hasUnregisteredEmail = true;
+			// }
 			// if(doesemailexist === undefined && currentJudge !== undefined){
 			// 	hasUnregisteredEmail = true;
 			// }
