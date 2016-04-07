@@ -35,6 +35,9 @@ Meteor.methods({
   },
 
   checkUserByEmail : function (email) {
+
+    this.unblock();
+    
     check(email, Match.Any);
     console.log('Checking to see if ', email, 'is registered')
     var userEmail = Accounts.findUserByEmail(email);

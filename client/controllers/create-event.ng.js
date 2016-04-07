@@ -1,4 +1,4 @@
-angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $meteor, $state) {
+angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $q, $meteor, $state) {
 	$scope.noOfJudges = 7;
 	$scope.noOfPlayers = 100;
 
@@ -39,22 +39,33 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
 
-
 	$scope.doesUserEmailExist = function(judge){
-		return Meteor.call('checkUserByEmail', judge.email , function(err, res){
-			if(err){
-				console.log('Error ',judge.email , 'does not exist!');
-				return false;
-			}
-			else{
-				console.log('Judge Exists!')
-				return true;
-			}
-		})
+		judge.trueJudge = true;
+    var exist = Meteor.call('checkUserByEmail', judge.email , function(err, res){
+				if(err){
+						console.log(err + ' ' + judge.email , 'does not exist!');
+						Session.set(judge.email, false);
+				}
+        if(res){
+            console.log(res + ' ' + judge.email  + ' exists as a registered email!');
+            Session.set(judge.email, res);
+        }
+				return Session.get(judge.email)
+    })
+		exist;
+		console.log('Session is ' + Session.get(judge.email));
+  }
+	//if judge is true this returns true
+	//else it returns false
+	//based on the Session value from
+	//doesUserEmailExist
+	$scope.isJudgeValid = function(judge){
+		if (Session.get(judge.email) === true){
+			return true;
+		}else{
+			return false;
+		}
 	}
-
-
-
 
 	$scope.removePerson = function(array, index) {
 	    array.splice(index, 1);
