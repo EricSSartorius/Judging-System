@@ -1,4 +1,4 @@
-angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $meteor, $state) {
+angular.module('judging-system').controller('CreateEventCtrl', function ($scope, $q, $meteor, $state) {
 	$scope.noOfJudges = 7;
 	$scope.noOfPlayers = 100;
 
@@ -33,42 +33,39 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		$scope.players.push({'id':'player'+newPlayerNo});
 	};
 
-
-
-
-
-
 	//Adds a new judge everytime a new judge section is created on form
 	$scope.addJudge = function() {
 		var newJudgeNo = $scope.judges.length+1;
 		$scope.judges.push({'id':'judge'+newJudgeNo});
 	};
 
-
-
-
-
-
-
-
 	$scope.doesUserEmailExist = function(judge){
-		var currentJudge = judge.email;
-		//check if email is registered user
-		var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
-
-		if(doesemailexist === undefined && currentJudge !== undefined ){
-			// throw Error by setting value to true will throw ng-show
-			return true
-		}
-		else{
-			//when false, ng-show will not show error if email is valid user.
-			return false
-		}
+    var exist = Meteor.call('checkUserByEmail', judge.email , function(err, res){
+				if(err){
+						console.log(err + ' ' + judge.email , 'does not exist!');
+						Session.set(judge.email, false);
+				}
+        if(res){
+            console.log(res + ' ' + judge.email  + ' exists as a registered email!');
+            Session.set(judge.email, res);
+        }
+				return Session.get(judge.email)
+    })
+		exist;
+		console.log('Session is ' + Session.get(judge.email));
+  }
+	//if judge is true this returns true
+	//else it returns false
+	//based on the Session value from
+	//doesUserEmailExist
+	$scope.isJudgeValid = function(judge){
+		// if (Session.get(judge.email) === true){
+		// 	return true;
+		// }else{
+		// 	return false;
+		// }
+		return Session.get(judge.email) === true;
 	}
-
-
-
-
 
 	$scope.removePerson = function(array, index) {
 	    array.splice(index, 1);
@@ -82,12 +79,12 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		//check that you have registered users as emails
 		for(var b = 0; b < $scope.judges.length; b++){
 			var currentJudge = $scope.judges[b].email;
-			var doesemailexist = Meteor.users.findOne({'emails.address': currentJudge});
-
-			if(doesemailexist === undefined && currentJudge !== undefined){
-				hasUnregisteredEmail = true;
-			}
-
+			// if(Session.get(currentJudge) !== true){
+			// 	hasUnregisteredEmail = true;
+			// }
+			// if(doesemailexist === undefined && currentJudge !== undefined){
+			// 	hasUnregisteredEmail = true;
+			// }
 		}
 		//Checks that no 2 judges can have the same email address
 		for(var i = 0; i < $scope.judges.length; i++){
@@ -102,7 +99,7 @@ angular.module('judging-system').controller('CreateEventCtrl', function ($scope,
 		else if (hasUnregisteredEmail) {
 			Bert.alert("You must use emails registered to UJudge!", 'danger', 'fixed-top');
 			//Send Email to User indicating to change email to a correct registered user.
-			console.log(Meteor.user().emails[0].address.toString(),"is a typeof ", typeof Meteor.user().emails[0].address.toString())
+			// console.log(Meteor.user().emails[0].address.toString(),"is a typeof ", typeof Meteor.user().emails[0].address.toString())
 			Meteor.call(
 				'sendEmail',
 				Meteor.user().emails[0].address.toString(),

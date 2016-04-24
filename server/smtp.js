@@ -32,5 +32,23 @@ Meteor.methods({
       subject: subject,
       text: text
     });
+  },
+
+  checkUserByEmail : function (email) {
+
+    this.unblock();
+    
+    check(email, Match.Any);
+    console.log('Checking to see if ', email, 'is registered')
+    var userEmail = Accounts.findUserByEmail(email);
+    if(userEmail){
+      console.log(userEmail + ' Email account is registered')
+      return true
+    }
+    else{
+      console.log(userEmail + ' Email account is not registered' )
+      return false
+    }
+    return userEmail;
   }
-});
+})
