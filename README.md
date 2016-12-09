@@ -10,7 +10,7 @@
 - Built With
 
 ###What is U-Judge?
-[U-Judge](https://ujudge.meteorapp.com), or Universal Judge, is an online judging system that can be used to judge all kinds of events. 
+[U-Judge](http://www.universaljudge.com/), or Universal Judge, is an online judging system that can be used to judge all kinds of events. 
 
 As updates happen, the customizability of events will expand. However, currently the only type of event that can be judged follows the same format as a figure skating or skateboarding competition. Players take turns one by one performing during a timed round and judges input their scores accordingly. In the future, the ability to create and judge 1v1 or team vs team matches, among other custom features will also be implemented.
 
