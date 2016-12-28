@@ -1,5 +1,5 @@
 #U-Judge (Beta)
-Note* A large amount of updates and rework is needed to get the user accounts working so for now only the scoreboard is accessable.
+*Note: A large amount of updates and rework is needed to get the user accounts working so for now only the scoreboard is accessable.*
 
 ##Table of Contents
 
