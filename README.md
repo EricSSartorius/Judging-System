@@ -1,4 +1,5 @@
 #U-Judge (Beta)
+Note* A large amount of updates and rework is needed to get the user accounts working so for now only the scoreboard is accessable.
 
 ##Table of Contents
 
@@ -6,7 +7,7 @@
 - Create an event
 - Admin Console
 - Judging Console
-- Quick Scoreboard
+- Scoreboard
 - Built With
 
 ###What is U-Judge?
